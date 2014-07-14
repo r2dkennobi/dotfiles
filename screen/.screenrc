@@ -1,0 +1,33 @@
+# Remove current background color
+defbce on
+# Bold letters use bright color
+attrcolor b ".I"
+# Enable 256 colors
+term xterm-256color
+# Disable window size change when connected via putty
+termcapinfo xterm-256color 'is=^[r^[m^[2J^[H^[?7h^[?1;4;6l'
+# Define max scroll back buffer
+defscrollback 1000
+# Enable multiple screen
+altscreen on
+# Remap commnand key
+escape ^Zz
+# Diable visual bell notification
+vbell off
+# Bell message
+bell_msg "Bell in window %^G"
+# Enable automatic detach when connection is lost
+autodetach on
+# Command to run when creating new window
+shell $SHELL
+# Diable starup message
+startup_message off
+# Define log file
+logfile "$HOME/.screen/screen-%Y%m%d-%n.log"
+# Enable logging by default
+deflog on
+# Set window title
+shelltitle '$ |bash'
+caption always "%{= Rk} %?%F%{b kr}%? %?%h%:%t (screen #%n)%? %{-}"
+hardstatus alwayslastline "%{= Gk} %-Lw%40L>%{b kg} %n %t %{-}%+Lw%-040=%{b km} %l %{.b} %Y/%m/%d %C:%s %A "
+sorendition "= Rk"

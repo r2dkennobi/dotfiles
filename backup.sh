@@ -20,3 +20,7 @@ cp ~/.vimrc ./vim/
 # Backup tmux configs
 mkdir -p tmux
 cp ~/.tmux.conf ./tmux/
+
+# Backup screen configs
+mkdir -p screen
+cp ~/.screenrc ./screen/

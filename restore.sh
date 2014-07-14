@@ -1,18 +1,21 @@
 #!/bin/bash
 
-# Backup bash configs
+# Restore bash configs
 cp .bashrc ~
 cp .bash_profile ~
 
-# Backup terminal configs
+# Restore terminal configs
 cp ./lxterminal/lxterminal.conf ~/.config/lxterminal/lxterminal.conf 
 cp ./terminator/config ~/.config/terminator/config
 
-# Backup Openbox configs
+# Restore Openbox configs
 cp -r ./openbox/* ~/.config/openbox/
 
-# Backup vim configs
+# Restore vim configs
 cp ./vim/.vimrc ~
 
-# Backup tmux configs
+# Restore tmux configs
 cp ./tmux/.tmux.conf ~/.tmux.conf
+
+# Restore screen configs
+cp ./screen/.screenrc ~/.screenrc
