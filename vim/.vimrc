@@ -37,11 +37,23 @@
 ":set noswapfile                 " Diable swap files (Caution)
 colorscheme desert              " Set the colorscheme to desert
 "colorscheme hybrid             " Set the colorscheme to desert
+:let mapleader='\'              " Default <leader> key
+
+" Custom keybindings
+" Capitalizes a single word in insert mode
+:inoremap <c-u> <Esc>viwUi
+" Shortcut to open the vimrc file for easy editing
+:nnoremap <leader> ev :e $MYVIMRC<cr>
+" Shortcut to source the vimrc file
+:nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Adjusts the default gvim size
 if has("gui_running")
     set lines=35 columns=111
-    "set guifont=Consolas:h9:cANSI
+    " If windows gvim, use the following fonts
+    if has("win32")
+        :set guifont=Consolas:h9:cANSI
+    endif
 endif
 
 " Unlimited undo
@@ -121,10 +133,15 @@ imap <> <><Left>
 " Do I really need this one?
 imap // //<Left>
 " Used for Perl programming
-imap /// ///<Left> 
+imap /// ///<Left>
 
 " Status bar related
 set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\ (%v,%l)/%L%8P\
+
+" Typo fixing
+:iabbrev adn and
+:iabbrev waht what
+:iabbrev tehn then
 
 " **************************************
 " * PLUGINS
