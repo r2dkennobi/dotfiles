@@ -1,5 +1,5 @@
 # Remove current background color
-defbce on
+#defbce on
 # Bold letters use bright color
 attrcolor b ".I"
 # Enable 256 colors

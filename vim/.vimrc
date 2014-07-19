@@ -37,15 +37,22 @@
 ":set noswapfile                 " Diable swap files (Caution)
 colorscheme desert              " Set the colorscheme to desert
 "colorscheme hybrid             " Set the colorscheme to desert
+:set wildmenu                   " Enable enhanced completion for command mode
+:set wildmode=longest:full,full " Completion mode for wildmenu
+
+" Setting <leader> in case it is changed
 :let mapleader='\'              " Default <leader> key
+:let maplocalleader=','         " Default <localleader> key
 
 " Custom keybindings
 " Capitalizes a single word in insert mode
 :inoremap <c-u> <Esc>viwUi
 " Shortcut to open the vimrc file for easy editing
-:nnoremap <leader> ev :e $MYVIMRC<cr>
+:nnoremap <leader>ev :e $MYVIMRC<cr>
 " Shortcut to source the vimrc file
 :nnoremap <leader>sv :source $MYVIMRC<cr>
+" Enable very magic
+:nnoremap / /\v
 
 " Adjusts the default gvim size
 if has("gui_running")
