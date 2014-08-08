@@ -24,3 +24,7 @@ cp ~/.tmux.conf ./tmux/
 # Backup screen configs
 mkdir -p screen
 cp ~/.screenrc ./screen/
+
+# Backup conky configs
+mkdir -p conky
+cp ~/.conkyrc ./conky/
