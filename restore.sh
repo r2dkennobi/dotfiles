@@ -19,3 +19,6 @@ cp ./tmux/.tmux.conf ~/.tmux.conf
 
 # Restore screen configs
 cp ./screen/.screenrc ~/.screenrc
+
+# Restore conky configs
+cp ./conky/.conkyrc ~/.conkyrc
