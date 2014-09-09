@@ -9,7 +9,7 @@ cp ./lxterminal/lxterminal.conf ~/.config/lxterminal/lxterminal.conf
 cp ./terminator/config ~/.config/terminator/config
 
 # Restore Openbox configs
-cp -r ./openbox/* ~/.config/openbox/
+#cp -r ./openbox/* ~/.config/openbox/
 
 # Restore vim configs
 cp ./vim/.vimrc ~
@@ -21,4 +21,4 @@ cp ./tmux/.tmux.conf ~/.tmux.conf
 cp ./screen/.screenrc ~/.screenrc
 
 # Restore conky configs
-cp ./conky/.conkyrc ~/.conkyrc
+#cp ./conky/.conkyrc ~/.conkyrc
