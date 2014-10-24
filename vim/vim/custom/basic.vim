@@ -39,6 +39,11 @@ colorscheme desert              " Set the colorscheme to desert
 "colorscheme hybrid             " Set the colorscheme to desert
 :set wildmenu                   " Enable enhanced completion for command mode
 :set wildmode=longest:full,full " Completion mode for wildmenu
+":set mouse=a                   " Enable mouse everywhere
+":set cursorline                 " Highlight line currently at
+
+" Wildcard pattern to ignore
+:set wildignore=*.dll,*.o,*.obj,*.pyc,*.jpg,*.gif,*.png,*.class,*.ln
 
 " Setting <leader> in case it is changed
 :let mapleader='\'              " Default <leader> key
