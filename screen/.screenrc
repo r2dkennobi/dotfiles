@@ -1,31 +1,53 @@
-# Remove current background color
-#defbce on
+######################################
+# Custom settings
+# Apo11oH
+# 10/23/2014
+######################################
+# Enable Japanese Display
+defutf8 on
+defencoding utf-8
+defkanji utf-8
+encoding utf-8 utf-8
+
+# Select default bash
+select bash
+
+# Enable 256 color in vim
 # Bold letters use bright color
 attrcolor b ".I"
-# Enable 256 colors
-term xterm-256color
-# Disable window size change when connected via putty
 termcapinfo xterm-256color 'is=^[r^[m^[2J^[H^[?7h^[?1;4;6l'
-# Define max scroll back buffer
-defscrollback 1000
-# Enable multiple screen
-altscreen on
-# Remap commnand key
-escape ^Zz
-# Diable visual bell notification
-vbell off
-# Bell message
-bell_msg "Bell in window %^G"
+defbce on
+
 # Enable automatic detach when connection is lost
 autodetach on
+
+# Define max scroll back buffer
+defscrollback 1000
+
+# Enable copy/paste keys
+bind ^c copy
+bind ^y paste .
+bind p paste
+
+# Set movement keys
+bind ^n eval "next" "command -c next"
+bind ^p eval "prev" "command -c prev"
+
+# Remap commnand key
+escape ^Zz
+
+# Diable visual bell notification
+vbell off
+
+# Bell message
+bell_msg "Bell in window %^G"
+
 # Command to run when creating new window
 shell $SHELL
-# Diable starup message
+
+# Disable starup message
 startup_message off
-# Define log file
-logfile "$HOME/.screen/screen-%Y%m%d-%n.log"
-# Enable logging by default
-deflog on
+
 # Set window title
 shelltitle '$ |bash'
 caption always "%{= Rk} %?%F%{b kr}%? %?%h%:%t (screen #%n)%? %{-}"

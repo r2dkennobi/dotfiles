@@ -20,7 +20,7 @@ shopt -s cdspell
 
 # Aliases
 alias ls='ls -lhF --color=auto'
-[ ! "$UID" = "0" ] && archbey2
+alias lsa='ls -lahF --color=auto'
 alias ocaml="rlwrap ocaml"
 alias open="xdg-open"
 alias :q="exit"
