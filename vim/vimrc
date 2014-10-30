@@ -12,7 +12,9 @@ if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/')) " Required
+call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#end()
+"call neobundle#rc(expand('~/.vim/bundle/')) " Required
 NeoBundleFetch 'Shougo/neobundle.vim' " Required
 filetype plugin indent on " Required for NeoBundle
 NeoBundleCheck " If there are uninstalled bundles, this will clean it
