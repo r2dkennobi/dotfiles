@@ -114,8 +114,9 @@ au BufRead,BufNewFile {*.s,Makefile} set tabstop=8
 " Show syntax
 syntax on
 
-" Automatically treat .md files as .mkd files
+" Automatically treat certain files as certain files
 au BufRead,BufNewFile *.{markdown,mdown,mkd,mkdn,md} setf markdown
+au BufRead,BufNewFile *.jade set syntax=jade " not setf since doctype jams 
 
 " For switching between many opened file by using ctrl+l or ctrl+h
 map <c-e> :next <CR>

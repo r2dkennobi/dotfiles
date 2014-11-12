@@ -1,0 +1,15 @@
+VOoM
+ctrlp.vim
+neobundle.vim
+neocomplcache
+tagbar
+tmuxline.vim
+undotree
+unite.vim
+vim-airline
+vim-fugitive
+vim-hybrid
+vim-jade
+vim-markdown
+vimproc
+vimshell

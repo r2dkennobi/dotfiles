@@ -1,7 +1,6 @@
 #!/bin/bash
-DIR="$HOME/.vim"
+DIR="$HOME/.config/terminator/"
 if [ ! -d $DIR ]; then
     mkdir -p $DIR
 fi
-cp vimrc ~/.vimrc
-cp -r vim/* ~/.vim/
+cp ./config $DIR/config
