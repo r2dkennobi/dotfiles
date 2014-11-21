@@ -10,6 +10,8 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+-- Battery plugin
+local battery = require("battery")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -46,10 +48,12 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Custom Application
+tmux = "terminator -e \"tmux\""
 web_browser = "firefox"
 file_manager = "spacefm"
 lock_screen = "dm-tool lock"
-screenshot = "scrot -e 'mv ~/*scrot.png ~'"
+screenshot = "scrot -e \"mv ~/*scrot.png ~\""
+sound_control = "pavucontrol"
 -- terminator --geometry=1000x650+0+0
 
 -- Default modkey.
@@ -63,12 +67,12 @@ modkey = "Mod4"
 local layouts =
 {
     awful.layout.suit.tile,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.top,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.max,
+    --awful.layout.suit.max,
     awful.layout.suit.max.fullscreen,
     awful.layout.suit.floating,
-    --awful.layout.suit.tile.left,
-    --awful.layout.suit.tile.top,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
@@ -130,6 +134,25 @@ mytextclock = awful.widget.textclock()
 --space = widget({ type = "textbox" })
 --space.text = " "
 
+-- RAM Usage widget
+ramwidget = awful.widget.progressbar()
+ramwidget:set_width(8)
+ramwidget:set_height(beautiful.menu_height)
+ramwidget:set_vertical(true)
+ramwidget:set_background_color(beautiful.bg_widget)
+ramwidget:set_color(beautiful.fg_widget)
+--ramwidget:set_gradient_colors({beautiful.fg_widget, fg_center_widget, beautiful.fg_end_widget})
+
+-- CPU Usage widget
+
+-- Battery widget
+batterywidget = wibox.widget.textbox()
+-- batterywidget:set_text(batteryInfo("BAT0"))
+batterywidget_timer = timer({timeout = 1})
+batterywidget_timer:connect_signal("timeout", function()
+    batterywidget:set_text(batteryInfo("BAT0"))
+end)
+batterywidget_timer:start()
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -210,6 +233,13 @@ for s = 1, screen.count() do
     -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    --right_layout:add(separator)
+    --right_layout:add(space)
+    --right_layout:add(ramwidget)
+    --right_layout:add(space)
+    --right_layout:add(separator)
+    --right_layout:add(space)
+    right_layout:add(batterywidget)
     right_layout:add(mytextclock)
     right_layout:add(mylayoutbox[s])
 
@@ -269,8 +299,10 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "t", function () awful.util.spawn(tmux) end),
     awful.key({ modkey,           }, "b", function () awful.util.spawn(web_browser) end),
     awful.key({ modkey,           }, "e", function () awful.util.spawn(file_manager) end),
+    awful.key({ modkey,           }, "s", function () awful.util.spawn(sound_control) end),
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn(lock_screen) end),
     awful.key({                   }, "Print", function () awful.util.spawn(screenshot) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),

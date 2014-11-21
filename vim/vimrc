@@ -47,6 +47,8 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'w0ng/vim-hybrid' " color scheme
 NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'edkolev/tmuxline.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " **************************************
 " * RUNTIME PATH
