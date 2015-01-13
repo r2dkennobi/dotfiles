@@ -48,7 +48,7 @@ editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Custom Application
-tmux = "terminator -e \"tmux\""
+tmux = "terminator -e \"tmux -2\""
 web_browser = "firefox"
 file_manager = "spacefm"
 lock_screen = "dm-tool lock"

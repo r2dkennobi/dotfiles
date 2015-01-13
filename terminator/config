@@ -3,7 +3,7 @@
 [profiles]
   [[default]]
     use_system_font = False
-    font = Source Code Pro 9
+    font = Source Code Pro 10
     background_image = None
     show_titlebar = False
 [layouts]
