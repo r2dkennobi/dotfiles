@@ -6,6 +6,7 @@
     font = Source Code Pro 10
     background_image = None
     show_titlebar = False
+    foreground_color = "#ffffff"
 [layouts]
   [[default]]
     [[[child1]]]

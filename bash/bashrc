@@ -1,9 +1,7 @@
 # Add nano as default editor
 export EDITOR=vim
-export TERMINAL=lxterminal
+export TERMINAL=terminator
 export BROWSER=firefox
-# Gtk themes
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # Enable 256 colors for terminal
 export TERM=xterm-256color
@@ -26,23 +24,8 @@ alias open="xdg-open"
 alias :q="exit"
 alias grep="grep --color=auto"
 
-# Add IDE folders to PATH
-PATH="${PATH}:$HOME/android-studio/bin:$HOME/idea-IC-133.331/bin"
-# Add Android SDK to path
-PATH="${PATH}:$HOME/android-studio/sdk/platform-tools"
-PATH="${PATH}:$HOME/android-studio/sdk/tools"
-PATH="${PATH}:$HOME/android-studio/sdk/build-tools/android-4.4"
-# Add ruby gem path
-PATH="${PATH}:/home/apo11o/.gem/ruby/2.1.0/bin"
-
-# Setup gtest directory
-export GTEST_DIR="/home/apo11o/gtest-1.7.0"
-export C_INCLUDE_PATH="/home/apo11o/gtest-1.7.0/include"
-export CPLUS_INCLUDE_PATH="/home/apo11o/gtest-1.7.0/include"
-
-# Add ARM toolchain to PATH
-PATH="${PATH}:${PATH}:/opt/ARM/bin"
-PATH="${PATH}:${PATH}:/opt/stlink"
+# Add directory to $PATH example
+#PATH="${PATH}:_directory_:_directory_"
 
 # Set custom bash prompt
 PS1="\n\[\033[1;37m\]\342\224\214($(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;34m\]\u@\h'; fi)\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\$?\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\@ \d\[\033[1;37m\])\[\033[1;37m\]\n\342\224\224\342\224\200(\[\033[1;32m\]\w\[\033[1;37m\])\342\224\200(\[\033[1;32m\]\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -sh | head -n1 | sed 's/total //')b\[\033[1;37m\])\342\224\200> \[\033[0m\]"
