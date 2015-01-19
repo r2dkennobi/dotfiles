@@ -43,12 +43,14 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kien/ctrlp.vim'
-"NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'w0ng/vim-hybrid' " color scheme
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'octol/vim-cpp-enhanced-highlight'
+NeoBundle 'cohama/agit.vim'
 
 " **************************************
 " * RUNTIME PATH

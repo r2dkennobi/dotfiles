@@ -35,8 +35,8 @@
 ":set undolevels=1000            " MOAR UNDOOO
 :set nobackup                   " Disable backup files
 ":set noswapfile                 " Diable swap files (Caution)
-colorscheme desert              " Set the colorscheme to desert
-"colorscheme hybrid             " Set the colorscheme to desert
+"colorscheme desert              " Set the colorscheme to desert
+colorscheme hybrid             " Set the colorscheme to desert
 :set wildmenu                   " Enable enhanced completion for command mode
 :set wildmode=longest:full,full " Completion mode for wildmenu
 ":set mouse=a                   " Enable mouse everywhere
