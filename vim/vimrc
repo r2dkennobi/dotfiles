@@ -51,6 +51,10 @@ NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
 NeoBundle 'cohama/agit.vim'
+NeoBundle 'taketwo/vim-ros'
+NeoBundle 'vim-jp/cpp-vim'
+NeoBundle 'justinmk/vim-syntax-extra'
+NeoBundle 'Yggdroot/indentLine'
 
 " **************************************
 " * RUNTIME PATH
