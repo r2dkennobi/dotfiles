@@ -19,10 +19,10 @@ shopt -s cdspell
 # Aliases
 alias ls='ls -lhF --color=auto'
 alias lsa='ls -lahF --color=auto'
-alias ocaml="rlwrap ocaml"
 alias open="xdg-open"
 alias :q="exit"
 alias grep="grep --color=auto"
+alias ssh="ssh -XC"
 
 # Add directory to $PATH example
 #PATH="${PATH}:_directory_:_directory_"
