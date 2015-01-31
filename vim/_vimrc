@@ -10,53 +10,89 @@
 " git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#begin(expand('~/.vim/bundle/'))
-    call neobundle#end()
 endif
 
+call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim' " Required
 filetype plugin indent on " Required for NeoBundle
 NeoBundleCheck " If there are uninstalled bundles, this will clean it
 
-:set nocompatible               " get rid of strict vi compatibility!
-:set nu                         " line numbering on
-:set autoindent                 " autoindent on
-:set noerrorbells               " no error bells
-:set modeline                   " changes setting based on file
-:set showmode                   " show the mode on the dedicated line
-:set nowrap                     " no wrapping
-:set ignorecase                 " search without regards to case
-:set backspace=indent,eol,start " backspace over everything
-:set fileformats=unix,dos,mac   " open files from mac/dos
-:set exrc                       " open local config files
-:set nojoinspaces               " don't add white space when combining lines
-:set ruler                      " which line am I on?
-:set showcmd                    " show current command
-:set showmatch                  " ensure Dyck language
-:set incsearch                  " incremental searching
-:set bs=2                       " fix backspacing in insert mode
-:set bg=dark                    " Set the background to dark
-:set expandtab                  " replace tab with space
-:set shiftwidth=4               " determins the number of char per indent
-:set tabstop=4                  " replaces current tab with specified number
-:set wrap                       " enable word wrapping
-:set laststatus=2               " Sets the number of lines at the bottom
-:set t_Co=256                   " Enable 256 colors in vim
-:set ttimeoutlen=50             " Set delay between mode switching
-:set wildignore=*.swp,*.bak,*.pyc,*.class   " Ignore certain file formats
-:set history=1000               " Remember more commands and search history
-":set undolevels=1000            " MOAR UNDOOO
-:set nobackup                   " Disable backup files
-":set noswapfile                 " Diable swap files (Caution)
-"colorscheme desert              " Set the colorscheme to desert
-colorscheme hybrid              " Set the colorscheme to desert
-:set wildmenu                   " Enable enhanced completion for command mode
-:set wildmode=longest:full,full " Completion mode for wildmenu
-":set mouse=a                   " Enable mouse everywhere
-:set cursorline                 " Highlight line currently at
+" " **************************************
+" " * BUNDLES
+" " **************************************
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neocomplcache'
+"NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'vim-scripts/VOoM'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'edkolev/tmuxline.vim'
+NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'mbbill/undotree'
+NeoBundle 'w0ng/vim-hybrid' " color scheme
+NeoBundle 'digitaltoad/vim-jade'
+NeoBundle 'edkolev/tmuxline.vim'
+NeoBundle 'octol/vim-cpp-enhanced-highlight'
+NeoBundle 'cohama/agit.vim'
+NeoBundle 'taketwo/vim-ros'
+NeoBundle 'vim-jp/cpp-vim'
+NeoBundle 'justinmk/vim-syntax-extra'
+NeoBundle 'Yggdroot/indentLine'
 
-" Wildcard pattern to ignore
-:set wildignore=*.dll,*.o,*.obj,*.pyc,*.jpg,*.gif,*.png,*.class,*.ln
+call neobundle#end()
+
+" **************************************
+" * VARIABLES
+" **************************************
+" Common settings
+set nocompatible                " get rid of strict vi compatibility!
+set nu                          " line numbering on
+set autoindent                  " autoindent on
+set noerrorbells                " no error bells
+set modeline                    " changes setting based on file
+set showmode                    " show the mode on the dedicated line
+set nowrap                      " no wrapping
+set backspace=2                 " backspace over everything
+set background=dark             " set dark background
+set exrc                        " open local config files
+set nojoinspaces                " don't add white space when combining lines
+set backspace=indent,eol,start  " Backspaces over everythin
+set ruler                       " which line am I on?
+set showcmd                     " show current command
+set showmatch                   " Breifely display maching bracket
+set bs=2                        " fix backspacing in insert mode
+set expandtab                   " replace tab with space
+set shiftwidth=4                " determins the number of char per indent
+set tabstop=4                   " replaces current tab with specified number
+set wrap                        " enable word wrapping
+set laststatus=2                " Sets the number of lines at the bottom
+set ttimeoutlen=50              " Set delay between mode switching
+set history=1000                " Remember more commands and search history
+set nobackup                    " Disable backup files
+set noswapfile                  " Diable swap files (Caution)
+set wildmenu                    " Enable enhanced completion for command mode
+set wildmode=longest:full,full  " Completion mode for wildmenu
+set wildignore+=*.swp,*.bak,*.dll,*.o,*.obj,*.pyc
+set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
+":set mouse=a                    " Enable mouse everywhere
+set cursorline                  " Highlight line currently at
+set list                        " Enable visualization of invisible chars
+set listchars=tab:»-,trail:-,eol:↲,nbsp:% " Characters used to visualize
+
+try
+    colorscheme hybrid              " Set the colorscheme to desert
+catch /^Vim\%((\a\+)\)\=:E185/
+    colorscheme desert              " Set the colorscheme to desert
+endtry
+
+set ignorecase                  " search without regards to case
+set smartcase                   "
+set infercase                   "
+set incsearch                   " incremental searching
+nnoremap <F6> :set hlsearch!<CR>
 
 " Setting <leader> in case it is changed
 :let mapleader='\'              " Default <leader> key
@@ -77,8 +113,7 @@ if has("gui_running")
     set lines=35 columns=111
     " If windows gvim, use the following fonts
     if has("win32")
-        " :set guifont=Consolas:h9:cANSI
-        :set guifont=Source_Code_Pro:h9:cANSI
+        set guifont=Source_Code_Pro:h9:cANSI,Consolas:h9:cANSI
     endif
 endif
 
@@ -164,140 +199,97 @@ imap /// ///<Left>
 
 " Status bar related
 set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\ (%v,%l)/%L%8P\
-
-" Typo fixing
-:iabbrev adn and
-:iabbrev waht what
-:iabbrev tehn then
-
 """"""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""
- 
-" " **************************************
-" " * BUNDLES
-" " **************************************
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-"NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'vim-scripts/VOoM'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'mbbill/undotree'
-NeoBundle 'w0ng/vim-hybrid' " color scheme
-NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'octol/vim-cpp-enhanced-highlight'
-NeoBundle 'cohama/agit.vim'
-NeoBundle 'taketwo/vim-ros'
-NeoBundle 'vim-jp/cpp-vim'
-NeoBundle 'justinmk/vim-syntax-extra'
-NeoBundle 'Yggdroot/indentLine'
+if exists(':NeoBundle')
+    " **********************************
+    " Vim-airline Settings
+    " **********************************
+    let g:airline_theme = 'bubblegum'
+    let g:airline_enable_branch = 1
+    let g:airline_left_sep='>'
+    let g:airline_right_sep='<'
+    let g:airline_detect_modified=1
+    let g:airline_detect_paste=1
+    "let g:airline_powerline_fonts=1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#showbuffers = 1
+    let g:airline#extensions#branch#enabled = 1
 
-" **********************************
-" Vim-airline Settings
-" Kenny Y
-" 10/23/2014
-" **********************************
-let g:airline_theme = 'bubblegum'
-let g:airline_enable_branch = 1
-let g:airline_left_sep='>'
-let g:airline_right_sep='<'
-let g:airline_detect_modified=1
-let g:airline_detect_paste=1
-"let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#showbuffers = 1
-let g:airline#extensions#branch#enabled = 1
+    " **********************************
+    " ctrlp Settings
+    " **********************************
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_cmd = 'CtrlP'
 
-" **********************************
-" ctrlp Settings
-" Kenny Y
-" 10/23/2014
-" **********************************
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+    " **********************************
+    " indentLine Settings
+    " **********************************
+    let g:indentLine_color_term = 111
+    let g:indentLine_color_gui = '#708090'
+    set list listchars=tab:\|\
 
-" **********************************
-" indentLine Settings
-" Kenny Y
-" 10/23/2014
-" **********************************
-let g:indentLine_color_term = 111
-let g:indentLine_color_gui = '#708090'
-set list listchars=tab:\|\
+    " **********************************
+    " Neocomplcache Settings
+    " **********************************
+    let g:acp_enableAtStartup = 0 " Disable AutoComplPop (Conflict)
+    let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache
+    let g:neocomplcache_enable_smart_case = 1 " Use smartcase
+    let g:neocomplcache_min_syntax_length = 3
+    let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" **********************************
-" Neocomplcache Settings
-" Kenny Y
-" 10/23/2014
-" **********************************
-let g:acp_enableAtStartup = 0 " Disable AutoComplPop (Conflict)
-let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache
-let g:neocomplcache_enable_smart_case = 1 " Use smartcase
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+    "" Define dictionary
+    let g:neocomplcache_dictionary_filetype_lists = {
+                \ 'default' : '',
+                \ 'vimshell' : $HOME.'\.vimshell_hist'
+                \}
 
-"" Define dictionary
-let g:neocomplcache_dictionary_filetype_lists = {
-            \ 'default' : '',
-            \ 'vimshell' : $HOME.'\.vimshell_hist'
-            \}
+    "" Define keyword
+    if !exists('g:neocomplcache_keyword_patterns')
+        let g:neocomplcache_keyword_patterns = {}
+    endif
+    let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-"" Define keyword
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
+    "" Plugin key-mappings
+    "inoremap <expr><C-g>     neocomplcache#undo_completion()
+    "inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+    "" Recommended key-mappings.
+    "" <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function()
+        return neocomplcache#smart_close_popup() . "\<CR>"
+    endfunction
+    "" <TAB>: completion.
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+    "" <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+    inoremap <expr><C-y>  neocomplcache#close_popup()
+    inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+    "" Enable omni completion
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+    " **********************************
+    " Unite Settings
+    " **********************************
+    nmap <Leader>u :UndotreeToggle<CR>
+    let g:undotree_SetFocusWhenToggle = 1
+    let g:undotree_WindowLayout = 'topleft'
+    let g:undotree_SplitWidth = 35
+    let g:undotree_diffAutoOpen = 1
+    let g:undotree_diffpanelHeight = 25
+    let g:undotree_RelativeTimestamp = 1
+    let g:undotree_TreeNodeShape = '*'
+    let g:undotree_HighlightChangedText = 1
+    let g:undotree_HighlightSyntax = "UnderLined"
+
+    " **********************************
+    " Enhanced cpp setting
+    " **********************************
+    let g:cpp_class_scope_highlight = 1
+    let g:cpp_experimental_template_highlight = 1
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-"" Plugin key-mappings
-"inoremap <expr><C-g>     neocomplcache#undo_completion()
-"inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-"" Recommended key-mappings.
-"" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-    return neocomplcache#smart_close_popup() . "\<CR>"
-endfunction
-"" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-"" Enable omni completion
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" **********************************
-" Unite Settings
-" Kenny Y
-" 10/23/2014
-" **********************************
-nmap <Leader>u :UndotreeToggle<CR>
-let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_WindowLayout = 'topleft'
-let g:undotree_SplitWidth = 35
-let g:undotree_diffAutoOpen = 1
-let g:undotree_diffpanelHeight = 25
-let g:undotree_RelativeTimestamp = 1
-let g:undotree_TreeNodeShape = '*'
-let g:undotree_HighlightChangedText = 1
-let g:undotree_HighlightSyntax = "UnderLined"
-
-" **********************************
-" Enhanced cpp setting
-" Kenny Y
-" 10/23/2014
-" **********************************
-let g:cpp_class_scope_highlight = 1
-let g:cpp_experimental_template_highlight = 1

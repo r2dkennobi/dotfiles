@@ -6,8 +6,6 @@
 " * VARIABLES
 " **************************************
 " Common settings
-filetype plugin on
-filetype indent on
 set nocompatible                " get rid of strict vi compatibility!
 set nu                          " line numbering on
 set autoindent                  " autoindent on
@@ -19,8 +17,10 @@ set backspace=2                 " backspace over everything
 set background=dark             " set dark background
 set exrc                        " open local config files
 set nojoinspaces                " don't add white space when combining lines
+set backspace=indent,eol,start  " Backspaces over everythin
 set ruler                       " which line am I on?
 set showcmd                     " show current command
+set showmatch                   " Breifely display maching bracket
 set bs=2                        " fix backspacing in insert mode
 set expandtab                   " replace tab with space
 set shiftwidth=4                " determins the number of char per indent
@@ -71,7 +71,7 @@ if has("gui_running")
     set lines=35 columns=111
     " If windows gvim, use the following fonts
     if has("win32")
-        set guifont=Consolas:h9:cANSI
+        set guifont=Source_Code_Pro:h9:cANSI,Consolas:h9:cANSI
     endif
 else
     set t_Co=256                    " Enable 256 colors in vim

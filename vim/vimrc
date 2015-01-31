@@ -13,7 +13,7 @@ if has('vim_starting')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-"call neobundle#rc(expand('~/.vim/bundle/')) " Required
+filetype plugin indent on
 NeoBundleFetch 'Shougo/neobundle.vim' " Required
 
 " **************************************
