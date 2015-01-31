@@ -41,7 +41,8 @@ set list                        " Enable visualization of invisible chars
 set listchars=tab:»-,trail:-,eol:↲,nbsp:% " Characters used to visualize
 
 try
-    colorscheme hybrid              " Set the colorscheme to desert
+    "colorscheme hybrid              " Set the colorscheme to desert
+    colorscheme molokai             " Set the colorscheme to desert
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert              " Set the colorscheme to desert
 endtry

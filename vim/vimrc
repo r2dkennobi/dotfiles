@@ -40,6 +40,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'w0ng/vim-hybrid' " color scheme
+NeoBundle 'tomasr/molokai'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
 NeoBundle 'cohama/agit.vim'
