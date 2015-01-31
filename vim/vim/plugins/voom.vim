@@ -3,4 +3,6 @@
 " Kenny Y
 " 10/23/2014
 " **********************************
-nmap <F9> :VoomToggle<CR>
+if exists(':NeoBundle')
+    nmap <F9> :VoomToggle<CR>
+endif

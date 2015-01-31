@@ -1,6 +1,6 @@
 " **************************************
 " Kenny Y
-" 10/23/2014
+" 2/30/2015
 " **************************************
 " **************************************
 " * PLUGINS
@@ -13,11 +13,8 @@ if has('vim_starting')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-call neobundle#end()
 "call neobundle#rc(expand('~/.vim/bundle/')) " Required
 NeoBundleFetch 'Shougo/neobundle.vim' " Required
-filetype plugin indent on " Required for NeoBundle
-NeoBundleCheck " If there are uninstalled bundles, this will clean it
 
 " **************************************
 " * BUNDLES
@@ -30,8 +27,6 @@ NeoBundle 'Shougo/vimproc', {
             \     'unix' : 'make -f make_unix.mak',
             \    },
             \ }
-set rtp+=~/.vim/bundle/vimproc/autoload/
-set rtp+=~/.vim/bundle/vimproc/plugin/
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
@@ -39,22 +34,21 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'vim-scripts/VOoM'
 NeoBundle 'bling/vim-airline'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'edkolev/tmuxline.vim'
+"NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'w0ng/vim-hybrid' " color scheme
 NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
 NeoBundle 'cohama/agit.vim'
 NeoBundle 'taketwo/vim-ros'
 NeoBundle 'vim-jp/cpp-vim'
 NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'Yggdroot/indentLine'
+
+call neobundle#end()
 
 " **************************************
 " * RUNTIME PATH
@@ -63,3 +57,5 @@ set runtimepath+=~/.vim/custom
 set runtimepath+=~/.vim/plugins
 runtime! custom/*.vim
 runtime! plugins/*.vim
+
+NeoBundleCheck

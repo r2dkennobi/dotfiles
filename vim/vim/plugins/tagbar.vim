@@ -3,4 +3,6 @@
 " Kenny Y
 " 10/23/2014
 " **********************************
-nmap <F8> :TagbarToggle<CR>
+if exists(':NeoBundle')
+    nmap <F8> :TagbarToggle<CR>
+endif

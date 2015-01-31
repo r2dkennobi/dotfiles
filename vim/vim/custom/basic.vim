@@ -5,67 +5,76 @@
 " **************************************
 " * VARIABLES
 " **************************************
-:set nocompatible               " get rid of strict vi compatibility!
-:set nu                         " line numbering on
-:set autoindent                 " autoindent on
-:set noerrorbells               " no error bells
-:set modeline                   " changes setting based on file
-:set showmode                   " show the mode on the dedicated line
-:set nowrap                     " no wrapping
-:set ignorecase                 " search without regards to case
-:set backspace=indent,eol,start " backspace over everything
-:set fileformats=unix,dos,mac   " open files from mac/dos
-:set exrc                       " open local config files
-:set nojoinspaces               " don't add white space when combining lines
-:set ruler                      " which line am I on?
-:set showcmd                    " show current command
-:set showmatch                  " ensure Dyck language
-:set incsearch                  " incremental searching
-:set bs=2                       " fix backspacing in insert mode
-:set bg=dark                    " Set the background to dark
-:set expandtab                  " replace tab with space
-:set shiftwidth=4               " determins the number of char per indent
-:set tabstop=4                  " replaces current tab with specified number
-:set wrap                       " enable word wrapping
-:set laststatus=2               " Sets the number of lines at the bottom
-:set t_Co=256                   " Enable 256 colors in vim
-:set ttimeoutlen=50             " Set delay between mode switching
-:set wildignore=*.swp,*.bak,*.pyc,*.class   " Ignore certain file formats
-:set history=1000               " Remember more commands and search history
-":set undolevels=1000            " MOAR UNDOOO
-:set nobackup                   " Disable backup files
-":set noswapfile                 " Diable swap files (Caution)
-"colorscheme desert              " Set the colorscheme to desert
-colorscheme hybrid             " Set the colorscheme to desert
-:set wildmenu                   " Enable enhanced completion for command mode
-:set wildmode=longest:full,full " Completion mode for wildmenu
-":set mouse=a                   " Enable mouse everywhere
-:set cursorline                 " Highlight line currently at
+" Common settings
+filetype plugin on
+filetype indent on
+set nocompatible                " get rid of strict vi compatibility!
+set nu                          " line numbering on
+set autoindent                  " autoindent on
+set noerrorbells                " no error bells
+set modeline                    " changes setting based on file
+set showmode                    " show the mode on the dedicated line
+set nowrap                      " no wrapping
+set backspace=2                 " backspace over everything
+set background=dark             " set dark background
+set exrc                        " open local config files
+set nojoinspaces                " don't add white space when combining lines
+set ruler                       " which line am I on?
+set showcmd                     " show current command
+set bs=2                        " fix backspacing in insert mode
+set expandtab                   " replace tab with space
+set shiftwidth=4                " determins the number of char per indent
+set tabstop=4                   " replaces current tab with specified number
+set wrap                        " enable word wrapping
+set laststatus=2                " Sets the number of lines at the bottom
+set ttimeoutlen=50              " Set delay between mode switching
+set history=1000                " Remember more commands and search history
+set nobackup                    " Disable backup files
+set noswapfile                  " Diable swap files (Caution)
+set wildmenu                    " Enable enhanced completion for command mode
+set wildmode=longest:full,full  " Completion mode for wildmenu
+set wildignore+=*.swp,*.bak,*.dll,*.o,*.obj,*.pyc
+set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
+":set mouse=a                    " Enable mouse everywhere
+set cursorline                  " Highlight line currently at
+set list                        " Enable visualization of invisible chars
+set listchars=tab:»-,trail:-,eol:↲,nbsp:% " Characters used to visualize
 
-" Wildcard pattern to ignore
-:set wildignore=*.dll,*.o,*.obj,*.pyc,*.jpg,*.gif,*.png,*.class,*.ln
+try
+    colorscheme hybrid              " Set the colorscheme to desert
+catch /^Vim\%((\a\+)\)\=:E185/
+    colorscheme desert              " Set the colorscheme to desert
+endtry
+
+set ignorecase                  " search without regards to case
+set smartcase                   "
+set infercase                   "
+set incsearch                   " incremental searching
+nnoremap <F6> :set hlsearch!<CR>
 
 " Setting <leader> in case it is changed
-:let mapleader='\'              " Default <leader> key
-:let maplocalleader=','         " Default <localleader> key
+let mapleader='\'              " Default <leader> key
+let maplocalleader=','         " Default <localleader> key
 
 " Custom keybindings
 " Capitalizes a single word in insert mode
-:inoremap <c-u> <Esc>viwUi
+inoremap <c-u> <Esc>viwUi
 " Shortcut to open the vimrc file for easy editing
-:nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>ev :e $MYVIMRC<cr>
 " Shortcut to source the vimrc file
-:nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 " Enable very magic
-:nnoremap / /\v
+nnoremap / /\v
 
 " Adjusts the default gvim size
 if has("gui_running")
     set lines=35 columns=111
     " If windows gvim, use the following fonts
     if has("win32")
-        :set guifont=Consolas:h9:cANSI
+        set guifont=Consolas:h9:cANSI
     endif
+else
+    set t_Co=256                    " Enable 256 colors in vim
 endif
 
 " Unlimited undo
@@ -116,7 +125,7 @@ syntax on
 
 " Automatically treat certain files as certain files
 au BufRead,BufNewFile *.{markdown,mdown,mkd,mkdn,md} setf markdown
-au BufRead,BufNewFile *.jade set syntax=jade " not setf since doctype jams 
+au BufRead,BufNewFile *.jade set syntax=jade " not setf since doctype jams
 
 " For switching between many opened file by using ctrl+l or ctrl+h
 map <c-e> :next <CR>
@@ -128,7 +137,7 @@ map <F7> mzgg=G`z<CR>
 
 " For fixing trailing whitespaces
 " Note: :%s/\s\+$//
-:nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " Swithing between split window
 nmap <silent> <c-k> :wincmd k<CR>
@@ -150,8 +159,3 @@ imap /// ///<Left>
 
 " Status bar related
 set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\ (%v,%l)/%L%8P\
-
-" Typo fixing
-:iabbrev adn and
-:iabbrev waht what
-:iabbrev tehn then
