@@ -1,8 +1,8 @@
 #!/bin/bash
 DIR="$HOME/.config/awesome"
 if [ ! -d $DIR ]; then
+    echo "awesome configuration directory not found"
     mkdir -p $DIR
-else
-    echo "awesom configuration directory not found"
 fi
-cp -r ./* $DIR/
+cp -r ./themes $DIR/
+cp -r ./*.lua $DIR/

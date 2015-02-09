@@ -53,7 +53,12 @@ web_browser = "firefox"
 file_manager = "spacefm"
 lock_screen = "dm-tool lock"
 screenshot = "scrot -e \"mv ~/*scrot.png ~\""
+cut_screenshot = "scrot -se \"mv ~/*scrot.png ~\""
 sound_control = "pavucontrol"
+inc_brightness = "xbacklight -inc 10"
+dec_brightness = "xbacklight -dec 10"
+inc_volume = "amixer set Master 5%+ unmute"
+dec_volume = "amixer set Master 5%- unmute"
 -- terminator --geometry=1000x650+0+0
 
 -- Default modkey.
@@ -303,8 +308,13 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "b", function () awful.util.spawn(web_browser) end),
     awful.key({ modkey,           }, "e", function () awful.util.spawn(file_manager) end),
     awful.key({ modkey,           }, "s", function () awful.util.spawn(sound_control) end),
+    awful.key({                   }, "XF86AudioRaiseVolume", function () awful.util.spawn(inc_volume) end),
+    awful.key({                   }, "XF86AudioLowerVolume", function () awful.util.spawn(dec_volume) end),
+    awful.key({ modkey,           }, "]", function () awful.util.spawn(inc_brightness) end),
+    awful.key({ modkey,           }, "[", function () awful.util.spawn(dec_brightness) end),
     awful.key({ modkey, "Control" }, "l", function () awful.util.spawn(lock_screen) end),
     awful.key({                   }, "Print", function () awful.util.spawn(screenshot) end),
+    awful.key({         "Control" }, "Print", function () awful.util.spawn(cut_screenshot) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
