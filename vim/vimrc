@@ -13,6 +13,7 @@ if has('vim_starting')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
+"call neobundle#rc(expand('~/.vim/bundle/')) " Required
 filetype plugin indent on
 NeoBundleFetch 'Shougo/neobundle.vim' " Required
 
@@ -37,9 +38,10 @@ NeoBundle 'bling/vim-airline'
 "NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'scrooloose/syntastic'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'w0ng/vim-hybrid' " color scheme
+NeoBundle 'Apo11oH/vim-darknight'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
