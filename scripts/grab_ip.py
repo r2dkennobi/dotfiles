@@ -4,13 +4,9 @@
 import urllib, json, socket
 import time, datetime
 
-device="VAIO"
-target_file = "/home/apo11o/ros_node/VAIO"
-
 looping = True
 
 if __name__ == "__main__":
-  f = open(target_file, "w")
   # Wait will internet connection is established
   while (looping):
     try:
@@ -28,10 +24,5 @@ if __name__ == "__main__":
 
   print("External: " + data['ip'])
   print("Internal: " + s.getsockname()[0])
-  f.write(device + "\n")
-  f.write("External: " + data['ip'] + "\n")
-  f.write("Internal: " + s.getsockname()[0] + "\n")
-  f.write(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-  f.close()
 
   s.close()
