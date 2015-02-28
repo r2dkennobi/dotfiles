@@ -32,16 +32,16 @@ urxvt.scrollBar:        false
 urxvt.preeditType:      OverTheSpot
 
 ! Perl extentions
-!urxvt.perl-ext-common:  default,tabbed,clipboard
-urxvt.perl-ext-common:  default,tabbed
+urxvt.perl-ext-common:  default,tabbed,clipboard
+!urxvt.perl-ext-common:  default,tabbed
 urxvt.matcher.button:   1
 urxvt.url-launcher:     firefox
 urxvt.tabbed.tabbar-fg: 2
 urxvt.tabbed.tabbar-bg: 0
 urxvt.tabbed.tab-fg:    3
 urxvt.tabbed.tab-bg:    0
-!urxvt.keysym.Shift-Control-C: perl:clipboard:copy
-!urxvt.keysym.Shift-Control-V: perl:clipboard:paste
+urxvt.keysym.Shift-Control-C: perl:clipboard:copy
+urxvt.keysym.Shift-Control-V: perl:clipboard:paste
 
 ! iso 14755 disable (for clipboard)
 urxvt.iso14755:         false
