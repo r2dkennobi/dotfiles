@@ -1,0 +1,76 @@
+! ###########################################
+! urxvt settings
+! Author: Apo11oH
+! ###########################################
+! xft setting
+xft.dpi:                96
+xft.antialias:          true
+xft.rgba:               rgb
+xft.hinting:            true
+xft.hintstyle:          hintslight
+
+! general setting
+urxvt.termName:         rxvt
+urxvt.depth:            32
+urxvt.geometry:         120x35
+urxvt.transparent:      false
+urxvt.fading:           30
+urxvt.saveLines:        512
+urxvt.internalBorder:   3
+urxvt.lineSpace:        0
+urxvt.letterSpace:      -1
+
+! font setting
+urxvt.allow_bold:       false
+urxvt.font:             xft:SourceCodePro:size=10:antialias=true
+
+! scrollbar
+urxvt.scrollStyle:      rxvt
+urxvt.scrollBar:        false
+
+! input with IM at cursor position
+urxvt.preeditType:      OverTheSpot
+
+! Perl extentions
+!urxvt.perl-ext-common:  default,tabbed,clipboard
+urxvt.perl-ext-common:  default,tabbed
+urxvt.matcher.button:   1
+urxvt.url-launcher:     firefox
+urxvt.tabbed.tabbar-fg: 2
+urxvt.tabbed.tabbar-bg: 0
+urxvt.tabbed.tab-fg:    3
+urxvt.tabbed.tab-bg:    0
+!urxvt.keysym.Shift-Control-C: perl:clipboard:copy
+!urxvt.keysym.Shift-Control-V: perl:clipboard:paste
+
+! iso 14755 disable (for clipboard)
+urxvt.iso14755:         false
+
+! Colorscheme
+urxvt.foreground:   rgba:ffff/ffff/ffff/ffff
+urxvt.background:   rgba:0000/0000/0000/cccc
+urxvt.colorUL:      #86A2B0
+! black
+urxvt.color0  :     #2E3436
+urxvt.color8  :     #555753
+! red
+urxvt.color1  :     #CC0000
+urxvt.color9  :     #EF2929
+! green
+urxvt.color2  :     #4E9A06
+urxvt.color10 :     #8AE234
+! yellow
+urxvt.color3  :     #C4A000
+urxvt.color11 :     #FCE94F
+! blue
+urxvt.color4  :     #3465A4
+urxvt.color12 :     #729FCF
+! magenta
+urxvt.color5  :     #75507B
+urxvt.color13 :     #AD7FA8
+! cyan
+urxvt.color6  :     #06989A
+urxvt.color14 :     #34E2E2
+! white
+urxvt.color7  :     #D3D7CF
+urxvt.color15 :     #EEEEEC

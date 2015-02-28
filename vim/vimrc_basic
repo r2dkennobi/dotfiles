@@ -38,7 +38,7 @@ set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
 ":set mouse=a                    " Enable mouse everywhere
 set cursorline                  " Highlight line currently at
 set list                        " Enable visualization of invisible chars
-set listchars=tab:»-,trail:-,eol:↲,nbsp:% " Characters used to visualize
+set listchars=tab:>-,trail:-,eol:$,nbsp:% " Characters used to visualize
 
 try
     colorscheme hybrid              " Set the colorscheme to desert
