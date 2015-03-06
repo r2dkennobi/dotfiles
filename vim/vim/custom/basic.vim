@@ -37,8 +37,7 @@ set wildignore+=*.swp,*.bak,*.dll,*.o,*.obj,*.pyc
 set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
 ":set mouse=a                    " Enable mouse everywhere
 set cursorline                  " Highlight line currently at
-set list                        " Enable visualization of invisible chars
-"set listchars=tab:»-,trail:-,eol:↲,nbsp:% " Characters used to visualize
+"set list                        " Enable visualization of invisible chars
 set listchars=tab:>-,trail:-,eol:$,nbsp:% " Characters used to visualize
 
 try
@@ -53,6 +52,7 @@ set smartcase                   "
 set infercase                   "
 set incsearch                   " incremental searching
 nnoremap <F6> :set hlsearch!<CR>
+nnoremap <F4> :set list!<CR>
 
 " Setting <leader> in case it is changed
 let mapleader='\'              " Default <leader> key
