@@ -1,6 +1,8 @@
 #!/bin/bash
 
-(sleep 2 && wicd-client --tray) &
+# (sleep 2 && wicd-client --tray) &
+
+(sleep 2 && nm-applet) &
 
 (sleep 2 && ibus-daemon) &
 
