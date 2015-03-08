@@ -113,9 +113,17 @@ else
 endif
 
 " Expand tabs in certain files to spaces
-au BufRead,BufNewFile *.{c,cpp,h,hpp,java,py,ml,scala,html} set expandtab
-au BufRead,BufNewFile *.{c,cpp,h,hpp,java,py,ml,scala,html} set shiftwidth=2
-au BufRead,BufNewFile *.{c,cpp,h,hpp,java,py,ml,scala,html} set tabstop=2
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set expandtab
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set shiftwidth=4
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set tabstop=4
+
+au BufRead,BufNewFile *.{java,ml,scala} set expandtab
+au BufRead,BufNewFile *.{java,ml,scala} set shiftwidth=4
+au BufRead,BufNewFile *.{java,ml,scala} set tabstop=4
+
+au BufRead,BufNewFile *.{py,html} set expandtab
+au BufRead,BufNewFile *.{py,html} set shiftwidth=4
+au BufRead,BufNewFile *.{py,html} set tabstop=4
 
 " Do not expand tabs in assembly file.  Make them 8 chars wide.
 au BufRead,BufNewFile {*.s,Makefile} set noexpandtab
