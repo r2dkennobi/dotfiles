@@ -43,12 +43,12 @@ end
 beautiful.init(awful.util.getdir("config") .. "/themes/darknight/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "terminator"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Custom Application
-tmux = "terminator -e \"tmux -2\""
+tmux = "urxvt -e bash -c \"tmux -2\""
 web_browser = "firefox"
 file_manager = "spacefm"
 lock_screen = "dm-tool lock"
@@ -227,7 +227,7 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s })
+    mywibox[s] = awful.wibox({ position = "top", height = "20", screen = s })
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
@@ -303,8 +303,8 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
-    awful.key({ modkey,           }, "t", function () awful.util.spawn(tmux) end),
+    awful.key({ modkey,           }, "Return", function () awful.util.spawn(tmux) end),
+    awful.key({ modkey,           }, "t", function () awful.util.spawn(terminal) end),
     awful.key({ modkey,           }, "b", function () awful.util.spawn(web_browser) end),
     awful.key({ modkey,           }, "e", function () awful.util.spawn(file_manager) end),
     awful.key({ modkey,           }, "s", function () awful.util.spawn(sound_control) end),
