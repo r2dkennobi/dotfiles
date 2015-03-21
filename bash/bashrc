@@ -4,8 +4,9 @@ export TERMINAL=urxvt
 export BROWSER=firefox
 
 # Enable 256 colors for terminal
-export TERM=xterm-256color
-#export TERM=rxvt-unicode
+#export TERM=xterm-256color
+#export TERM=xterm-256color-bce
+export TERM=rxvt-256color
 
 # Enable case insensitive tab completion
 bind 'set completion-ignore-case on'
@@ -87,3 +88,19 @@ LS_COLORS+='*.Z=1;35:*.zip=1;35:*.log=01;32:*~=01;32:*#=01;32:*.bak=01;33:*.BAK=
 LS_COLORS+='*.old=01;33:*.OLD=01;33:*.org_archive=01;33:*.off=01;33:*.OFF=01;33:'
 LS_COLORS+='*.dist=01;33:*.DIST=01;33:*.orig=01;33:*.ORIG=01;33:*.swp=01;33:*.swo=01;33:'
 LS_COLORS+='*.v=01;33:*.gpg=34:*.gpg=34:*.pgp=34:*.asc=34:*.3des=34:*.aes=34:*.enc=34:*.sqlite=34:'
+
+# WELCOME SCREEN
+clear
+echo -e ""
+echo -e "         _____           "
+echo -e "       ./_|L|__\.        ${BGre}Welcome back Apo11oH${RCol}"
+echo -e "      / ==[_]O|| \       "
+echo -e "     _:=||____|.|-:_     ${BBlu}Arch:\t\t${RCol}$(uname -m) "
+echo -e "    ||[] ||====| []||    ${BBlu}Hostname:\t${RCol}$(hostname)"
+echo -e "    |:||_|=|U| |_||:|    ${BBlu}Uptime:\t${RCol}$(uptime -p)"
+echo -e "    |:||[]_=_ =[_||:|    ${BBlu}Kernel:\t${RCol}$(uname -r)"
+echo -e "    | ||[] [_][]C|| |    ${BBlu}Shell:\t\t${RCol}$(ps -p$$ -ocmd='')"
+echo -e "    /|\\_\_|_|_/_//||\   "
+echo -e "   |___|   /|\   |___|   "
+echo -e "   \---/  |___|  \---/   "
+echo -e ""

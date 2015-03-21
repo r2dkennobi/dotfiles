@@ -9,3 +9,5 @@
 (sleep 2 && dropboxd) &
 
 (sleep 2 && numlockx) &
+
+(sleep 2 && volumeicon) &
