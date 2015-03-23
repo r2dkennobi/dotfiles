@@ -51,6 +51,7 @@ set smartcase                   "
 set infercase                   "
 set incsearch                   " incremental searching
 nnoremap <F6> :set hlsearch!<CR>
+nnoremap <F4> :set list!<CR>
 
 " Setting <leader> in case it is changed
 let mapleader='\'              " Default <leader> key
