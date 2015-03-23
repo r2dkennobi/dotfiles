@@ -13,6 +13,7 @@ xft.hintstyle:          hintslight
 urxvt.termName:         xterm-256color
 urxvt.depth:            32
 urxvt.geometry:         120x35
+urxvt.loginShell:       true
 urxvt.transparent:      false
 urxvt.fading:           30
 urxvt.saveLines:        512
@@ -23,7 +24,7 @@ urxvt.letterSpace:      -1
 ! font setting
 urxvt.allow_bold:       false
 !urxvt.font:             xft:SourceCodePro:size=10:antialias=true
-urxvt.font:             xft:Source Code Pro for Powerline:size=10:antialias=true
+urxvt.font:             xft:Source Code Pro for Powerline:size=10:antialias=true,xft:Inconsolata:size=10:antialias=true
 
 ! scrollbar
 urxvt.scrollStyle:      rxvt
@@ -58,21 +59,21 @@ urxvt.keysym.Shift-Control-V: perl:clipboard:paste
 urxvt.iso14755:         false
 
 ! Colorscheme
-urxvt.background:   black
-urxvt.foreground:   white
-urxvt.color0  :     #2E3436
-urxvt.color1  :     #CC0000
-urxvt.color2  :     #4E9A06
-urxvt.color3  :     #C4A000
-urxvt.color4  :     #3465A4
-urxvt.color5  :     #75507B
-urxvt.color6  :     #06989A
-urxvt.color7  :     #D3D7CF
-urxvt.color8  :     #555753
-urxvt.color9  :     #EF2929
-urxvt.color10 :     #8AE234
-urxvt.color11 :     #FCE94F
-urxvt.color12 :     #729FCF
-urxvt.color13 :     #AD7FA8
-urxvt.color14 :     #34E2E2
-urxvt.color15 :     #EEEEEC
+urxvt.background:       black
+urxvt.foreground:       white
+urxvt.color0  :         #2E3436
+urxvt.color1  :         #CC0000
+urxvt.color2  :         #4E9A06
+urxvt.color3  :         #C4A000
+urxvt.color4  :         #3465A4
+urxvt.color5  :         #75507B
+urxvt.color6  :         #06989A
+urxvt.color7  :         #D3D7CF
+urxvt.color8  :         #555753
+urxvt.color9  :         #EF2929
+urxvt.color10 :         #8AE234
+urxvt.color11 :         #FCE94F
+urxvt.color12 :         #729FCF
+urxvt.color13 :         #AD7FA8
+urxvt.color14 :         #34E2E2
+urxvt.color15 :         #EEEEEC
