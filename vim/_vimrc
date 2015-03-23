@@ -83,7 +83,7 @@ set list                        " Enable visualization of invisible chars
 set listchars=tab:»-,trail:-,eol:↲,nbsp:% " Characters used to visualize
 
 try
-    colorscheme hybrid              " Set the colorscheme to desert
+    colorscheme darknight           " Set the colorscheme to desert
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert              " Set the colorscheme to desert
 endtry
@@ -151,9 +151,17 @@ else
 endif
 
 " Expand tabs in certain files to spaces
-au BufRead,BufNewFile *.{c,cpp,h,hpp,java,py,ml,scala,html} set expandtab
-au BufRead,BufNewFile *.{c,cpp,h,hpp,java,py,ml,scala,html} set shiftwidth=2
-au BufRead,BufNewFile *.{c,cpp,h,hpp,java,py,ml,scala,html} set tabstop=2
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set expandtab
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set shiftwidth=4
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set tabstop=4
+
+au BufRead,BufNewFile *.{java,ml,scala} set expandtab
+au BufRead,BufNewFile *.{java,ml,scala} set shiftwidth=4
+au BufRead,BufNewFile *.{java,ml,scala} set tabstop=4
+
+au BufRead,BufNewFile *.{py,html} set expandtab
+au BufRead,BufNewFile *.{py,html} set shiftwidth=4
+au BufRead,BufNewFile *.{py,html} set tabstop=4
 
 " Do not expand tabs in assembly file.  Make them 8 chars wide.
 au BufRead,BufNewFile {*.s,Makefile} set noexpandtab
@@ -205,10 +213,8 @@ if exists(':NeoBundle')
     " **********************************
     " Vim-airline Settings
     " **********************************
-    let g:airline_theme = 'bubblegum'
+    let g:airline_theme = 'luna'
     let g:airline_enable_branch = 1
-    let g:airline_left_sep=''
-    let g:airline_right_sep=''
     let g:airline_detect_modified=1
     let g:airline_detect_paste=1
     "let g:airline_powerline_fonts=1
@@ -231,11 +237,12 @@ if exists(':NeoBundle')
     " **********************************
     " Neocomplcache Settings
     " **********************************
-    let g:acp_enableAtStartup = 0 " Disable AutoComplPop (Conflict)
-    let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache
-    let g:neocomplcache_enable_smart_case = 1 " Use smartcase
-    let g:neocomplcache_min_syntax_length = 3
-    let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+    let g:neocomplcache_enable_at_startup = 0 " Use neocomplcache
+    let g:neocomplcache_auto_completion_start_length = 3
+    let g:neocomplcache_min_keyword_length = 2
+    let g:neocomplcache_min_syntax_length = 2
+    let g:neocomplcache_max_list = 1000
+    let g:neocomplcache_force_overwrite_completefunc = 1
 
     "" Define dictionary
     let g:neocomplcache_dictionary_filetype_lists = {
@@ -243,34 +250,21 @@ if exists(':NeoBundle')
                 \ 'vimshell' : $HOME.'\.vimshell_hist'
                 \}
 
+    "" Tab completion
+    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
     "" Define keyword
     if !exists('g:neocomplcache_keyword_patterns')
         let g:neocomplcache_keyword_patterns = {}
     endif
     let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-    "" Plugin key-mappings
-    "inoremap <expr><C-g>     neocomplcache#undo_completion()
-    "inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-    "" Recommended key-mappings.
-    "" <CR>: close popup and save indent.
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function()
-        return neocomplcache#smart_close_popup() . "\<CR>"
-    endfunction
-    "" <TAB>: completion.
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-    "" <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-    inoremap <expr><C-y>  neocomplcache#close_popup()
-    inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-    "" Enable omni completion
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    if !exists('g:neocomplcache_force_omni_patterns')
+        let g:neocomplcache_force_omni_patterns={}
+    endif
+    let g:neocomplcache_force_omni_patterns.php='[^. \t]->\h\w*\|\h\w*::'
+    let g:neocomplcache_force_omni_patterns.c='[^.[:digit:] *\t]\%(\.\|->\)'
+    let g:neocomplcache_force_omni_patterns.cpp='[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
     " **********************************
     " Unite Settings
