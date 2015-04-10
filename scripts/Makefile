@@ -1,19 +1,19 @@
 #
-# Makefile template 
+# Makefile template
 # Can split a single line into multiple line using \
 #
 
 # *.h files
-HEADERS		= 
+HEADERS		=
 
 # *.c files
-C_SRCS		= 
+C_SRCS		=
 
 # *.o files
-C_OBJS		= 
+C_OBJS		=
 
 # Executable name
-EXE		= 
+EXE		=
 
 #
 # You should not need to change anything below this line
@@ -23,7 +23,7 @@ CC		= g++
 LINT	= lint
 
 GCC_FLAGS	= -c -g -W -Wall -D__EXTENSIONS__
-CXXFLAGS	= -std=c++11 -O2 
+CXXFLAGS	= -std=c++11 -O2
 LINT_FLAGS1	= -c -err=warn
 LINT_FLAGS2	= -u -err=warn
 LD_FLAGS	= -g -W -Wall
@@ -34,6 +34,8 @@ LD_FLAGS	= -g -W -Wall
 
 #
 # Simply have our project target be a single default ${EXE} executable.
+# Flags:
+# -c: Compile or assemble but don't link
 #
 
 ${EXE}:	${OBJS}
@@ -41,6 +43,9 @@ ${EXE}:	${OBJS}
 
 ${C_OBJS}:      ${HEADERS}
 
+# PHONY to avoid a conflict with a file of the same name, and better performance
+# Also, good for recursive cars. Implicit rule search is skipped.
+.PHONY: clean
 clean:
 	rm -f *.o ${EXE} *.ln core a.out \
 	@echo "Clean."
@@ -48,4 +53,3 @@ clean:
 new:
 	make clean
 	make
-

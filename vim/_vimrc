@@ -1,6 +1,6 @@
 " **************************************
 " Kenny Y
-" 10/23/2014
+" 4/10/2014
 " **************************************
 " **************************************
 " * PLUGINS
@@ -27,14 +27,13 @@ NeoBundle 'majutsushi/tagbar'
 NeoBundle 'vim-scripts/VOoM'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'w0ng/vim-hybrid' " color scheme
+NeoBundle 'Apo11oH/vim-darknight'
 NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
 NeoBundle 'cohama/agit.vim'
 NeoBundle 'taketwo/vim-ros'
@@ -215,7 +214,6 @@ if exists(':NeoBundle')
     " Vim-airline Settings
     " **********************************
     let g:airline_theme = 'luna'
-    let g:airline_enable_branch = 1
     let g:airline_detect_modified=1
     let g:airline_detect_paste=1
     "let g:airline_powerline_fonts=1
