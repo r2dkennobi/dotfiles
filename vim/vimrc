@@ -44,12 +44,14 @@ NeoBundle 'w0ng/vim-hybrid' " color scheme
 NeoBundle 'Apo11oH/vim-darknight'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'octol/vim-cpp-enhanced-highlight'
+"NeoBundle 'octol/vim-cpp-enhanced-highlight'
 NeoBundle 'cohama/agit.vim'
-NeoBundle 'taketwo/vim-ros'
-NeoBundle 'vim-jp/cpp-vim'
-NeoBundle 'justinmk/vim-syntax-extra'
+"NeoBundle 'taketwo/vim-ros'
+"NeoBundle 'vim-jp/cpp-vim'
+"NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'Apo11oH/gzoom'
+NeoBundle 'nachumk/systemverilog.vim'
 
 call neobundle#end()
 

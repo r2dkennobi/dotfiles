@@ -40,6 +40,8 @@ NeoBundle 'taketwo/vim-ros'
 NeoBundle 'vim-jp/cpp-vim'
 NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'Yggdroot/indentLine'
+NeoBundle 'Apo11oH/gzoom'
+NeoBundle 'nachumk/systemverilog.vim'
 
 call neobundle#end()
 
