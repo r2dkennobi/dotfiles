@@ -1,6 +1,6 @@
 " **************************************
 " Kenny Y
-" 10/23/2014
+" 5/13/2015
 " **************************************
 " **************************************
 " * VARIABLES
@@ -37,7 +37,6 @@ set wildignore+=*.swp,*.bak,*.dll,*.o,*.obj,*.pyc
 set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
 ":set mouse=a                    " Enable mouse everywhere
 set cursorline                  " Highlight line currently at
-set list                        " Enable visualization of invisible chars
 set listchars=tab:>-,trail:-,eol:$,nbsp:% " Characters used to visualize
 
 try

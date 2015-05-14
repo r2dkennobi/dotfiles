@@ -1,6 +1,6 @@
 " **************************************
 " Kenny Y
-" 4/10/2015
+" 5/13/2015
 " **************************************
 " **************************************
 " * PLUGINS
@@ -42,6 +42,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'w0ng/vim-hybrid' " color scheme
 NeoBundle 'Apo11oH/vim-darknight'
+NeoBundle 'Apo11oH/gzoom'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'digitaltoad/vim-jade'
 "NeoBundle 'octol/vim-cpp-enhanced-highlight'
@@ -50,7 +51,6 @@ NeoBundle 'cohama/agit.vim'
 "NeoBundle 'vim-jp/cpp-vim'
 "NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'Apo11oH/gzoom'
 NeoBundle 'nachumk/systemverilog.vim'
 
 call neobundle#end()

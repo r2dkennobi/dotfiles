@@ -75,7 +75,7 @@ if has("gui_running")
     if has("win32")
         set guifont=Source_Code_Pro:h9:cANSI,Consolas:h9:cANSI
     else
-        set guifont=Source\ Code\ Pro\ for\ Powerline\ 10
+        set guifont=Source\ Code\ Pro\ for\ Powerline\ 9
     endif
 else
     set t_Co=256                    " Enable 256 colors in vim

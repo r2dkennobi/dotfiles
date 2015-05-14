@@ -38,6 +38,7 @@ exec --no-startup-id feh --bg-scale /home/apo11o/Data-Drop/bt_sync/Andalf.jpg
 #bindsym $mod+Return exec urxvt -e bash -c 'tmux-2'
 bindsym $mod+Return exec urxvt -e 'tmux'
 bindsym $mod+t exec urxvt
+bindsym $mod+backslash exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -52,8 +53,8 @@ bindsym $mod+p exec dmenu_run
 bindsym $mod+b exec firefox
 bindsym $mod+e exec spacefm
 
-#bindsym $mod+- exec xbacklight -inc 10
-#bindsym $mod++ exec xbacklight -dec 10
+bindsym $mod+Up exec xbacklight -inc 10
+bindsym $mod+Down exec xbacklight -dec 10
 #bindsym Print exec 'scrot -e'
 #bindsym Control+Print exec 'scrot -se'
 
@@ -70,10 +71,10 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # resize focused window
-bindsym $mod+Control+h resize shrink width 10 px or 10 ppt
-bindsym $mod+Control+j resize grow height 10 px or 10 ppt
-bindsym $mod+Control+k resize shrink height 10 px or 10 ppt
-bindsym $mod+Control+l resize grow width 10 px or 10 ppt
+bindsym $mod+Control+l resize shrink width 5 px or 5 ppt
+bindsym $mod+Control+k resize grow height 5 px or 5 ppt
+bindsym $mod+Control+j resize shrink height 5 px or 5 ppt
+bindsym $mod+Control+h resize grow width 5 px or 5 ppt
 
 # split in horizontal/virtucal orientation
 bindsym $mod+c split h
