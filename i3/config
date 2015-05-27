@@ -35,10 +35,15 @@ floating_modifier $mod
 exec --no-startup-id feh --bg-scale /home/apo11o/Data-Drop/bt_sync/Andalf.jpg
 
 # start a terminal
-#bindsym $mod+Return exec urxvt -e bash -c 'tmux-2'
+#bindsym $mod+Return exec "urxvt -e bash -c 'tmux-2'"
 bindsym $mod+Return exec urxvt -e 'tmux'
 bindsym $mod+t exec urxvt
+bindcode --release 248 exec urxvt
 bindsym $mod+backslash exec urxvt
+
+# Screenshot
+bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~'
+bindsym Shift+Print exec "scrot -s '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~'"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -55,8 +60,6 @@ bindsym $mod+e exec spacefm
 
 bindsym $mod+Up exec xbacklight -inc 10
 bindsym $mod+Down exec xbacklight -dec 10
-#bindsym Print exec 'scrot -e'
-#bindsym Control+Print exec 'scrot -se'
 
 # change focus
 bindsym $mod+h focus left
@@ -84,15 +87,19 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
+bindsym $mod+a layout toggle split
 bindsym $mod+s layout stacking
 bindsym $mod+d layout tabbed
-bindsym $mod+a layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+
+# cycle through workspaces
+bindsym $mod+Right workspace next
+bindsym $mod+Left workspace prev
 
 # switch to workspace
 bindsym $mod+1 workspace 1:base
@@ -144,10 +151,10 @@ bindsym $mod+F2 exec "i3lock -c 000000"
 bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym l resize shrink width 10 px or 10 ppt
+        bindsym h resize grow width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
