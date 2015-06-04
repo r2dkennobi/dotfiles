@@ -5,17 +5,15 @@
 " **********************************
 if exists(":NeoBundle")
     let g:unite_enable_start_insert=1
-    nnoremap [unite] <Nop>
-    nmap <Leader>f [unite]
+    noremap <Leader>f :Unite -buffer-name=files file<CR>
+    noremap <Leader>b :Unite -buffer-name=files buffer <CR>
+    noremap <Leader>r :Unite -buffer-name=register register<CR>
+    noremap <Leader>g :Unite grep:.<CR>
 
-    nnoremap [unite]u  :<C-u>Unite -no-split<Space>
-    nnoremap <silent> [unite]f :<C-u>Unite<Space>buffer<CR>
-    nnoremap <silent> [unite]b :<C-u>Unite<Space>bookmark<CR>
-    nnoremap <silent> [unite]m :<C-u>Unite<Space>file_mru<CR>
-    nnoremap <silent> [unite]r :<C-u>UniteWithBufferDir file<CR>
-    nnoremap <silent> ,vr :UniteResume<CR>
-
-    nnoremap <silent> ,vb :Unite build<CR>
-    nnoremap <silent> ,vcb :Unite build:!<CR>
-    nnoremap <silent> ,vch :UniteBuildClearHighlight<CR>
+    au FileType unite nnoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+    au FileType unite inoremap <silent> <buffer> <expr> <C-J> unite#do_action('split')
+    au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+    au FileType unite inoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+    au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+    au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 endif

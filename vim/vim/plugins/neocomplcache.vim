@@ -4,8 +4,9 @@
 " 10/23/2014
 " **********************************
 if neobundle#is_sourced("neocomplcache")
-    let g:neocomplcache_enable_at_startup = 0 " Use neocomplcache
+    let g:neocomplcache_enable_at_startup = 1 " Use neocomplcache
     let g:neocomplcache_auto_completion_start_length = 3
+    let g:neocomplcache_enable_ignore_case = 1
     let g:neocomplcache_min_keyword_length = 2
     let g:neocomplcache_min_syntax_length = 2
     let g:neocomplcache_max_list = 1000

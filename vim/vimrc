@@ -1,6 +1,6 @@
 " **************************************
 " Kenny Y
-" 5/13/2015
+" 4/10/2015
 " **************************************
 " **************************************
 " * PLUGINS
@@ -31,18 +31,17 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
-"NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'vim-scripts/VOoM'
 NeoBundle 'bling/vim-airline'
 "NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'kien/ctrlp.vim'
-"NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'mbbill/undotree'
 NeoBundle 'w0ng/vim-hybrid' " color scheme
 NeoBundle 'Apo11oH/vim-darknight'
-NeoBundle 'Apo11oH/gzoom'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'digitaltoad/vim-jade'
 "NeoBundle 'octol/vim-cpp-enhanced-highlight'
@@ -51,7 +50,7 @@ NeoBundle 'cohama/agit.vim'
 "NeoBundle 'vim-jp/cpp-vim'
 "NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'Yggdroot/indentLine'
-NeoBundle 'nachumk/systemverilog.vim'
+NeoBundle 'Apo11oH/gzoom'
 
 call neobundle#end()
 
