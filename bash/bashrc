@@ -4,9 +4,9 @@ export TERMINAL=urxvt
 export BROWSER=firefox
 
 # Enable 256 colors for terminal
-#export TERM=xterm-256color
+export TERM=xterm-256color
 #export TERM=xterm-256color-bce
-export TERM=rxvt-256color
+#export TERM=rxvt-256color
 
 # Enable case insensitive tab completion
 bind 'set completion-ignore-case on'
@@ -14,21 +14,87 @@ bind 'set completion-ignore-case on'
 # Auto-fix type
 shopt -s cdspell
 
+# Cycle through autocomplete candidates
+#bind 'set show-all-if-ambiguous on'
+bind Control-j:menu-complete
+bind Control-k:menu-complete-backward
+
 # Aliases
 alias ls='ls -lhF --color=auto'
 alias lsa='ls -lahF --color=auto'
 alias df='df -h'
 alias size='du -sh'
 alias ssh='ssh -CX'
-alias ocaml="rlwrap ocaml"
 alias open="xdg-open"
 alias :q="exit"
 alias grep="grep --color=auto"
 alias postbox='wine "/home/apo11o/.wine/drive_c/Program Files (x86)/Postbox/postbox.exe" &'
+alias diptrace='wine "/home/apo11o/.wine/drive_c/Program Files/DipTrace/Launcher.exe" &'
 
 # Add directory to $PATH example
 #PATH="${PATH}:_directory_:_directory_"
-PATH="${PATH}:/home/apo11o/.gem/ruby/2.2.0/bin"
+
+# Add Go path to $PATH
+export GOPATH=$HOME/go
+PATH="${PATH}:$GOPATH/bin"
+
+###########################
+# Helper functions        #
+###########################
+# Parse git branch
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+# Poll status
+function get_status {
+    echo -e ""
+    echo -e "         _____           "
+    echo -e "       ./_|L|__\.        ${BGre}Welcome back Apo11oH${RCol}"
+    echo -e "      / ==[_]O|| \       ${BRed}Shall we play a game?${RCol}"
+    echo -e "     _:=||____|.|-:_     "
+    echo -e "    ||[] ||====| []||    ${BBlu}Arch:\t\t${RCol}$(uname -m) "
+    echo -e "    |:||_|=|U| |_||:|    ${BBlu}Hostname:\t${RCol}$(hostname)"
+    echo -e "    |:||[]_=_ =[_||:|    ${BBlu}Uptime:\t${RCol}$(uptime -p)"
+    echo -e "    | ||[] [_][]C|| |    ${BBlu}Kernel:\t${RCol}$(uname -r)"
+    echo -e "    /|\\_\_|_|_/_//||\    ${BBlu}Shell:\t\t${RCol}$(ps -p$$ -ocmd='')"
+    echo -e "   |___|   /|\   |___|   "
+    echo -e "   \---/  |___|  \---/   "
+    echo -e ""
+}
+alias status=get_status
+
+function meta {
+    echo "$(ls -1 | sed 1d | wc -l | sed 's: ::g') files, $(ls -sh | head -n1 | sed 's/total //')b"
+}
+
+function compress() {
+    FILE=$1
+    shift
+    case $FILE in
+        *.tar.bz2)  tar cjf $FILE $*    ;;
+        *.tar.gz)   tar czf $FILE $*    ;;
+        *.tgz)      tar czf $FILE $*    ;;
+        *.zip)      zip $FILE $*        ;;
+        *.rar)      rar $FILE $*        ;;
+        *)          echo "Unknown filetype" ;;
+    esac
+}
+
+function extract() {
+    case $1 in
+        *.tar.bz2)  tar xjvf $1 ;;
+        *.tar.gz)   tar xzvf $1 ;;
+        *.bz2)      bunzip2 $1  ;;
+        *.rar)      rar x $1    ;;
+        *.gz)       gunzip $1   ;;
+        *.tar)      tar xvf $1  ;;
+        *.tbz2)     tar xjvf $1 ;;
+        *.zip)      unzip $1    ;;
+        *.7z)       7z x $1     ;;
+        *)          "Unknown filetype" ;;
+    esac
+}
 
 ###########################
 # Color Scheme for echo   #
@@ -56,8 +122,15 @@ ICya='\e[0;96m'; BICya='\e[1;96m'; On_Cya='\e[46m'; On_ICya='\e[0;106m';
 IWht='\e[0;97m'; BIWht='\e[1;97m'; On_Wht='\e[47m'; On_IWht='\e[0;107m';
 
 # Set custom bash prompt
-#PS1="\[\033[1;37m\]\342\224\214($(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;34m\]\u@\h'; fi)\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\$?\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\@ \d\[\033[1;37m\])\[\033[1;37m\]\n\342\224\224\342\224\200(\[\033[1;32m\]\w\[\033[1;37m\])\342\224\200(\[\033[1;32m\]\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -sh | head -n1 | sed 's/total //')b\[\033[1;37m\])\342\224\200> \[\033[0m\]"
-PS1="\n\[\033[1;37m\]\]\342\224\214($(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;34m\]\u@\h'; fi)\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\$?\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\@ \d\[\033[1;37m\])\[\033[1;37m\]\n\342\224\224\342\224\200(\[\033[1;32m\]\w\[\033[1;37m\])\342\224\200(\[\033[1;32m\]\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -sh | head -n1 | sed 's/total //')b\[\033[1;37m\])\342\224\200> \[\033[0m\]"
+TL='\342\224\214'; DASH='\342\224\200'; BL='\342\224\224'; CONN=")${DASH}("
+DCOL='\[\033[1;37m\]'; STATCOL='\[\033[1;34m\]'; CWDCOL='\[\033[1;32m\]'
+METACOL='\[\033[1;32m\]'; RST='\[\033[0m\]'
+[[ ${EUID} == 0 ]] && USER_COL='\[\033[01;31m\]' || USER_COL='\[\033[01;34m\]'
+[[ "$SSH_CONNECTION" ]] && HOST_ADDR="`echo "$SSH_CONNECTION" | awk '{print $3}'`"
+[[ "$SSH_CONNECTION" ]] && USER_HOST="\u@$HOST_ADDR" || USER_HOST="\u@\h"
+PS1="${DCOL}>> ${USER_COL}${USER_HOST}${DCOL} >> ${STATCOL}\$?${DCOL} >> "
+PS1+="${STATCOL}\@ \d${DCOL}${DCOL}\n>> ${CWDCOL}\w${DCOL} >> "
+PS1+="${METACOL}\$(meta)${DCOL} \$${RST} "
 
 # Color for ls
 export CLICOLOR=1
@@ -88,19 +161,3 @@ LS_COLORS+='*.Z=1;35:*.zip=1;35:*.log=01;32:*~=01;32:*#=01;32:*.bak=01;33:*.BAK=
 LS_COLORS+='*.old=01;33:*.OLD=01;33:*.org_archive=01;33:*.off=01;33:*.OFF=01;33:'
 LS_COLORS+='*.dist=01;33:*.DIST=01;33:*.orig=01;33:*.ORIG=01;33:*.swp=01;33:*.swo=01;33:'
 LS_COLORS+='*.v=01;33:*.gpg=34:*.gpg=34:*.pgp=34:*.asc=34:*.3des=34:*.aes=34:*.enc=34:*.sqlite=34:'
-
-# WELCOME SCREEN
-clear
-echo -e ""
-echo -e "         _____           "
-echo -e "       ./_|L|__\.        ${BGre}Welcome back Apo11oH${RCol}"
-echo -e "      / ==[_]O|| \       ${BRed}Shall we play a game?${RCol}"
-echo -e "     _:=||____|.|-:_     "
-echo -e "    ||[] ||====| []||    ${BBlu}Arch:\t\t${RCol}$(uname -m) "
-echo -e "    |:||_|=|U| |_||:|    ${BBlu}Hostname:\t${RCol}$(hostname)"
-echo -e "    |:||[]_=_ =[_||:|    ${BBlu}Uptime:\t${RCol}$(uptime -p)"
-echo -e "    | ||[] [_][]C|| |    ${BBlu}Kernel:\t${RCol}$(uname -r)"
-echo -e "    /|\\_\_|_|_/_//||\    ${BBlu}Shell:\t\t${RCol}$(ps -p$$ -ocmd='')"
-echo -e "   |___|   /|\   |___|   "
-echo -e "   \---/  |___|  \---/   "
-echo -e ""

@@ -1,0 +1,12 @@
+Host bitbucket.org
+    Hostname bitbucket.org
+    User git
+    IdentityFile ~/.ssh/bitbucket/id_rsa
+Host github-XXXXXXX
+    Hostname github.com
+    User git
+    IdentityFile ~/.ssh/git-XXXXXXX/id_rsa
+Host github-YYYYYYY
+    Hostname github.com
+    User git
+    IdentityFile ~/.ssh/git-YYYYYYY/id_rsa

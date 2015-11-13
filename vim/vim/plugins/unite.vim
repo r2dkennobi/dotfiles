@@ -5,6 +5,7 @@
 " **********************************
 if exists(":NeoBundle")
     let g:unite_enable_start_insert=1
+    let g:unite_source_history_yank_enable=1
     noremap <Leader>f :Unite -buffer-name=files file<CR>
     noremap <Leader>b :Unite -buffer-name=files buffer <CR>
     noremap <Leader>r :Unite -buffer-name=register register<CR>

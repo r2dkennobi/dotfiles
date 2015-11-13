@@ -1,6 +1,6 @@
 " **************************************
 " Kenny Y
-" 4/10/2015
+" 10/25/2015
 " **************************************
 " **************************************
 " * PLUGINS
@@ -31,7 +31,7 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'vim-scripts/VOoM'
 NeoBundle 'bling/vim-airline'
@@ -51,6 +51,9 @@ NeoBundle 'cohama/agit.vim'
 "NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'Apo11oH/gzoom'
+NeoBundle 'easymotion/vim-easymotion'
+NeoBundle 'hdima/python-syntax'
+NeoBundle 'rust-lang/rust.vim'
 
 call neobundle#end()
 

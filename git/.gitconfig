@@ -1,0 +1,39 @@
+[user]
+    name = [Enter Name]
+    email = [Enter E-mail]
+[core]
+    editor = vim
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = ~/.gitignore
+[color]
+    ui = always
+    status = always
+    branch = always
+    diff = always
+    interactive = always
+[commit]
+    template = ~/.git-commit-tmpl.txt
+[alias]
+    # List all aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+    # General shortcuts
+    s = status
+    b = branch
+    co = checkout
+    df = diff
+    cdf = commit -v
+    trim = remote prune origin
+    # Branch management
+    brm = branch -d
+    brmf = branch -D
+    # LOGGSS
+    l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %Cblue%an, %Cgreen%ar%Creset'
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p
+    # File history checking
+    filelog = log -u
+    fl = log -u
+    # Ammend previous commit
+    amend = commit -a --amend --reset-author
+    # Rebase and update everything
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive

@@ -2,12 +2,12 @@
 
 # (sleep 2 && wicd-client --tray) &
 
-(sleep 2 && nm-applet) &
+# (sleep 2 && nm-applet) &
 
-(sleep 2 && ibus-daemon) &
+# (sleep 2 && ibus-daemon) &
 
-(sleep 2 && dropboxd) &
+# (sleep 2 && dropboxd) &
 
-(sleep 2 && numlockx) &
+# (sleep 2 && numlockx) &
 
-(sleep 2 && volumeicon) &
+# (sleep 2 && volumeicon) &

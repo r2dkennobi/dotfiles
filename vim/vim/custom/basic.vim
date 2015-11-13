@@ -1,6 +1,6 @@
 " **************************************
 " Kenny Y
-" 10/23/2014
+" 10/25/2015
 " **************************************
 " **************************************
 " * VARIABLES
@@ -33,8 +33,9 @@ set nobackup                    " Disable backup files
 set noswapfile                  " Diable swap files (Caution)
 set wildmenu                    " Enable enhanced completion for command mode
 set wildmode=longest:full,full  " Completion mode for wildmenu
-set wildignore+=*.swp,*.bak,*.dll,*.o,*.obj,*.pyc
+set wildignore+=*.swp,*.bak,*.dll,*.o,*.obj,*.pyc,*.exe
 set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
+set clipboard=unnamed           " set the default clipboard location to system
 ":set mouse=a                    " Enable mouse everywhere
 set cursorline                  " Highlight line currently at
 "set list                        " Enable visualization of invisible chars
@@ -75,7 +76,7 @@ if has("gui_running")
     if has("win32")
         set guifont=Source_Code_Pro:h9:cANSI,Consolas:h9:cANSI
     else
-        set guifont=Source\ Code\ Pro\ for\ Powerline\ 9
+        set guifont=Source\ Code\ Pro\ for\ Powerline\ Medium\ 10
     endif
 else
     set t_Co=256                    " Enable 256 colors in vim
@@ -139,6 +140,8 @@ syntax on
 au BufRead,BufNewFile *.{markdown,mdown,mkd,mkdn,md} set syntax=markdown
 au BufRead,BufNewFile *.launch set syntax=xml
 au BufRead,BufNewFile *.jade set syntax=jade " not setf since doctype jams
+au BufRead,BufNewFile *.rs set syntax=rust " not setf since doctype jams
+au BufRead,BufNewFile *.rs set filetype=rust " not setf since doctype jams
 
 " For switching between many opened file by using ctrl+l or ctrl+h
 map <c-e> :next <CR>

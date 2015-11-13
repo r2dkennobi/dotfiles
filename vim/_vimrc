@@ -1,6 +1,6 @@
 " **************************************
 " Kenny Y
-" 5/13/2015
+" 10/25/2015
 " **************************************
 " **************************************
 " * PLUGINS
@@ -36,12 +36,14 @@ NeoBundle 'Apo11oH/vim-darknight'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'octol/vim-cpp-enhanced-highlight'
 NeoBundle 'cohama/agit.vim'
-NeoBundle 'taketwo/vim-ros'
 NeoBundle 'vim-jp/cpp-vim'
 NeoBundle 'justinmk/vim-syntax-extra'
 NeoBundle 'Yggdroot/indentLine'
 NeoBundle 'Apo11oH/gzoom'
 NeoBundle 'nachumk/systemverilog.vim'
+NeoBundle 'easymotion/vim-easymotion'
+NeoBundle 'hdima/python-syntax'
+NeoBundle 'rust-lang/rust.vim'
 
 call neobundle#end()
 
@@ -78,8 +80,10 @@ set wildmenu                    " Enable enhanced completion for command mode
 set wildmode=longest:full,full  " Completion mode for wildmenu
 set wildignore+=*.swp,*.bak,*.dll,*.o,*.obj,*.pyc
 set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
+set clipboard=unnamed           " set the default clipboard location to system
 ":set mouse=a                    " Enable mouse everywhere
 set cursorline                  " Highlight line currently at
+"set list                        " Enable visualization of invisible chars
 set listchars=tab:>-,trail:-,eol:$,nbsp:% " Characters used to visualize
 
 try
@@ -174,7 +178,10 @@ syntax on
 
 " Automatically treat certain files as certain files
 au BufRead,BufNewFile *.{markdown,mdown,mkd,mkdn,md} setf markdown
+au BufRead,BufNewFile *.launch set syntax=xml
 au BufRead,BufNewFile *.jade set syntax=jade " not setf since doctype jams
+au BufRead,BufNewFile *.rs set syntax=rust " not setf since doctype jams
+au BufRead,BufNewFile *.rs set filetype=rust " not setf since doctype jams
 
 " For switching between many opened file by using ctrl+l or ctrl+h
 map <c-e> :next <CR>

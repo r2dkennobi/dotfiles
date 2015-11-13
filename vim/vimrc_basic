@@ -1,6 +1,6 @@
 " **************************************
 " Kenny Y
-" 5/13/2015
+" 10/25/2015
 " **************************************
 " **************************************
 " * VARIABLES
@@ -35,8 +35,10 @@ set wildmenu                    " Enable enhanced completion for command mode
 set wildmode=longest:full,full  " Completion mode for wildmenu
 set wildignore+=*.swp,*.bak,*.dll,*.o,*.obj,*.pyc
 set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
+set clipboard=unnamed           " set the default clipboard location to system
 ":set mouse=a                    " Enable mouse everywhere
 set cursorline                  " Highlight line currently at
+"set list                        " Enable visualization of invisible chars
 set listchars=tab:>-,trail:-,eol:$,nbsp:% " Characters used to visualize
 
 try
@@ -130,8 +132,11 @@ au BufRead,BufNewFile {*.s,Makefile} set tabstop=8
 syntax on
 
 " Automatically treat certain files as certain files
-au BufRead,BufNewFile *.{markdown,mdown,mkd,mkdn,md} setf markdown
-au BufRead,BufNewFile *.jade set syntax=jade " not setf since doctype jams 
+au BufRead,BufNewFile *.{markdown,mdown,mkd,mkdn,md} set syntax=markdown
+au BufRead,BufNewFile *.launch set syntax=xml
+au BufRead,BufNewFile *.jade set syntax=jade " not setf since doctype jams
+au BufRead,BufNewFile *.rs set syntax=rust " not setf since doctype jams
+au BufRead,BufNewFile *.rs set filetype=rust " not setf since doctype jams
 
 " For switching between many opened file by using ctrl+l or ctrl+h
 map <c-e> :next <CR>
