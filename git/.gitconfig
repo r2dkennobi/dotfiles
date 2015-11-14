@@ -6,11 +6,11 @@
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore
 [color]
-    ui = always
-    status = always
-    branch = always
-    diff = always
-    interactive = always
+    ui = auto
+    status = auto
+    branch = auto
+    diff = auto
+    interactive = auto
 [commit]
     template = ~/.git-commit-tmpl.txt
 [alias]
