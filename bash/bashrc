@@ -14,6 +14,9 @@ bind 'set completion-ignore-case on'
 # Auto-fix type
 shopt -s cdspell
 
+# Disable virtualenv from changing PS1
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 # Cycle through autocomplete candidates
 #bind 'set show-all-if-ambiguous on'
 bind Control-j:menu-complete

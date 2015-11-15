@@ -1,6 +1,6 @@
 " **************************************
 " Kenny Y
-" 10/25/2015
+" 11/14/2015
 " **************************************
 " **************************************
 " * PLUGINS
@@ -13,8 +13,6 @@ if has('vim_starting')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-"call neobundle#rc(expand('~/.vim/bundle/')) " Required
-filetype plugin indent on
 NeoBundleFetch 'Shougo/neobundle.vim' " Required
 
 " **************************************
@@ -35,14 +33,10 @@ NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'vim-scripts/VOoM'
 NeoBundle 'bling/vim-airline'
-"NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'plasticboy/vim-markdown'
 "NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'mbbill/undotree'
-NeoBundle 'w0ng/vim-hybrid' " color scheme
 NeoBundle 'Apo11oH/vim-darknight'
-NeoBundle 'tomasr/molokai'
 NeoBundle 'digitaltoad/vim-jade'
 "NeoBundle 'octol/vim-cpp-enhanced-highlight'
 NeoBundle 'cohama/agit.vim'
@@ -54,6 +48,7 @@ NeoBundle 'Apo11oH/gzoom'
 NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'hdima/python-syntax'
 NeoBundle 'rust-lang/rust.vim'
+NeoBundle 'NLKNguyen/papercolor-theme'
 
 call neobundle#end()
 
@@ -66,3 +61,4 @@ runtime! custom/*.vim
 runtime! plugins/*.vim
 
 NeoBundleCheck
+filetype plugin indent on

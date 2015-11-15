@@ -40,10 +40,11 @@ set clipboard=unnamed           " set the default clipboard location to system
 set cursorline                  " Highlight line currently at
 "set list                        " Enable visualization of invisible chars
 set listchars=tab:>-,trail:-,eol:$,nbsp:% " Characters used to visualize
+set nofoldenable                " Disable automatic folding
 
 try
-    "colorscheme hybrid              " Set the colorscheme to desert
-    colorscheme darknight           " Set the colorscheme to desert
+    colorscheme PaperColor
+    "colorscheme darknight           " Set the colorscheme to desert
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert              " Set the colorscheme to desert
 endtry
@@ -53,7 +54,7 @@ set smartcase                   "
 set infercase                   "
 set incsearch                   " incremental searching
 nnoremap <F6> :set hlsearch!<CR>
-nnoremap <F4> :set list!<CR>
+nnoremap <F10> :set list!<CR>
 
 " Setting <leader> in case it is changed
 let mapleader='\'              " Default <leader> key
