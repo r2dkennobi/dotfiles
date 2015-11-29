@@ -1,0 +1,13 @@
+---
+    - name: Install git
+    pacman: name=git
+            state=latest
+    sudo: yes
+
+    - name: Setup gitconfig
+    copy: src=../../git/.gitconfig
+        dest={{ "~" | expanduser }}
+
+    - name: Setup git commit template
+    copy: src=../../git/.git-commit-tmpl.txt
+        dest={{ "~" | expanduser }}

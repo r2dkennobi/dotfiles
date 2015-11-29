@@ -1,0 +1,10 @@
+- hosts: local
+  sudo: yes
+
+  tasks:
+      - "arch_tasks/bash.yaml"
+      - "arch_tasks/i3.yaml"
+      - "arch_tasks/tmux.yaml"
+      - "arch_tasks/vim.yaml"
+      - "arch_tasks/git.yaml"
+      - "arch_tasks/urxvt.yaml"

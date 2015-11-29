@@ -37,3 +37,5 @@
     amend = commit -a --amend --reset-author
     # Rebase and update everything
     up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+    # Command chain
+    rename = !git branch -m $1 $2 && git push origin :$1 && git push --set-upstream origin $2 && :

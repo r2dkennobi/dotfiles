@@ -1,0 +1,9 @@
+---
+    - name: Install tmux
+    pacman: name=tmux
+            state=latest
+    sudo: yes
+
+    - name: Copy .tmux.conf
+    copy: src=../../tmux/.tmux.conf
+        dest={{ "~" | expanduser }}
