@@ -49,6 +49,8 @@ NeoBundle 'easymotion/vim-easymotion'
 NeoBundle 'hdima/python-syntax'
 NeoBundle 'rust-lang/rust.vim'
 NeoBundle 'NLKNguyen/papercolor-theme'
+NeoBundle 'fatih/vim-go'
+NeoBundle 'vim-airline/vim-airline-themes'
 
 call neobundle#end()
 

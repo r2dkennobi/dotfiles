@@ -44,7 +44,7 @@ if [[ $NO_PIP ]]; then
     if [[ $IS_UBUNTU ]]; then
         sudo apt-get install -y python-pip
     elif [[ $IS_ARCH ]]; then
-        sudo pacman -S install python-pip --noconfirm
+        sudo pacman -S python-pip --noconfirm
     fi
 fi
 
