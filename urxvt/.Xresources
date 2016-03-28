@@ -44,6 +44,7 @@ urxvt.tabbed.tab-fg:    3
 urxvt.tabbed.tab-bg:    0
 urxvt.keysym.Shift-Control-C: perl:clipboard:copy
 urxvt.keysym.Shift-Control-V: perl:clipboard:paste
+urxvt.keysym.Shift-Control-W: perl:clipboard:paste_escaped
 
 ! Control-arrow key
 !urxvt.keysym.Control-Up:    \033[1;5A
@@ -59,8 +60,11 @@ urxvt.keysym.Shift-Control-V: perl:clipboard:paste
 urxvt.iso14755:         false
 
 ! Colorscheme
-urxvt.background: #1D1F2D
-urxvt.foreground: #C5C8C6
+urxvt.colorBD: #B5BD68
+urxvt.colorIT: #B294BB
+urxvt.colorUL: #91A2BE
+urxvt.background: #444
+urxvt.foreground: #eee
 urxvt.cursorColor: #C3FF00
 ! black
 urxvt.color0: #282A2E

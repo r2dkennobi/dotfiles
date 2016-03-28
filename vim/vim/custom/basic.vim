@@ -35,7 +35,7 @@ set wildmenu                    " Enable enhanced completion for command mode
 set wildmode=longest:full,full  " Completion mode for wildmenu
 set wildignore+=*.swp,*.bak,*.dll,*.o,*.obj,*.pyc,*.exe
 set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
-set clipboard=unnamed           " set the default clipboard location to system
+"set clipboard=unnamed           " set the default clipboard location to system
 ":set mouse=a                    " Enable mouse everywhere
 set cursorline                  " Highlight line currently at
 "set list                        " Enable visualization of invisible chars
