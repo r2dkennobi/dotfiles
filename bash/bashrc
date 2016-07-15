@@ -4,7 +4,7 @@ export TERMINAL=urxvt
 export BROWSER=firefox
 
 # Enable 256 colors for terminal
-export TERM=xterm-256color
+export TERM=screen-256color
 #export TERM=xterm-256color-bce
 #export TERM=rxvt-256color
 

@@ -51,6 +51,7 @@ NeoBundle 'rust-lang/rust.vim'
 NeoBundle 'NLKNguyen/papercolor-theme'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'vim-airline/vim-airline-themes'
+NeoBundle 'tpope/vim-fugitive'
 
 call neobundle#end()
 
