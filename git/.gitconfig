@@ -21,7 +21,9 @@
     b = branch
     co = checkout
     df = diff
+    rv = remote -v
     cdf = commit -v
+    sup = submodule update
     trim = remote prune origin
     # Branch management
     brm = branch -d
