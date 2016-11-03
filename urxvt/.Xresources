@@ -12,7 +12,7 @@ xft.hintstyle:          hintslight
 ! general setting
 urxvt.termName:         screen-256color
 urxvt.depth:            32
-urxvt.geometry:         120x35
+urxvt.geometry:         1500x600
 urxvt.loginShell:       true
 urxvt.transparent:      false
 urxvt.fading:           30
@@ -24,7 +24,7 @@ urxvt.letterSpace:      -1
 ! font setting
 urxvt.allow_bold:       false
 !urxvt.font:             xft:SourceCodePro:size=10:antialias=true
-urxvt.font:             xft:Source Code Pro for Powerline:pixelsize=14:antialias=true,xft:Inconsolata:pixelsize=13:size=10:antialias=true
+urxvt.font:             xft:Source Code Pro for Powerline:pixelsize=15:antialias=true,xft:Inconsolata:pixelsize=13:size=10:antialias=true
 
 ! scrollbar
 urxvt.scrollStyle:      rxvt
@@ -63,7 +63,8 @@ urxvt.iso14755:         false
 urxvt.colorBD: #B5BD68
 urxvt.colorIT: #B294BB
 urxvt.colorUL: #91A2BE
-urxvt.background: #444
+!urxvt.background: #444
+urxvt.background: rgba:0000/0000/0200/c800
 urxvt.foreground: #eee
 urxvt.cursorColor: #C3FF00
 ! black
