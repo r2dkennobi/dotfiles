@@ -14,8 +14,9 @@ urxvt.termName:         screen-256color
 urxvt.depth:            32
 urxvt.geometry:         1500x600
 urxvt.loginShell:       true
-urxvt.transparent:      false
+urxvt.transparent:      true
 urxvt.fading:           30
+urxvt.shading:          20
 urxvt.saveLines:        512
 urxvt.internalBorder:   3
 urxvt.lineSpace:        0
