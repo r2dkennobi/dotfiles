@@ -38,11 +38,13 @@ set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
 "set clipboard=unnamed           " set the default clipboard location to system
 ":set mouse=a                    " Enable mouse everywhere
 set cursorline                  " Highlight line currently at
-"set list                        " Enable visualization of invisible chars
+set list                        " Enable visualization of invisible chars
 set listchars=tab:>-,trail:-,eol:$,nbsp:% " Characters used to visualize
 set nofoldenable                " Disable automatic folding
+set tags=~/tags
 
 try
+    "colorscheme tender
     colorscheme PaperColor
     "colorscheme darknight           " Set the colorscheme to desert
 catch /^Vim\%((\a\+)\)\=:E185/
@@ -118,8 +120,8 @@ endif
 
 " Expand tabs in certain files to spaces
 au BufRead,BufNewFile *.{c,cpp,h,hpp} set expandtab
-au BufRead,BufNewFile *.{c,cpp,h,hpp} set shiftwidth=4
-au BufRead,BufNewFile *.{c,cpp,h,hpp} set tabstop=4
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set shiftwidth=2
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set tabstop=2
 
 au BufRead,BufNewFile *.{java,ml,scala} set expandtab
 au BufRead,BufNewFile *.{java,ml,scala} set shiftwidth=4
