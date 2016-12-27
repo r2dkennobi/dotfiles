@@ -38,14 +38,14 @@ set wildignore+=*.jpg,*.gif,*.png,*.class,*.ln
 "set clipboard=unnamed           " set the default clipboard location to system
 ":set mouse=a                    " Enable mouse everywhere
 set cursorline                  " Highlight line currently at
-set list                        " Enable visualization of invisible chars
+"set list                        " Enable visualization of invisible chars
 set listchars=tab:>-,trail:-,eol:$,nbsp:% " Characters used to visualize
 set nofoldenable                " Disable automatic folding
 set tags=~/tags
 
 try
-    "colorscheme tender
-    colorscheme PaperColor
+    "colorscheme PaperColor
+    colorscheme tender
     "colorscheme darknight           " Set the colorscheme to desert
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert              " Set the colorscheme to desert

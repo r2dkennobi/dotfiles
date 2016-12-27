@@ -5,58 +5,46 @@
 " **************************************
 " * PLUGINS
 " **************************************
-" NeoBundle Setup
-" mkdir -p ~/.vim/bundle
-" git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+" vim-plug
+" https://github.com/junegunn/vim-plug
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim' " Required
-
+call plug#begin('~/.vim/plugged')
 " **************************************
 " * BUNDLES
 " **************************************
 " VimProc
-NeoBundle 'Shougo/vimproc', {
-            \ 'build' : {
-            \     'windows' : 'make -f make_mingw32.mak',
-            \     'mac' : 'make -f make_mac.mak',
-            \     'unix' : 'make -f make_unix.mak',
-            \    },
-            \ }
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/vimfiler.vim'
-NeoBundle 'majutsushi/tagbar'
-NeoBundle 'vim-scripts/VOoM'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'plasticboy/vim-markdown'
-"NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'Apo11oH/vim-darknight'
-"NeoBundle 'digitaltoad/vim-jade'
-NeoBundle 'octol/vim-cpp-enhanced-highlight'
-NeoBundle 'justinmk/vim-syntax-extra'
-NeoBundle 'cohama/agit.vim'
-"NeoBundle 'taketwo/vim-ros'
-NeoBundle 'vim-jp/cpp-vim'
-NeoBundle 'justinmk/vim-syntax-extra'
-NeoBundle 'Yggdroot/indentLine'
-"NeoBundle 'Apo11oH/gzoom'
-NeoBundle 'easymotion/vim-easymotion'
-NeoBundle 'hdima/python-syntax'
-"NeoBundle 'rust-lang/rust.vim'
-NeoBundle 'NLKNguyen/papercolor-theme'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'jacoborus/tender.vim'
-"NeoBundle 'tpope/vim-sleuth.vim'
+"Plug 'Shougo/vimproc', {
+"            \ 'build' : {
+"            \     'windows' : 'make -f make_mingw32.mak',
+"            \     'mac' : 'make -f make_mac.mak',
+"            \     'unix' : 'make -f make_unix.mak',
+"            \    },
+"            \ }
+"Plug 'Shougo/vimshell'
+"Plug 'Shougo/unite.vim'
+"Plug 'Shougo/neocomplcache'
+Plug 'Shougo/denite.nvim'
+Plug 'Shougo/neocomplete.vim'
+Plug 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'plasticboy/vim-markdown'
+Plug 'scrooloose/syntastic'
+Plug 'Apo11oH/vim-darknight'
+Plug 'Apo11oH/gzoom'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'cohama/agit.vim'
+Plug 'justinmk/vim-syntax-extra'
+Plug 'easymotion/vim-easymotion'
+Plug 'hdima/python-syntax'
+Plug 'rust-lang/rust.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'fatih/vim-go'
+Plug 'tpope/vim-fugitive'
+Plug 'arcticicestudio/nord-vim'
+Plug 'jacoborus/tender.vim'
 
-call neobundle#end()
+call plug#end()
 
 " **************************************
 " * RUNTIME PATH
@@ -66,5 +54,4 @@ set runtimepath+=~/.vim/plugins
 runtime! custom/*.vim
 runtime! plugins/*.vim
 
-NeoBundleCheck
 filetype plugin indent on
