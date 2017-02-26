@@ -1,6 +1,10 @@
 # vi: ft=sh
 alias ls='ls -lhXF --color=auto'
 alias lsa='ls -lahXF --color=auto'
+alias gpgl='gpg --list-secret-keys --keyid-format LONG'
+alias ports='lsof -i -n -P'
+alias services_enabled='systemctl list-unit-files | ag enable'
+alias services_disabled='systemctl list-unit-files | ag disable'
 
 # Kenny custom configs
 export EDITOR=vim
@@ -72,7 +76,7 @@ METACOL='\[\033[1;32m\]'; RST='\[\033[0m\]'
 [[ ${EUID} == 0 ]] && USER_COL='\[\033[01;31m\]' || USER_COL='\[\033[01;34m\]'
 [[ "$SSH_CONNECTION" ]] && HOST_ADDR="`echo "$SSH_CONNECTION" | awk '{print $3}'`"
 [[ "$SSH_CONNECTION" ]] && USER_HOST="\u@$HOST_ADDR" || USER_HOST="\u@\h"
-PS1="${DCOL}>> ${USER_COL}${USER_HOST}${DCOL} >> ${STATCOL}\$?${DCOL} >>"
+PS1="${DCOL}>> ${USER_COL}${USER_HOST}${DCOL} >> ${STATCOL}\$?${DCOL} >> "
 PS1+="${STATCOL}\@ \d${DCOL}${DCOL} \$(parse_git_branch)\n>> ${CWDCOL}\w${DCOL} >> "
 PS1+="${METACOL}\$(meta)${DCOL} \$${RST} "
 
@@ -80,4 +84,4 @@ source $HOME/dotfiles/bash/color_scheme
 source $HOME/dotfiles/bash/ls_colors
 
 # Start programs
-setup_ssh_agent
+setup_ssh_agent &> /dev/null
