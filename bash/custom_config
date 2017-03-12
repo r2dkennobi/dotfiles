@@ -70,11 +70,11 @@ function meta {
     echo "$(ls -1 | sed 1d | wc -l | sed 's: ::g') files, $(ls -sh | head -n1 | sed 's/total //')b"
 }
 
-TL='\342\224\214'; DASH='\342\224\200'; BL='\342\224\224'; CONN=")${DASH}("
+TL='\342\224\214'; DASH='\342\224\200'; BL='\342\224\224'; SSH_COLOR='\[\033[1;36m\]';
 DCOL='\[\033[1;37m\]'; STATCOL='\[\033[1;34m\]'; CWDCOL='\[\033[1;32m\]'
 METACOL='\[\033[1;32m\]'; RST='\[\033[0m\]'
 [[ ${EUID} == 0 ]] && USER_COL='\[\033[01;31m\]' || USER_COL='\[\033[01;34m\]'
-[[ "$SSH_CONNECTION" ]] && HOST_ADDR="`echo "$SSH_CONNECTION" | awk '{print $3}'`"
+[[ "$SSH_CONNECTION" ]] && HOST_ADDR="`echo "${SSH_COLOR}$SSH_CONNECTION${DCOL}" | awk '{print $3}'`"
 [[ "$SSH_CONNECTION" ]] && USER_HOST="\u@$HOST_ADDR" || USER_HOST="\u@\h"
 PS1="${DCOL}>> ${USER_COL}${USER_HOST}${DCOL} >> ${STATCOL}\$?${DCOL} >> "
 PS1+="${STATCOL}\@ \d${DCOL}${DCOL} \$(parse_git_branch)\n>> ${CWDCOL}\w${DCOL} >> "
