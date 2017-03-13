@@ -1,7 +1,7 @@
 # vi: ft=sh
 alias ls='ls -lhXF --color=auto'
 alias lsa='ls -lahXF --color=auto'
-alias gpgl='gpg --list-secret-keys --keyid-format LONG'
+alias gpgla='gpg --list-secret-keys --keyid-format LONG'
 alias ports='lsof -i -n -P'
 alias services_enabled='systemctl list-unit-files | ag enable'
 alias services_disabled='systemctl list-unit-files | ag disable'
