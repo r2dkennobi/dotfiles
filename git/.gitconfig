@@ -13,6 +13,7 @@
     diff = auto
     interactive = auto
 [commit]
+    gpgsign = true
     template = ~/.git-commit-tmpl.txt
 [alias]
     # List all aliases
@@ -44,7 +45,7 @@
     filelog = log -u
     fl = log -u
     # Ammend previous commit
-    amend = commit -a --amend --reset-author
+    amend = commit --amend --reset-author
     # Rebase and update everything
     up = !git pull --rebase --prune $@ && git submodule update --init --recursive
     # Command chain
