@@ -9,7 +9,7 @@ alias services_disabled='systemctl list-unit-files | ag disable'
 # Kenny custom configs
 export EDITOR=vim
 export TERMINAL=urxvt
-export BROWSER=firefox
+export BROWSER=vivaldi
 
 # Enable 256 colors for terminal
 export TERM=screen-256color
