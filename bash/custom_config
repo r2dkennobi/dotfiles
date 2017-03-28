@@ -5,6 +5,9 @@ alias gpgla='gpg --list-secret-keys --keyid-format LONG'
 alias ports='lsof -i -n -P'
 alias services_enabled='systemctl list-unit-files | ag enable'
 alias services_disabled='systemctl list-unit-files | ag disable'
+alias ssh='ssh -XC'
+alias rsync='rsync --progress'
+alias rrsync='rsync -r --progress'
 
 # Kenny custom configs
 export EDITOR=vim
@@ -58,6 +61,15 @@ function setup_ssh_agent {
     fi
 }
 
+function setup_gpg_agent {
+    if ! pgrep -u $USER gpg-agent > /dev/null; then
+        gpg-agent --daemon --enable-ssh-support --sh > ~/.gpg-agent-pid
+    fi
+    if [[ "$SSH_AUTH_SOCK" == "" ]]; then
+        eval $(<~/.gpg-agent-pid)
+    fi
+}
+
 ######################
 # Custom Bash Prompt #
 ######################
@@ -84,4 +96,4 @@ source $HOME/dotfiles/bash/color_scheme
 source $HOME/dotfiles/bash/ls_colors
 
 # Start programs
-setup_ssh_agent &> /dev/null
+setup_gpg_agent &> /dev/null
