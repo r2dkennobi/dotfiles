@@ -9,6 +9,7 @@ alias services_disabled='systemctl list-unit-files | ag disable'
 alias ssh='ssh -XYC'
 alias rsync='rsync --progress'
 alias rrsync='rsync -r --progress'
+alias agh='ag --hidden'
 alias ssh-secure-keygen='ssh-keygen -o -a 100 -t ed25519'
 
 # Kenny custom configs
