@@ -23,8 +23,8 @@ set showcmd                     " show current command
 set showmatch                   " Breifely display maching bracket
 set bs=2                        " fix backspacing in insert mode
 set expandtab                   " replace tab with space
-set shiftwidth=4                " determins the number of char per indent
-set tabstop=4                   " replaces current tab with specified number
+set shiftwidth=2                " determins the number of char per indent
+set tabstop=2                   " replaces current tab with specified number
 set wrap                        " enable word wrapping
 set laststatus=2                " Sets the number of lines at the bottom
 set ttimeoutlen=50              " Set delay between mode switching
@@ -118,10 +118,24 @@ else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>79v.\+', -1)
 endif
 
+" Show syntax
+syntax on
+
+" Automatically treat certain files as certain files
+au BufRead,BufNewFile *.{markdown,mdown,mkd,mkdn,md} set syntax=markdown
+au BufRead,BufNewFile *.launch set syntax=xml
+au BufRead,BufNewFile *.jade set syntax=jade " not setf since doctype jams
+au BufRead,BufNewFile *.rs set syntax=rust " not setf since doctype jams
+au BufRead,BufNewFile *.rs set filetype=rust " not setf since doctype jams
+
 " Expand tabs in certain files to spaces
 au BufRead,BufNewFile *.{c,cpp,h,hpp} set expandtab
-au BufRead,BufNewFile *.{c,cpp,h,hpp} set shiftwidth=2
-au BufRead,BufNewFile *.{c,cpp,h,hpp} set tabstop=2
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set shiftwidth=4
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set tabstop=4
+
+au BufRead,BufNewFile *.{rb} set expandtab
+au BufRead,BufNewFile *.{rb} set shiftwidth=2
+au BufRead,BufNewFile *.{rb} set tabstop=2
 
 au BufRead,BufNewFile *.{java,ml,scala} set expandtab
 au BufRead,BufNewFile *.{java,ml,scala} set shiftwidth=4
@@ -136,15 +150,7 @@ au BufRead,BufNewFile {*.s,Makefile} set noexpandtab
 au BufRead,BufNewFile {*.s,Makefile} set shiftwidth=8
 au BufRead,BufNewFile {*.s,Makefile} set tabstop=8
 
-" Show syntax
-syntax on
-
-" Automatically treat certain files as certain files
-au BufRead,BufNewFile *.{markdown,mdown,mkd,mkdn,md} set syntax=markdown
-au BufRead,BufNewFile *.launch set syntax=xml
-au BufRead,BufNewFile *.jade set syntax=jade " not setf since doctype jams
-au BufRead,BufNewFile *.rs set syntax=rust " not setf since doctype jams
-au BufRead,BufNewFile *.rs set filetype=rust " not setf since doctype jams
+au FileType sh set expandtab shiftwidth=2 tabstop=2
 
 " For switching between many opened file by using ctrl+l or ctrl+h
 map <c-e> :next <CR>
