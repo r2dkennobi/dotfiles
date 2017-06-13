@@ -7,22 +7,18 @@
 " **************************************
 " vim-plug
 " https://github.com/junegunn/vim-plug
+"
+
+if has('win32') || has('win64')
+    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+endif
+
 
 call plug#begin('~/.vim/plugged')
 " **************************************
 " * BUNDLES
 " **************************************
 " VimProc
-"Plug 'Shougo/vimproc', {
-"            \ 'build' : {
-"            \     'windows' : 'make -f make_mingw32.mak',
-"            \     'mac' : 'make -f make_mac.mak',
-"            \     'unix' : 'make -f make_unix.mak',
-"            \    },
-"            \ }
-"Plug 'Shougo/vimshell'
-"Plug 'Shougo/unite.vim'
-"Plug 'Shougo/neocomplcache'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/neocomplete.vim'
 Plug 'majutsushi/tagbar'
