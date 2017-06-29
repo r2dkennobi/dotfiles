@@ -27,13 +27,14 @@ font pango:Source Code Pro for Airline 8.5
 floating_modifier $mod
 
 # auto start app
-exec --no-startup-id feh --bg-scale /home/kenny/Downloads/bb_8_r2-d2_minimalist.png
+exec --no-startup-id feh --bg-scale /home/kenny/background.png
 exec --no-startup-id caffeine-indicator
 exec --no-startup-id nm-applet
-exec --no-startup-id volti
+#exec --no-startup-id volti
+exec --no-startup-id volumeicon
 exec --no-startup-id fluxgui
 exec --no-startup-id blueman-applet
-exec --no-startup-id slack
+exec --no-startup-id indicator-cpufreq
 
 # start a terminal
 #bindsym $mod+Return exec "urxvt -e bash -c 'tmux-2'"

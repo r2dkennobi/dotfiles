@@ -29,4 +29,3 @@
   copy:
     src: "{{ role_path }}/files/config"
     dest: "/home/{{ ansible_env.USER }}/.config/i3/config"
-    force: no
