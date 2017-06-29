@@ -1,5 +1,0 @@
----
-    - name: Install i3
-    pacman: name=i3
-            state=latest
-    sudo: yes

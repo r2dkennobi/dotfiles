@@ -1,9 +1,0 @@
----
-    - name: Install urxvt
-    pacman: name=rxvt-unicode
-            state=latest
-    sudo: yes
-
-    - name: Copy .Xresources
-    copy: src=../../urxvt/.Xresources
-        dest={{ "~" | expanduser }}

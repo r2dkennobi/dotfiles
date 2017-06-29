@@ -1,4 +1,0 @@
----
-    - name: Copy bashrc
-    copy: src=../../bash/bashrc
-        dest={{ "~/.bashrc" | expanduser }}

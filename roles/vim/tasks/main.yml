@@ -1,0 +1,48 @@
+---
+- name: Add latest vim PPA
+  become: yes
+  apt_repository:
+    repo: "ppa:jonathonf/vim"
+    state: present
+    update_cache: yes
+
+- name: Install vim
+  become: yes
+  apt:
+    name: vim-gtk3
+    state: latest
+    update_cache: yes
+    cache_valid_time: 300
+
+- name: Make sure .vim/autoload folder exists
+  file:
+    path: "/home/{{ ansible_env.USER }}/.vim/{{ item }}"
+    state: directory
+  with_items:
+    - autoload
+    - custom
+    - plugins
+
+- name: Install plugin manager
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "/home/{{ ansible_env.USER }}/.vim/autoload/plug.vim"
+
+# Mmm...recursive copy not working as expected
+- name: Copy configurations
+  copy:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "/home/{{ ansible_env.USER }}/{{ item }}"
+  with_items:
+    - .vimrc
+    - .vimshrc
+    - .vim/custom/basic.vim
+    - .vim/plugins/airline.vim
+    - .vim/plugins/cpp_enhanced_highlight.vim
+    - .vim/plugins/denite.vim
+    - .vim/plugins/neocomplcache.vim
+    - .vim/plugins/neocomplete.vim
+    - .vim/plugins/python_syntax.vim
+    - .vim/plugins/tagbar.vim
+    - .vim/plugins/tmuxline.vim
+    - .vim/plugins/voom.vim

@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  pre_tasks:
+    - name: Create build folder
+      file:
+        path: "{{ build_dir }}"
+        state: directory
+  roles:
+    - { role: dependencies, tags: [ 'dependencies' ] }
+    - { role: git, tags: [ 'git' ] }
+    - { role: ag, tags: [ 'ag' ] }
+    - { role: nvidia-drivers, tags: [ 'nvidia-drivers' ]}
+    - { role: numix, tags: [ 'numix' ]}
+    - { role: tmux, tags: [ 'tmux' ]}
+    - { role: vim, tags: [ 'vim' ] }
+    - { role: i3, tags: [ 'i3' ] }

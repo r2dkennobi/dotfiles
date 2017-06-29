@@ -1,0 +1,22 @@
+---
+- name: Check if NVIDIA card exists
+  shell: lspci | grep NVIDIA
+  register: nvidia_check
+  ignore_errors: yes
+
+- name: Add latest NVIDIA drivers PPA
+  become: yes
+  apt_repository:
+    repo: "ppa:graphics-drivers/ppa"
+    state: present
+    update_cache: yes
+  when: nvidia_check.rc == 0
+
+- name: Install latest NVIDIA driver
+  become: yes
+  apt:
+      name: nvidia-381
+      state: latest
+      update_cache: yes
+      cache_valid_time: 300
+  when: nvidia_check.rc == 0

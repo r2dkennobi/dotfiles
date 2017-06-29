@@ -1,0 +1,23 @@
+---
+- name: Add latest git PPA
+  become: yes
+  apt_repository:
+    repo: "ppa:git-core/ppa"
+    state: present
+    update_cache: yes
+
+- name: Install git
+  become: yes
+  apt:
+      name: "git"
+      state: latest
+      update_cache: yes
+      cache_valid_time: 300
+
+- name: Copy generic git configurations
+  copy:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "/home/{{ ansible_env.USER }}/{{ item }}"
+  with_items:
+    - .gitconfig
+    - .git-commit-tmpl.txt

@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e
+
+VERSION="1.0.0"
+OS=$(uname -i)
+
+# location to which this was cloned (hopefully "~/code")
+export SETUP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "############################"
+echo "Apo11o setup directive v$VERSION"
+echo "OS arch: $OS"
+echo "############################"
+
+function install_ansible()
+{
+    echo "Installing ansible"
+    sudo apt-get install software-properties-common -y
+    sudo apt-add-repository ppa:ansible/ansible -y
+    sudo apt-get update
+    sudo apt-get install ansible -y
+}
+
+echo "- Check if ansible is installed"
+which ansible-playbook || install_ansible
+
+echo "Shall we play a game?"
+echo "=> Using additional args: $@"
+# tags: -t <tag>
+# extra_args: -e "<extra args>=<some value>"
+ansible-playbook --ask-become apo11o_directive.yaml $@

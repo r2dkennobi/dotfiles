@@ -1,0 +1,13 @@
+---
+- name: Install silversearcher-ag
+  become: yes
+  apt:
+    pkg: silversearcher-ag
+    state: latest
+    update_cache: yes
+    cache_valid_time: 300
+
+- name: Copy ag configurations
+  copy:
+    src: "{{ role_path }}/files/.agignore"
+    dest: "/home/{{ ansible_env.USER }}/.agignore"

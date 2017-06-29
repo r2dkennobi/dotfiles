@@ -1,0 +1,15 @@
+---
+- name: Install dependencies
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 300
+  with_items:
+    - wget
+    - ninja-build
+    - tmux
+    - tree
+    - unity-tweak-tool
+    - xsel
