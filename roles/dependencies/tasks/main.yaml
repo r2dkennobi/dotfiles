@@ -18,3 +18,7 @@
     - volti
     - blueman
     - scrot
+    - thunar
+    - thunar-archive-plugin
+    - thunar-media-tags-plugin
+    - thunar-gtkhash

@@ -1,2 +1,3 @@
 ---
 build_dir: "{{ ansible_env.HOME }}/build"
+vivaldi_deb: "vivaldi-stable_1.10.867.42-1_amd64.deb"

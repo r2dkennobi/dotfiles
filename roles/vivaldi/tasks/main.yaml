@@ -1,0 +1,5 @@
+---
+- name: Install vivaldi from deb
+  become: yes
+  apt:
+    deb: "https://downloads.vivaldi.com/stable/{{ vivaldi_deb }}"
