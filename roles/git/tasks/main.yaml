@@ -18,6 +18,7 @@
   copy:
     src: "{{ role_path }}/files/{{ item }}"
     dest: "/home/{{ ansible_env.USER }}/{{ item }}"
+    force: no
   with_items:
     - .gitconfig
     - .git-commit-tmpl.txt
