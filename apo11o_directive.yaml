@@ -17,3 +17,4 @@
     - { role: tilix, tags: [ 'tilix' ] }
     - { role: vivaldi, tags: [ 'vivaldi' ] }
     - { role: android-studio, tags: [ 'android-studio' ] }
+    - { role: polybar, tags: [ 'polybar' ] }

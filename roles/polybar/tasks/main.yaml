@@ -1,0 +1,57 @@
+---
+- name: Check if install is necessary
+  stat:
+    path: "/usr/local/bin/polybar"
+  register: polybar_bin
+
+- name: Install polybar dependencies
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 300
+  with_items:
+    - libcairo2-dev
+    - libxcb1-dev
+    - python2.7
+    - xcb-proto
+    - libxcb-util-dev
+    - libxcb-xkb-dev
+    - libxcb-xrm-dev
+    - libxcb-ewmh-dev
+    - libxcb-image0-dev
+    - libxcb-icccm4-dev
+    - libasound2-dev
+    - libjsoncpp-dev
+    - libmpdclient-dev
+    - libcurl3
+    - wireless-tools
+    - python-xcbgen
+    - libiw-dev
+  when: not polybar_bin.stat.exists or force is defined
+
+- name: Clone latest polybar
+  git:
+    repo: "https://github.com/jaagr/polybar"
+    dest: "{{ build_dir }}/polybar"
+    version: "{{ polybar_version }}"
+  when: not polybar_bin.stat.exists or force is defined
+
+- name: Create build folder
+  file:
+    path: "{{ build_dir }}/polybar/build"
+    state: directory
+  when: not polybar_bin.stat.exists or force is defined
+
+- name: Configure polybar
+  shell: "{{ item }} chdir={{ build_dir }}/polybar/build"
+  with_items:
+    - "cmake -GNinja .."
+  when: not polybar_bin.stat.exists or force is defined
+
+- name: Install polybar
+  become: yes
+  become_user: root
+  command: "ninja install chdir={{ build_dir }}/polybar/build"
+  when: not polybar_bin.stat.exists or force is defined

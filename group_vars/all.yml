@@ -2,3 +2,4 @@
 build_dir: "{{ ansible_env.HOME }}/build"
 vivaldi_deb: "vivaldi-stable_1.10.867.42-1_amd64.deb"
 android_studio_file: "2.3.3.0/android-studio-ide-162.4069837-linux.zip"
+polybar_version: "3.0.5"

@@ -25,3 +25,6 @@
     - indicator-cpufreq
     - fcitx
     - fcitx-mozc
+    - ncdu
+    - lxappearance
+    - ninja
