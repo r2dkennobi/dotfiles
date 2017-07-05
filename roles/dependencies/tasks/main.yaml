@@ -27,4 +27,7 @@
     - fcitx-mozc
     - ncdu
     - lxappearance
-    - ninja
+    - ninja-build
+    # For security analysis
+    - binwalk
+    - pngcheck

@@ -1,0 +1,14 @@
+---
+- name: Install fcitx and mozc
+  become: yes
+  apt:
+      name: "{{ item }}"
+      state: latest
+      update_cache: yes
+      cache_valid_time: 300
+  with_items:
+    - fcitx
+    - fcitx-mozc
+
+# Don't forget to run im-config afterwards!
+# fcitx-im is required for archlinux
