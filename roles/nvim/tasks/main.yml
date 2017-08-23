@@ -1,0 +1,30 @@
+---
+- name: Add latest Neovim PPA
+  become: yes
+  apt_repository:
+    repo: "ppa:neovim-ppa/stable"
+    state: present
+    update_cache: yes
+
+- name: Install Neovim
+  become: yes
+  apt:
+    name: neovim
+    state: latest
+    update_cache: yes
+    cache_valid_time: 300
+
+- name: Make sure Neovim config folder exists
+  file:
+    path: "/home/{{ ansible_env.USER }}/.config/nvim"
+    state: directory
+
+# Mmm...recursive copy not working as expected
+- name: Copy configurations
+  copy:
+    src: "{{ role_path }}/files/{{ item }}"
+    dest: "/home/{{ ansible_env.USER }}/.config/nvim/{{ item }}"
+  with_items:
+    - init.vim
+    - dein.toml
+    - dein_lazy.toml

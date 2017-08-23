@@ -1,0 +1,78 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+hook_add = '''
+let g:airline_powerline_fonts=1
+let g:airline_theme ="tender"
+let g:airline_detect_modified=1
+let g:airline_detect_paste=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#showbuffers=1
+let g:airline#extensions#branch#enabled=1
+'''
+depends = 'vim-airline-themes'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'jacoborus/tender.vim'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --all'
+merged = '0'
+
+[[plugins]]
+repo = 'powerline/fonts'
+build = './install.sh'
+merged = '0'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+hook_add = '''
+noremap <Leader>f :FZF<CR>
+
+command! -bang -nargs=* FZFAg
+  \ call fzf#vim#ag(<q-args>, '--skip-vcs-ignores', {'down': '~40%'})
+noremap <Leader>g :FZFAg<CR>
+'''
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_open_list = 0
+let g:airline#extentions#ale#enabled = 1
+
+nmap <silent> <C-p> <Plug>(ale_previous_wrap)
+nmap <silent> <C-n> <Plug>(ale_next_wrap)
+'''
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+on_ft = 'python'
+depends = 'deoplete.vim'
+
+[[plugins]]
+repo = 'tweekmonster/deoplete-clang2'
+on_ft = ['c', 'cpp', 'cmake']
+depends = 'depolete.vim'
