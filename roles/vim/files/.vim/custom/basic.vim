@@ -141,15 +141,19 @@ au BufRead,BufNewFile *.{java,ml,scala} set expandtab
 au BufRead,BufNewFile *.{java,ml,scala} set shiftwidth=4
 au BufRead,BufNewFile *.{java,ml,scala} set tabstop=4
 
-au BufRead,BufNewFile *.{py,html} set expandtab
-au BufRead,BufNewFile *.{py,html} set shiftwidth=4
-au BufRead,BufNewFile *.{py,html} set tabstop=4
+au BufRead,BufNewFile *.{html} set expandtab
+au BufRead,BufNewFile *.{html} set shiftwidth=4
+au BufRead,BufNewFile *.{html} set tabstop=4
 
 " Do not expand tabs in assembly file.  Make them 8 chars wide.
 au BufRead,BufNewFile {*.s,Makefile} set noexpandtab
 au BufRead,BufNewFile {*.s,Makefile} set shiftwidth=8
 au BufRead,BufNewFile {*.s,Makefile} set tabstop=8
 
+au FileType python set expandtab shiftwidth=4 tabstop=4
+au FileType python let g:syntastic_check_on_open=1
+au FileType python let g:syntastic_check_on_wq=1
+au FileType python let g:syntastic_mode_map={"mode": "active"}
 au FileType sh set expandtab shiftwidth=2 tabstop=2
 
 " For switching between many opened file by using ctrl+l or ctrl+h

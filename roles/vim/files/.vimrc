@@ -41,6 +41,8 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'jacoborus/tender.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'nvie/vim-flake8'
+Plug 'fatih/vim-hclfmt'
+Plug 'udalov/kotlin-vim'
 
 call plug#end()
 
