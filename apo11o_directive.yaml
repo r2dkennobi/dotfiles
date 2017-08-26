@@ -19,3 +19,5 @@
     - { role: android-studio, tags: [ 'android-studio' ] }
     - { role: polybar, tags: [ 'polybar' ] }
     - { role: fcitx, tags: [ 'fcitx' ] }
+    - { role: nvim, tags: [ 'nvim' ] }
+    - { role: universal-ctags, tags: [ 'universal-ctags', 'ctags' ] }
