@@ -25,6 +25,7 @@
     b = branch
     ba = branch --all
     co = checkout
+    cp = cherry-pick
     mg = merge
     df = diff -w -p
     rv = remote -v
