@@ -28,3 +28,25 @@
     - init.vim
     - dein.toml
     - dein_lazy.toml
+
+- name: Install Ale deps via apt (for syntax checking)
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 300
+  with_items:
+    - foodcritic
+    - shellcheck
+
+- name: Install Ale deps via pip (for syntax checking)
+  become: yes
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - ansible-lint
+    - cmakelint
+    - flake8
+    - vim-vint

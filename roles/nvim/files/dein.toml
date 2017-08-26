@@ -66,6 +66,7 @@ let g:airline#extentions#ale#enabled = 1
 nmap <silent> <C-p> <Plug>(ale_previous_wrap)
 nmap <silent> <C-n> <Plug>(ale_next_wrap)
 '''
+#let g:ale_c_build_dir='/home/kenny/code/pikachu/workspace/build'
 
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
@@ -76,3 +77,6 @@ depends = 'deoplete.vim'
 repo = 'tweekmonster/deoplete-clang2'
 on_ft = ['c', 'cpp', 'cmake']
 depends = 'depolete.vim'
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
