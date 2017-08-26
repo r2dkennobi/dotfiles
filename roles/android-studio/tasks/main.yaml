@@ -36,3 +36,18 @@
       MimeType=text/x-c++src;text/x-c++hdr;text/x-xsrc;application/x-designer;
       Categories=Android;Development;IDE;
       InitialPreference=2
+
+- name: Add Oracle Java PPA
+  become: yes
+  apt_repository:
+    repo: "ppa:webupd8team/java"
+    state: present
+    update_cahe: yes
+
+- name: Install Oracle Java 8
+  become: yes
+  apt:
+    name: oracle-java8-installer
+    state: latest
+    update_cache: yes
+    cache_valid_time: 300
