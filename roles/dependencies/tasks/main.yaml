@@ -28,6 +28,7 @@
     - ncdu
     - lxappearance
     - ninja-build
+    - cmake
     # For security analysis
     - binwalk
     - pngcheck
