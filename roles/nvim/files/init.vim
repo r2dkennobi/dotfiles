@@ -17,7 +17,7 @@ endif
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
-  let g:rc_dir    = expand("~/.config/nvim/")
+  let g:rc_dir    = expand('~/.config/nvim/')
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
@@ -60,7 +60,12 @@ map q <nop>                     " Ugh, macro mode
 " Custom key mapping
 nmap cp :let @+= expand("~")<CR> " copy current file path to clipboard...?
 
+" Tab navigation
+nnoremap <silent> H gT
+nnoremap <silent> L gt
+
 " Special keyboard mapping
+nnoremap <silent> <F3> :lcd %:p:h<CR> " Change local directory to file location
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 nnoremap <silent> <F6> :set hlsearch!<CR>
 nnoremap <silent> <F7> mzgg=G`z<CR>
@@ -73,21 +78,42 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
+nmap <silent> <C-R> :wincmd R<CR>
+nmap <silent> <C-K> :wincmd K<CR>
+nmap <silent> <C-J> :wincmd J<CR>
+nmap <silent> <C-H> :wincmd H<CR>
+nmap <silent> <C-L> :wincmd L<CR>
+
 " Filetype handling
 au BufRead,BufNewFile *.{markdown,mdown,mkd,mkdn,md} set syntax=markdown
 au BufRead,BufNewFile *.{launch} set syntax=xml
 au BufRead,BufNewFile *.{jade} set syntax=jade
 au BufRead,BufNewFile *.{rs} set syntax=rust filetype=rust
 au BufRead,BufNewFile *.{s,Makefile} set noet sw=8 ts=8
-au BufRead,BufNewFile *.{c,cpp,h,hpp} set et sw=4 ts=4
+au BufRead,BufNewFile *.{c,cpp,h,hpp} set et sw=2 ts=2
 au BufRead,BufNewFile *.{java,ml,scala} set et sw=4 ts=4
-au FileType ruby set et sw=2 ts=2
-au FileType html set et sw=4 ts=4
-au FileType python set et sw=4 ts=4 cc=100
-au FileType sh set et sw=2 ts=2
+augroup filetype_go
+  au FileType go set noet sw=4 ts=4 sts=4
+augroup END
+augroup filetype_ruby
+  au FileType ruby set et sw=2 ts=2
+augroup END
+augroup filetype_html
+  au FileType html set et sw=4 ts=4
+augroup END
+augroup filetype_python
+  au FileType python set et sw=4 ts=4 cc=100
+augroup END
+augroup filetype_shell
+  au FileType sh set et sw=2 ts=2
+augroup END
 
 try
   colorscheme tender
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme desert
 endtry
+
+augroup file_restore
+  autocmd BufReadPost * if @% !~# '\.git[\/\\]COMMIT_EDITMSG$' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif 
+augroup END
