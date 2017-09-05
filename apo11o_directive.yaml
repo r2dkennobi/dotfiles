@@ -21,3 +21,5 @@
     - { role: fcitx, tags: [ 'fcitx' ] }
     - { role: nvim, tags: [ 'nvim' ] }
     - { role: universal-ctags, tags: [ 'universal-ctags', 'ctags' ] }
+    - { role: wireshark, tags: [ 'wireshark' ] }
+    - { role: go, tags: [ 'go' ] }

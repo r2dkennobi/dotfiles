@@ -1,0 +1,20 @@
+---
+- name: Check if install is necessary
+  command: "go version"
+  ignore_errors: yes
+  register: go_version
+  changed_when: false
+
+- name: Install Go
+  become: yes
+  command: "snap install --classic go"
+  when: go_version|failed or go_version.stdout != go_version_target
+
+- name: Add Go to PATH
+  blockinfile:
+    dest: "/home/{{ ansible_env.USER }}/.bashrc"
+    marker: "# {mark} Go path"
+    state: present
+    content: |
+      export PATH=$PATH:$HOME/go/bin
+  when: go_version|failed or go_version.stdout != go_version_target
