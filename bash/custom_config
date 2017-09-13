@@ -1,4 +1,7 @@
-# vi: ft=sh
+#!/bin/bash
+source "$HOME/dotfiles/bash/color_scheme"
+source "$HOME/dotfiles/bash/ls_colors"
+
 alias l='ls -hXF --color=auto'
 alias ls='ls -lhXF --color=auto'
 alias lsa='ls -lahXF --color=auto'
@@ -60,16 +63,16 @@ function get_status {
 alias status=get_status
 
 function setup_ssh_agent {
-    if ! pgrep -u $USER ssh-agent > /dev/null; then
+    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
         ssh-agent > ~/.ssh-agent-pid
     fi
     if [[ "$SSH_AGENT_PID" == "" ]]; then
-        eval $(<~/.ssh-agent-pid)
+        eval "$(<~/.ssh-agent-pid)"
     fi
 }
 
 function setup_gpg_agent {
-    if ! pgrep -u $USER gpg-agent > /dev/null; then
+    if ! pgrep -u "$USER" gpg-agent > /dev/null; then
         gpg-agent --daemon --sh
     fi
 }
@@ -86,18 +89,23 @@ function meta {
     echo "$(ls -1 | sed 1d | wc -l | sed 's: ::g') files, $(ls -sh | head -n1 | sed 's/total //')b"
 }
 
-TL='\342\224\214'; DASH='\342\224\200'; BL='\342\224\224'; SSH_COLOR='\[\033[1;35m\]';
+virtual_env_detector() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    echo "($(basename "${VIRTUAL_ENV:-""}")) "
+  else
+    echo ""
+  fi
+}
+
+SSH_COLOR='\[\033[1;35m\]'; VENV_COLOR='\[\033[1;36m\]';
 DCOL='\[\033[1;37m\]'; STATCOL='\[\033[1;34m\]'; CWDCOL='\[\033[1;32m\]'
 METACOL='\[\033[1;32m\]'; RST='\[\033[0m\]'
 [[ ${EUID} == 0 ]] && USER_COL='\[\033[01;31m\]' || USER_COL='\[\033[01;34m\]'
-[[ "$SSH_CONNECTION" ]] && HOST_ADDR="`echo "$SSH_CONNECTION" | awk '{print $3}'`"
+[[ "$SSH_CONNECTION" ]] && HOST_ADDR="$(echo "$SSH_CONNECTION" | awk '{print $3}')"
 [[ "$SSH_CONNECTION" ]] && USER_HOST="${SSH_COLOR}\u@$HOST_ADDR${DCOL}" || USER_HOST="\u@\h"
-PS1="${DCOL}>> ${USER_COL}${USER_HOST}${DCOL} >> ${STATCOL}\$?${DCOL} >> "
+PS1="${VENV_COLOR}\$(virtual_env_detector)${DCOL}>> ${USER_COL}${USER_HOST}${DCOL} >> ${STATCOL}\$?${DCOL} >> "
 PS1+="${STATCOL}\@ \d${DCOL}${DCOL} \$(parse_git_branch)\n>> ${CWDCOL}\w${DCOL} >> "
 PS1+="${METACOL}\$(meta)${DCOL} \$${RST} "
-
-source $HOME/dotfiles/bash/color_scheme
-source $HOME/dotfiles/bash/ls_colors
 
 # Start programs
 setup_ssh_agent &> /dev/null
