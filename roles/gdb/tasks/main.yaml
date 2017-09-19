@@ -1,0 +1,24 @@
+---
+- name: Install gdb
+  become: yes
+  apt:
+    name: gdb
+    state: latest
+    update_cache: yes
+    cache_valid_time: 300
+
+- name: Check gdb version
+  shell: "gdb --version | head -n1 | awk '{print $NF}'"
+  register: gdb_version
+
+- name: Download GEF (https://github.com/hugsy/gef)
+  get_url:
+    url: "https://github.com/hugsy/gef/raw/master/gef.py"
+    dest: "/home/{{ ansible_env.USER }}/.gdbinit-gef.py"
+  when: gdb_version.stdout | version_compare("7.7.0", ">=")
+
+- name: Copy gdb configurations
+  copy:
+    src: "{{ role_path }}/files/.gdbinit"
+    dest: "/home/{{ ansible_env.USER }}/.gdbinit"
+  when: gdb_version.stdout | version_compare("7.7.0", ">=")
