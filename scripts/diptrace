@@ -1,2 +1,0 @@
-#!/bin/bash
-wine "$HOME/.wine/drive_c/Program Files/DipTrace/Launcher.exe"
