@@ -7,5 +7,8 @@ To enable: `ifconfig <dev> promisc` or `ip link set <dev> promisc on`
 -nn: no hostname nor port resolution
 `sudo tcpdump -i <dev> -nn -s0 -w <blah>.pcap`
 
+# traceroute + ping
+`mtr`
+
 # References
 - [tcpdump](https://danielmiessler.com/study/tcpdump/#gs.W__=3cc)

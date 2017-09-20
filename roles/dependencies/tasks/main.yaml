@@ -29,6 +29,7 @@
     - lxappearance
     - ninja-build
     - cmake
+    - arandr
     # For security analysis
     - binwalk
     - pngcheck
