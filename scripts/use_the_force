@@ -4,8 +4,7 @@ set -e
 VERSION="1.0.0"
 OS=$(uname -i)
 
-# location to which this was cloned (hopefully "~/code")
-export SETUP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export SETUP_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 
 echo "############################"
 echo "Apo11o setup directive v$VERSION"
@@ -25,7 +24,7 @@ echo "- Check if ansible is installed"
 which ansible-playbook || install_ansible
 
 echo "Shall we play a game?"
-echo "=> Using additional args: $@"
+echo "=> Using additional args: $*"
 # tags: -t <tag>
 # extra_args: -e "<extra args>=<some value>"
-ansible-playbook --ask-become apo11o_directive.yaml $@
+ansible-playbook --ask-become journal_of_the_whills.yaml "$@"
