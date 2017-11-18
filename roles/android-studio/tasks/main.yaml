@@ -56,5 +56,5 @@
 - name: Copy udev rules for Android
   become: yes
   copy:
-    src: {{ role_path }}/files/51-android.rules
+    src: "{{ role_path }}/files/51-android.rules"
     dest: /etc/udev/rules.d/51-android.rules
