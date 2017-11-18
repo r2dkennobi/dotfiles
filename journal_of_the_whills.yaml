@@ -32,3 +32,4 @@
     - { role: go, tags: [ 'go' ] }
     - { role: gdb, tags: [ 'gdb' ] }
     - { role: gnupg, tags: [ 'gnupg' ] }
+    - { role: firefox, tags: [ 'firefox' ] }
