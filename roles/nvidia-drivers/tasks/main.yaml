@@ -15,7 +15,7 @@
 - name: Install latest NVIDIA driver
   become: yes
   apt:
-      name: nvidia-381
+      name: nvidia-387
       state: latest
       update_cache: yes
       cache_valid_time: 300
