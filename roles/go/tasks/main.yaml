@@ -17,4 +17,5 @@
     state: present
     content: |
       export PATH=$PATH:$HOME/go/bin
+      export GOPATH=$(go env GOPATH)
   when: go_version|failed or go_version.stdout != go_version_target

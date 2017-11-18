@@ -78,11 +78,11 @@ nmap <silent> <C-j> :wincmd j<CR>
 nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
-nmap <silent> <C-R> :wincmd R<CR>
-nmap <silent> <C-K> :wincmd K<CR>
-nmap <silent> <C-J> :wincmd J<CR>
-nmap <silent> <C-H> :wincmd H<CR>
-nmap <silent> <C-L> :wincmd L<CR>
+nmap <silent> <C-e> :wincmd R<CR>
+nmap <silent> <Up> :wincmd K<CR>
+nmap <silent> <Down> :wincmd J<CR>
+nmap <silent> <Left> :wincmd H<CR>
+nmap <silent> <Right> :wincmd L<CR>
 
 " Filetype handling
 au BufRead,BufNewFile *.{markdown,mdown,mkd,mkdn,md} set syntax=markdown
@@ -92,6 +92,7 @@ au BufRead,BufNewFile *.{rs} set syntax=rust filetype=rust
 au BufRead,BufNewFile *.{s,Makefile} set noet sw=8 ts=8
 au BufRead,BufNewFile *.{c,cpp,h,hpp} set et sw=2 ts=2
 au BufRead,BufNewFile *.{java,ml,scala} set et sw=4 ts=4
+au BufRead,BufNewFile *.{conf} set et sw=2 ts=2
 augroup filetype_go
   au FileType go set noet sw=4 ts=4 sts=4
 augroup END

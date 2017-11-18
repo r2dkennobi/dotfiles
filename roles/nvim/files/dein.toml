@@ -37,6 +37,13 @@ repo = 'tpope/vim-fugitive'
 repo = 'easymotion/vim-easymotion'
 
 [[plugins]]
+repo = 'jeetsukumaran/vim-filebeagle'
+hook_add = '''
+let g:filebeagle_suppress_keymaps = 1
+map <silent> - <Plug>FileBeagleOpenCurrentBufferDir
+'''
+
+[[plugins]]
 repo = 'junegunn/fzf'
 build = './install --all'
 merged = '0'
@@ -56,6 +63,24 @@ let g:fzf_action = {
   \ 'ctrl-u': 'split',
   \ 'ctrl-h': 'vsplit'}
 
+function! s:buflist()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! s:bufopen(e)
+  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader>b :call fzf#run({
+  \   'source':  reverse(<sid>buflist()),
+  \   'sink':    function('<sid>bufopen'),
+  \   'options': '+m',
+  \   'down':    len(<sid>buflist()) + 2
+  \ })<CR>
+
 command! -bang -nargs=* FZFAg
   \ call fzf#vim#ag(<q-args>, '--skip-vcs-ignores', {'down': '~40%'})
 noremap <Leader>g :FZFAg<CR>
@@ -67,6 +92,10 @@ hook_add = '''
 let g:ale_open_list = 0
 let g:airline#extentions#ale#enabled = 1
 let g:ale_c_build_dir='/home/kenny/code/pikachu/workspace/build'
+let g:ale_linters = {
+\   'cpp': ['clang', 'clangcheck', 'clangtidy', 'cppcheck', 'clang-format', 'cpplint']
+\}
+let g:ale_cpp_clang_options="-I/opt/ros/kinetic/include -I/home/kenny/code/pikachu/workspace/devel/include"
 
 nmap <silent> <C-p> <Plug>(ale_previous_wrap)
 nmap <silent> <C-n> <Plug>(ale_next_wrap)

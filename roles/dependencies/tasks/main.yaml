@@ -30,6 +30,10 @@
     - ninja-build
     - cmake
     - arandr
+    - asciidoctor
+    - cmus
+    - rofi
+    - xautolock
     # For security analysis
     - binwalk
     - pngcheck
