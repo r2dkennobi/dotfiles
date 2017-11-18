@@ -31,3 +31,4 @@
     - { role: wireshark, tags: [ 'wireshark' ] }
     - { role: go, tags: [ 'go' ] }
     - { role: gdb, tags: [ 'gdb' ] }
+    - { role: gnupg, tags: [ 'gnupg' ] }
