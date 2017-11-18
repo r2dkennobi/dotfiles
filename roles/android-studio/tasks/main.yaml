@@ -8,6 +8,7 @@
   unarchive:
     src: "https://dl.google.com/dl/android/studio/ide-zips/{{ android_studio_file }}"
     dest: "/home/{{ ansible_env.USER }}/android-studio"
+    creates: yes
     remote_src: True
   when: not android_studio_is_installed.stat.exists
 
@@ -51,3 +52,9 @@
     state: latest
     update_cache: yes
     cache_valid_time: 300
+
+- name: Copy udev rules for Android
+  become: yes
+  copy:
+    src: {{ role_path }}/files/51-android.rules
+    dest: /etc/udev/rules.d/51-android.rules
