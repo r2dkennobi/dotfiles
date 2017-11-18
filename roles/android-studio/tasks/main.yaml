@@ -7,8 +7,7 @@
 - name: Install Android Studio
   unarchive:
     src: "https://dl.google.com/dl/android/studio/ide-zips/{{ android_studio_file }}"
-    dest: "/home/{{ ansible_env.USER }}/android-studio"
-    creates: yes
+    dest: "/home/{{ ansible_env.USER }}"
     remote_src: True
   when: not android_studio_is_installed.stat.exists
 
@@ -43,7 +42,7 @@
   apt_repository:
     repo: "ppa:webupd8team/java"
     state: present
-    update_cahe: yes
+    update_cache: yes
 
 - name: Install Oracle Java 8
   become: yes
