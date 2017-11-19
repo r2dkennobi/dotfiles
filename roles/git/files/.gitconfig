@@ -2,7 +2,7 @@
     name = [Enter Name]
 #    signingkey = 
 [core]
-    editor = vim
+    editor = nvim
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore
 	autocrlf = input
