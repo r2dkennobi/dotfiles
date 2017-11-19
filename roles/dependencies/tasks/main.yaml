@@ -34,6 +34,7 @@
     - cmus
     - rofi
     - xautolock
+    - pasystray
     # For security analysis
     - binwalk
     - pngcheck

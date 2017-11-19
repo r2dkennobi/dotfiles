@@ -5,13 +5,14 @@
       file:
         path: "{{ build_dir }}"
         state: directory
-    - name: Add scripts folder to PATH
+    - name: Setup dotfiles
       blockinfile:
         state: present
         dest: ~/.bashrc
         marker: "# {mark} Kennobi configs"
         content: |
           export PATH=$PATH:$HOME/dotfiles/scripts
+          source "$HOME/dotfiles/bash/custom_config"
   roles:
     - { role: dependencies, tags: [ 'dependencies' ] }
     - { role: git, tags: [ 'git' ] }

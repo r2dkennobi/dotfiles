@@ -17,5 +17,6 @@
     state: present
     content: |
       export PATH=$PATH:$HOME/go/bin
+      # shellcheck disable=SC2155
       export GOPATH=$(go env GOPATH)
   when: go_version|failed or go_version.stdout != go_version_target
