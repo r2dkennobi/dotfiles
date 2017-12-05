@@ -34,3 +34,4 @@
     - { role: gdb, tags: [ 'gdb' ] }
     - { role: gnupg, tags: [ 'gnupg' ] }
     - { role: firefox, tags: [ 'firefox' ] }
+    - { role: rust, tags: [ 'rust' ] }
