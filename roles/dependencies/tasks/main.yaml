@@ -35,6 +35,7 @@
     - rofi
     - xautolock
     - pasystray
+    - pavucontrol
     # For security analysis
     - binwalk
     - pngcheck
