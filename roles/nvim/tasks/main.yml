@@ -9,10 +9,13 @@
 - name: Install Neovim
   become: yes
   apt:
-    name: neovim
+    name: "{{ item }}"
     state: latest
     update_cache: yes
     cache_valid_time: 300
+  with_items:
+    - neovim
+    - python3-pip
 
 - name: Make sure Neovim config folder exists
   file:
@@ -50,3 +53,10 @@
     - cmakelint
     - flake8
     - vim-vint
+
+- name: Install Neovim for python3
+  become: yes
+  pip:
+    name: neovim
+    executable: pip3
+    state: latest
