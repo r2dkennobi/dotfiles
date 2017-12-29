@@ -98,9 +98,8 @@ virtual_env_detector() {
   fi
 }
 
-SSH_COLOR='\[\033[1;35m\]'; VENV_COLOR='\[\033[1;36m\]';
-DCOL='\[\033[1;37m\]'; STATCOL='\[\033[1;34m\]'; CWDCOL='\[\033[1;32m\]'
-METACOL='\[\033[1;32m\]'; RST='\[\033[0m\]'
+SSH_COLOR='\[\033[1;35m\]'; VENV_COLOR='\[\033[1;36m\]'; DCOL='\[\033[1;37m\]';
+STATCOL='\[\033[1;34m\]'; CWDCOL='\[\033[1;32m\]'; RST='\[\033[0m\]'
 [[ ${EUID} == 0 ]] && USER_COL='\[\033[01;31m\]' || USER_COL='\[\033[01;34m\]'
 [[ "$SSH_CONNECTION" ]] && HOST_ADDR="$(echo "$SSH_CONNECTION" | awk '{print $3}')"
 [[ "$SSH_CONNECTION" ]] && USER_HOST="${SSH_COLOR}\u@$HOST_ADDR${DCOL}" || USER_HOST="\u@\h"
