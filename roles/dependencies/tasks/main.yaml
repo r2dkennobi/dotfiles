@@ -36,6 +36,7 @@
     - xautolock
     - pasystray
     - pavucontrol
+    - tpm-tools
     # For security analysis
     - binwalk
     - pngcheck
