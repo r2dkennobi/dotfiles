@@ -52,6 +52,7 @@ set ignorecase
 set smartcase
 set infercase
 set incsearch
+set list
 
 " Disable unwanted features
 nnoremap Q <nop>                " Ugh, Ex mode
