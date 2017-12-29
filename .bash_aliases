@@ -1,6 +1,35 @@
-# vi: ft=sh
+#!/bin/bash
 
-# Color for ls
+alias cp='cp -i'
+alias mv='mv -i'
+alias gpgla='gpg2 --list-keys --keyid-format LONG --fingerprint'
+alias gpgsla='gpg2 --list-secret-keys --keyid-format LONG --fingerprint'
+alias ports='lsof -i -n -P'
+alias services_enabled='systemctl list-unit-files | ag enable'
+alias services_disabled='systemctl list-unit-files | ag disable'
+alias ssh='ssh -XYC'
+alias rsync='rsync --progress'
+alias rrsync='rsync -r --progress'
+alias agh='ag --hidden'
+alias ssh-secure-keygen='ssh-keygen -o -a 100 -t ed25519'
+alias sysup='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y'
+alias grep='grep --color=auto'
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias -- -="cd -"
+
+if ls --color > /dev/null 2>&1; then
+  colorflag="--color"
+else
+  colorflag="-G"
+fi
+export colorflag
+alias l='ls -hXF ${colorflag}'
+alias ls='ls -lhXF ${colorflag}'
+alias lsa='ls -lahXF ${colorflag}'
 export CLICOLOR=1
 export LS_COLORS='no=00:fi=00:di=01;34:ow=34;40:ln=35:pi=30;44:so=35;44:do=35;44:'
 LS_COLORS+='bd=33;44:cd=37;44:or=05;37;41:mi=05;37;41:ex=01;31:*.cmd=01;31:'
@@ -29,3 +58,12 @@ LS_COLORS+='*.Z=1;35:*.zip=1;35:*.log=01;32:*~=01;32:*#=01;32:*.bak=01;33:*.BAK=
 LS_COLORS+='*.old=01;33:*.OLD=01;33:*.org_archive=01;33:*.off=01;33:*.OFF=01;33:'
 LS_COLORS+='*.dist=01;33:*.DIST=01;33:*.orig=01;33:*.ORIG=01;33:*.swp=01;33:*.swo=01;33:'
 LS_COLORS+='*.v=01;33:*.gpg=34:*.gpg=34:*.pgp=34:*.asc=34:*.3des=34:*.aes=34:*.enc=34:*.sqlite=34:'
+
+# Flush directory service cache
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
+
+# I love map
+alias map="xargs -n1"
+
+# afk. just cause
+alias afk="i3lock -ti /home/kenny/lockscreen.png"

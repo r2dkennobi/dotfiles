@@ -1,11 +1,11 @@
-[user]
-    name = [Enter Name]
+#[user]
+#    name = [Enter Name]
 #    signingkey = 
 [core]
     editor = nvim
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore
-	autocrlf = input
+    autocrlf = input
 [color]
     ui = auto
     status = auto

@@ -1,0 +1,22 @@
+# Enable case insensitive tab completion
+set completion-ignore-case on
+
+# Cycle through autocomplete candidates
+#set show-all-if-ambiguous on
+
+# Add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on
+
+# Show extra file information when completing
+set visible-stats on
+
+# Show all autocomplete results at once
+set page-completions off
+
+# Only ask to show all completions if match is less than 200
+set completion-query-items 200
+
+# Use the text that has already been typed when searching through commands
+# (i.e. better Up/Down)
+"\e[B": history-search-forward
+"\e[A": history-search-backward

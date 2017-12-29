@@ -1,0 +1,24 @@
+#!/bin/bash
+export EDITOR=/usr/bin/nvim
+export TERMINAL=urxvt
+
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+# Enable 256 colors for terminal
+export TERM=screen-256color
+
+# Disable virtualenv from changing PS1
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# Disable .pyc generation
+export PYTHONDONTWRITEBYTECODE=1
+
+# Prevent man pages from clearing the screen on exit
+export MANPAGER="less -X"
+
+# Historyyyy
+export HISTSIZE=5000000
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups
+export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:* --help:* -h"
