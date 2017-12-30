@@ -108,6 +108,7 @@ base_min_install() {
     cmake \
     neovim \
     silversearcher-ag \
+    gdb \
     --no-install-recommends
 
   apt autoremove
@@ -238,6 +239,10 @@ install_vivaldi() {
   set -e
 }
 
+install_gdb() {
+  wget -O "$HOME/.gdbinit-gef.py" https://github.com/hugsy/gef/raw/master/gef.py
+}
+
 usage() {
   echo "./r2dkennobi.sh"
   echo "Usage:"
@@ -276,6 +281,7 @@ main() {
   elif [[ $cmd == "dev" ]]; then
     is_sudo
     install_universal_ctags
+    install_gdb
   elif [[ $cmd == "vivaldi" ]]; then
     is_sudo
     install_vivaldi
