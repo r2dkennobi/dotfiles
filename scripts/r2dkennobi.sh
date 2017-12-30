@@ -170,14 +170,18 @@ install_vim() {
   cd "$HOME"
 
   # Install my custom vim configs
-  git clone git@github.com:r2dkennobi/.vim.git "$HOME/.vim"
+  if ! [[ -n "$HOME/.vim" ]]; then
+    git clone git@github.com:r2dkennobi/.vim.git "$HOME/.vim"
+  fi
   ln -snf "$HOME/.vim/.vimrc" "$HOME/.vimrc"
   sudo ln -snf "$HOME/.vim" /root/.vim
   sudo ln -snf "$HOME/.vimrc" /root/.vimrc
 
   # Install my custom nvim configs
   mkdir -p "${XDG_CONFIG_HOME:=$HOME/.config}"
-  git clone git@github.com:r2dkennobi/nvim.git "$XDG_CONFIG_HOME/nvim"
+  if ! [[ -n "$XDG_CONFIG_HOME/nvim" ]]; then
+    git clone git@github.com:r2dkennobi/nvim.git "$XDG_CONFIG_HOME/nvim"
+  fi
   sudo mkdir -p /root/.config
   sudo ln -snf "$XDG_CONFIG_HOME/nvim" "/root/.config/nvim"
 
