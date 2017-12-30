@@ -1,5 +1,0 @@
----
-build_dir: "{{ ansible_env.HOME }}/build"
-vivaldi_vers: "1.12.955.48"
-android_studio_file: "3.0.0.18/android-studio-ide-171.4408382-linux.zip"
-polybar_version: "3.0.5"
