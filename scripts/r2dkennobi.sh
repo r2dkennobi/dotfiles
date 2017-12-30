@@ -62,6 +62,16 @@ EOF
   apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
     --recv-keys 3653E21064B19D134466702E43D5C49532CBA1A9
 
+  # Add Tilix
+  cat <<-EOF > /etc/apt/sources.list.d/tilix.list
+  deb http://ppa.launchpad.net/webupd8team/terminix/ubuntu xenial main
+  deb-src http://ppa.launchpad.net/webupd8team/terminix/ubuntu xenial main
+EOF
+
+  # Add the Tilix ppa gpg key
+  apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
+    --recv-keys 7B2C3B0889BF5709A105D03AC2518248EEA14886
+
   # Add i3
   cat <<-EOF > /etc/apt/sources.list.d/sur5r-i3.list
   deb http://debian.sur5r.net/i3/ xenial main
@@ -123,7 +133,10 @@ base_install() {
     pavucontrol \
     tpm-tools \
     binwalk \
-    pngcheck
+    pngcheck \
+    firefox \
+    tilix \
+    --no-install-recommends
 
   apt autoremove
   apt autoclean

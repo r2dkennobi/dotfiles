@@ -1,5 +1,0 @@
----
-- name: Add gnupg configuration
-  copy:
-    src: "{{ role_path }}/files/gpg.conf"
-    dest: "/home/{{ ansible_env.USER }}/.gnupg/gpg.conf"
