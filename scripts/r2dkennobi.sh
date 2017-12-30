@@ -131,6 +131,7 @@ base_install() {
 
   install_wm
   install_polybar
+  install_universal_ctags
 }
 
 install_vim() {
@@ -180,6 +181,17 @@ install_polybar() {
   git checkout 3.0.5
   cmake -GNinja ..
   ninja install
+}
+
+install_universal_ctags() {
+  local temp_dir
+  temp_dir=$(mktemp -d)
+  git clone --recursive https://github.com/universal-ctags/ctags "$temp_dir/ctags"
+  cd "$temp_dir/ctags"
+  ./autogen.sh
+  ./configure
+  make
+  make install
 }
 
 usage() {
