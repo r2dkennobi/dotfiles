@@ -22,3 +22,6 @@ export HISTSIZE=5000000
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:* --help:* -h"
+
+# Make fzf more useful
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore build --ignore *.plist -g ""'
