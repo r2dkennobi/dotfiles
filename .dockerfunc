@@ -1,0 +1,37 @@
+#!/bin/bash
+
+docker-clean() {
+  local containers
+  mapfile -t containers < <(docker ps -aq 2>/dev/null)
+  docker rm "${containers[@]}" 2>/dev/null
+  local volumes
+  mapfile -t volumes < <(docker ps --filter status=exited -q 2>/dev/null)
+  docker rm -v "${volumes[@]}" 2>/dev/null
+  local images
+  mapfile -t images < <(docker --filter dangling=true -q 2>/dev/null)
+  docker rm -v "${images[@]}" 2>/dev/null
+}
+
+remove-stopped() {
+  local name=$1
+  local state
+  state=$(docker inspect --format "{{.State.Running}}" "$name" 2>/dev/null)
+  if [[ "$state" == "false" ]]; then
+    docker rm "$name"
+  fi
+}
+
+wireshark() {
+  remove-stopped wireshark
+
+  docker run -d \
+    -v /etc/localtime:/etc/localtime:ro \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -e "DISPLAY=unix$DISPLAY" \
+    --privileged \
+    --cap-add NET_RAW \
+    --cap-add NET_ADMIN \
+    --net host \
+    --name wireshark \
+    r2dkennobi/wireshark
+}

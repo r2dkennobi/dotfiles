@@ -62,6 +62,16 @@ EOF
   apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
     --recv-keys 3653E21064B19D134466702E43D5C49532CBA1A9
 
+  # Add Numix
+  cat <<-EOF > /etc/apt/sources.list.d/numix.list
+  deb http://ppa.launchpad.net/numix/ppa/ubuntu xenial main
+  deb-src http://ppa.launchpad.net/numix/ppa/ubuntu xenial main
+EOF
+
+  # Add the Numix ppa gpg key
+  apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
+    --recv-keys 43E076121739DEE5FB96BBED52B709720F164EEB
+
   # Add Tilix
   cat <<-EOF > /etc/apt/sources.list.d/tilix.list
   deb http://ppa.launchpad.net/webupd8team/terminix/ubuntu xenial main
@@ -124,6 +134,8 @@ base_install() {
     indicator-cpufreq \
     fcitx \
     fcitx-mozc \
+    fcitx-frontend-gtk2 \
+    fcitx-frontend-gtk3 \
     lxappearance \
     arandr \
     asciidoctor \
@@ -136,6 +148,11 @@ base_install() {
     pngcheck \
     firefox \
     tilix \
+    vlc \
+    numix-gtk-theme \
+    numix-icon-theme \
+    numix-icon-theme-circle \
+    numix-icon-theme-square \
     --no-install-recommends
 
   apt autoremove
@@ -207,12 +224,29 @@ install_universal_ctags() {
   make install
 }
 
+install_rust() {
+  curl https://sh.rustup.rs -sSf | sh -s -- -y --nomodify-path
+}
+
+install_vivaldi() {
+  local deb_url
+  deb_url=$(curl -sSL "https://vivaldi.com/download" | grep "_amd64.deb" | grep -Po 'href="\K[^"]*')
+  wget -O /tmp/vivaldi.deb "$deb_url"
+  set +e
+  dpkg -i /tmp/vivaldi.deb
+  apt-get install -f
+  set -e
+}
+
 usage() {
   echo "./r2dkennobi.sh"
   echo "Usage:"
   echo "  base                    - Setup sources & install base pkgs"
   echo "  basefull                - Setup sources & install all pkgs"
   echo "  vim                     - Install vim & neovim"
+  echo "  wm                      - Install window manager apps"
+  echo "  dev                     - Install development tools"
+  echo "  vivaldi                 - Install Vivaldi (Chrome without the Google)"
 }
 
 main() {
@@ -235,6 +269,16 @@ main() {
     base_install
   elif [[ $cmd == "vim" ]]; then
     install_vim
+  elif [[ $cmd == "wm" ]]; then
+    is_sudo
+    install_wm
+    install_polybar
+  elif [[ $cmd == "dev" ]]; then
+    is_sudo
+    install_universal_ctags
+  elif [[ $cmd == "vivaldi" ]]; then
+    is_sudo
+    install_vivaldi
   else
     usage
   fi
