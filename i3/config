@@ -42,7 +42,8 @@ exec --no-startup-id systemctl --user start resilio-sync
 
 exec_always --no-startup-id feh --bg-scale /home/kenny/background.png
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id xautolock -detectsleep -time 5 -locker "i3lock -c 000000" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 secs'"
+#exec_always --no-startup-id xautolock -detectsleep -time 5 -locker "i3lock -c 000000" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 secs'"
+exec_always --no-startup-id xautolock -detectsleep -time 5 -locker "i3lock -ti /home/kenny/lockscreen.png" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 secs'"
 
 # start a terminal
 #bindsym $mod+Return exec "urxvt -e bash -c 'tmux-2'"
@@ -67,7 +68,7 @@ bindsym $mod+p exec i3-dmenu-desktop --dmenu='rofi -dmenu -i'
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-bindsym $mod+b exec vivaldi
+bindsym $mod+b exec firefox
 bindsym $mod+e exec thunar
 
 bindsym $mod+Up exec xbacklight -inc 10
@@ -160,7 +161,7 @@ bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # lock screen
 #bindsym Control+mod1+l exec i3lock-fancy
-bindsym $mod+F2 exec "i3lock -c 000000"
+bindsym $mod+F2 exec "i3lock -ti /home/kenny/lockscreen.png"
 #bindsym $mod+F2 exec "caffeine-screensaver lock"
 
 # resize window (you can also use the mouse for that)
