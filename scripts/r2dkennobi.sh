@@ -121,6 +121,7 @@ base_min_install() {
     build-essential \
     autoconf \
     automake \
+    curl \
     --no-install-recommends
 
   apt autoremove
@@ -267,6 +268,23 @@ install_gdb() {
   wget -O "$HOME/.gdbinit-gef.py" https://github.com/hugsy/gef/raw/master/gef.py
 }
 
+setup_ssh() {
+  local default_ssh
+  default_ssh="Host *\n    IdentitiesOnly yes\n    AddKeysToAgent yes"
+  default_ssh_pat="Host *\s*IdentitiesOnly yes\s*AddKeysToAgent yes"
+  if [[ -e "$HOME/.ssh" ]]; then
+    if [[ -e "$HOME/.ssh/config" ]]; then
+      grep -qvP "$default_ssh_pat" "$HOME/.ssh/config" || echo -e "$default_ssh" >> "$HOME/.ssh/config"
+    else
+      touch "$HOME/.ssh/config"
+      setup_ssh
+    fi
+  else
+    mkdir -p "$HOME/.ssh"
+    setup_ssh
+  fi
+}
+
 usage() {
   echo "./r2dkennobi.sh"
   echo "Usage:"
@@ -277,6 +295,7 @@ usage() {
   echo "  dev                     - Install development tools"
   echo "  vivaldi                 - Install Vivaldi (Chrome without the Google)"
   echo "  resilio                 - Install Resilio Sync"
+  echo "  ssh                     - Setup default ssh configs"
 }
 
 main() {
@@ -314,6 +333,8 @@ main() {
     is_sudo
     setup_resilio_sync_sources
     install_resilio_sync
+  elif [[ $cmd == "ssh" ]]; then
+    setup_ssh
   else
     usage
   fi
