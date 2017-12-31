@@ -91,7 +91,16 @@ EOF
     http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb \
     /tmp/keyring.deb SHA256:4c3c6685b1181d83efe3a479c5ae38a2a44e23add55e16a328b8c8560bf05e5f
   dpkg -i /tmp/keyring.deb && rm /tmp/keyring.deb
+}
 
+setup_resilio_sync_sources() {
+  # Add Resilio Sync
+  cat <<-EOF > /etc/apt/sources.list.d/resilio-sync.list
+  deb http://linux-packages.resilio.com/resilio-sync/deb resilio-sync non-free
+EOF
+
+  # Add the Resilio Sync ppa gpg key
+  wget -q0 - https://linux-packages.resilio.com/resilio-sync/key.asc | apt-key add -
 }
 
 base_min_install() {
@@ -163,6 +172,14 @@ base_install() {
   install_wm
   install_polybar
   install_universal_ctags
+}
+
+install_resilio_sync() {
+  apt update
+  apt -y install resilio-sync --no-install-recommends
+  apt autoremove
+  apt autoclean
+  apt clean
 }
 
 install_vim() {
@@ -256,6 +273,7 @@ usage() {
   echo "  wm                      - Install window manager apps"
   echo "  dev                     - Install development tools"
   echo "  vivaldi                 - Install Vivaldi (Chrome without the Google)"
+  echo "  resilio                 - Install Resilio Sync"
 }
 
 main() {
@@ -289,6 +307,10 @@ main() {
   elif [[ $cmd == "vivaldi" ]]; then
     is_sudo
     install_vivaldi
+  elif [[ $cmd == "resilio" ]]; then
+    is_sudo
+    setup_resilio_sync_sources
+    install_resilio_sync
   else
     usage
   fi
