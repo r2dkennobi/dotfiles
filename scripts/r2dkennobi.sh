@@ -190,7 +190,7 @@ install_vim() {
   cd "$HOME"
 
   # Install my custom vim configs
-  if ! [[ -n "$HOME/.vim" ]]; then
+  if ! [[ -e "$HOME/.vim" ]]; then
     git clone git@github.com:r2dkennobi/.vim.git "$HOME/.vim"
   fi
   ln -snf "$HOME/.vim/.vimrc" "$HOME/.vimrc"
@@ -199,7 +199,7 @@ install_vim() {
 
   # Install my custom nvim configs
   mkdir -p "${XDG_CONFIG_HOME:=$HOME/.config}"
-  if ! [[ -n "$XDG_CONFIG_HOME/nvim" ]]; then
+  if ! [[ -e "$XDG_CONFIG_HOME/nvim" ]]; then
     git clone git@github.com:r2dkennobi/nvim.git "$XDG_CONFIG_HOME/nvim"
   fi
   sudo mkdir -p /root/.config
