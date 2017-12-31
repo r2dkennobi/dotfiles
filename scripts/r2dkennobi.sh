@@ -118,6 +118,8 @@ base_min_install() {
     neovim \
     silversearcher-ag \
     gdb \
+    build-essential \
+    autoconf \
     --no-install-recommends
 
   apt autoremove
