@@ -120,6 +120,7 @@ base_min_install() {
     gdb \
     build-essential \
     autoconf \
+    automake \
     --no-install-recommends
 
   apt autoremove
