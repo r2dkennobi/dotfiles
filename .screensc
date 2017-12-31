@@ -1,0 +1,55 @@
+######################################
+# Custom settings
+# Apo11oH
+# 10/23/2014
+######################################
+# Enable Japanese Display
+defutf8 on
+defencoding utf-8
+defkanji utf-8
+encoding utf-8 utf-8
+
+# Select default bash
+select bash
+
+# Enable 256 color in vim
+# Bold letters use bright color
+attrcolor b ".I"
+termcapinfo xterm-256color 'is=^[r^[m^[2J^[H^[?7h^[?1;4;6l'
+defbce on
+
+# Enable automatic detach when connection is lost
+autodetach on
+
+# Define max scroll back buffer
+defscrollback 1000
+
+# Enable copy/paste keys
+bind ^c copy
+bind ^y paste .
+bind p paste
+
+# Set movement keys
+bind ^n eval "next" "command -c next"
+bind ^p eval "prev" "command -c prev"
+
+# Remap commnand key
+escape ^Zz
+
+# Diable visual bell notification
+vbell off
+
+# Bell message
+bell_msg "Bell in window %^G"
+
+# Command to run when creating new window
+shell $SHELL
+
+# Disable starup message
+startup_message off
+
+# Set window title
+shelltitle '$ |bash'
+caption always "%{= Rk} %?%F%{b kr}%? %?%h%:%t (screen #%n)%? %{-}"
+hardstatus alwayslastline "%{= Gk} %-Lw%40L>%{b kg} %n %t %{-}%+Lw%-040=%{b km} %l %{.b} %Y/%m/%d %C:%s %A "
+sorendition "= Rk"

@@ -1,5 +1,5 @@
 #!/bin/bash
-for file in ~/.{bashrc,bash_prompt,bash_aliases,bash_exports,bash_functions,env_override}; do
+for file in ~/.{bashrc,bash_prompt,bash_aliases,bash_exports,bash_functions,bash_paths,env_override,dockerfunc}; do
   # Check if file exists and readable
   if [[ -f "$file" ]] && [[ -r "$file" ]]; then
     source "$file"

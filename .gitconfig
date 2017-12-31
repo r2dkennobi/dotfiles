@@ -1,0 +1,57 @@
+#[user]
+#    name = [Enter Name]
+#    signingkey = 
+[core]
+    editor = nvim
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = ~/.gitignore
+    autocrlf = input
+[color]
+    ui = auto
+    status = auto
+    branch = auto
+    diff = auto
+    interactive = auto
+[commit]
+    gpgsign = true
+    template = ~/.git-commit-tmpl.txt
+[gpg]
+    program = gpg2
+[alias]
+    # List all aliases
+    la = "!git config -l | grep alias | cut -c 7-"
+    # General shortcuts
+    s = status
+    b = branch
+    ba = branch --all
+    co = checkout
+    cp = cherry-pick
+    mg = merge
+    df = diff -w -p
+    rv = remote -v
+    cdf = commit -v
+    sub = submodule
+    subdf = submodule deinit -f
+    sup = submodule update
+    supir = submodule update --init --recursive
+    trim = remote prune origin
+    # Branch management
+    brm = branch -d
+    brmf = branch -D
+    # LOGGSS
+    l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %Cblue%an, %Cgreen%ar%Creset'
+    lf = log --show-signature --name-only
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ll = log --show-signature --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p
+    lr = log --show-signature --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p --reverse
+    since = log --show-signature --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit -p --reverse --since
+    # File history checking
+    filelog = log -u
+    fl = log -u
+    # Ammend previous commit
+    amend = commit --amend --reset-author -v
+    # Rebase and update everything
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+    sync = !git rebase $1 && git push -u origin HEAD --force
+    # Command chain
+    rename = !git branch -m $1 $2 && git push origin :$1 && git push --set-upstream origin $2 && :
