@@ -100,7 +100,7 @@ setup_resilio_sync_sources() {
 EOF
 
   # Add the Resilio Sync ppa gpg key
-  wget -q0 - https://linux-packages.resilio.com/resilio-sync/key.asc | apt-key add -
+  wget -qO - https://linux-packages.resilio.com/resilio-sync/key.asc | apt-key add -
 }
 
 base_min_install() {
