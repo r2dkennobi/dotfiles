@@ -132,12 +132,19 @@ base_min_install() {
     ninja-build \
     cmake \
     neovim \
+    grep \
     silversearcher-ag \
     gdb \
     build-essential \
     autoconf \
     automake \
     curl \
+    jq \
+    rxvt-unicode-256color \
+    tar \
+    unzip \
+    zip \
+    whois \
     --no-install-recommends
 
   apt autoremove
@@ -167,6 +174,7 @@ base_install() {
     fcitx-frontend-gtk2 \
     fcitx-frontend-gtk3 \
     lxappearance \
+    openvpn \
     arandr \
     asciidoctor \
     cmus \
