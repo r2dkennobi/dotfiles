@@ -91,6 +91,14 @@ EOF
     http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2017.01.02_all.deb \
     /tmp/keyring.deb SHA256:4c3c6685b1181d83efe3a479c5ae38a2a44e23add55e16a328b8c8560bf05e5f
   dpkg -i /tmp/keyring.deb && rm /tmp/keyring.deb
+
+  # Add Docker registry
+  cat <<-EOF > /etc/apt/sources.list.d/docker.list
+  deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+EOF
+
+  # Add Docker GPG key
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 }
 
 setup_resilio_sync_sources() {
@@ -167,6 +175,7 @@ base_install() {
     numix-icon-theme \
     numix-icon-theme-circle \
     numix-icon-theme-square \
+    docker-ce \
     --no-install-recommends
 
   apt autoremove
@@ -176,6 +185,7 @@ base_install() {
   install_wm
   install_polybar
   install_universal_ctags
+  install_docker
 }
 
 install_resilio_sync() {
@@ -266,6 +276,10 @@ install_vivaldi() {
 
 install_gdb() {
   wget -O "$HOME/.gdbinit-gef.py" https://github.com/hugsy/gef/raw/master/gef.py
+}
+
+install_docker() {
+  sudo gpasswd -a "$TARGET_USER" docker
 }
 
 setup_ssh() {
