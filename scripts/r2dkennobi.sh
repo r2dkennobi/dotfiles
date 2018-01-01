@@ -298,6 +298,11 @@ install_docker() {
   sudo gpasswd -a "$TARGET_USER" docker
 }
 
+install_go() {
+  sudo snap install go --classic
+  mkdir -p "$HOME/go"
+}
+
 setup_ssh() {
   local default_ssh
   default_ssh="Host *\n    IdentitiesOnly yes\n    AddKeysToAgent yes"
@@ -325,6 +330,7 @@ usage() {
   echo "  dev                     - Install development tools"
   echo "  vivaldi                 - Install Vivaldi (Chrome without the Google)"
   echo "  resilio                 - Install Resilio Sync"
+  echo "  go                      - Install Go"
   echo "  ssh                     - Setup default ssh configs"
 }
 
@@ -363,6 +369,8 @@ main() {
     is_sudo
     setup_resilio_sync_sources
     install_resilio_sync
+  elif [[ $cmd == "go" ]]; then
+    install_go
   elif [[ $cmd == "ssh" ]]; then
     setup_ssh
   else
