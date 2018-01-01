@@ -99,6 +99,14 @@ EOF
 
   # Add Docker GPG key
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+  # Add Google Chrome apt repo
+  cat <<-EOF > /etc/apt/sources.list.d/google-chrome.list
+  deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+EOF
+
+  # Add Google Chrome GPG key
+  curl https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
 }
 
 setup_resilio_sync_sources() {
