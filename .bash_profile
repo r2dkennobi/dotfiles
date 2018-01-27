@@ -24,8 +24,8 @@ bind Control-k:menu-complete-backward
 
 # TODO Figure out how to also complete when username is specified
 [[ -e "$HOME/.ssh/config" ]] && complete -o "default" -o "nospace" \
-  -W "$(grep "^Host" "$HOME/.ssh/config" | grep -v "[?*]" | cut -d " " -f2 | \
-  tr ' ' '\n')" scp sftp ssh rsync
+  -W "$(grep "^Host" "$HOME/.ssh/config" | grep -v " [?*]$" | cut -d " " -f2 | \
+  tr ' ' '\n' | sed 's/*//g')" scp sftp ssh rsync
 
 # Start programs
 setup_ssh_agent &> /dev/null
