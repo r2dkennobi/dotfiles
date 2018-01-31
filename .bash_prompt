@@ -1,8 +1,10 @@
 #!/bin/bash
-
 ######################
 # Custom Bash Prompt #
 ######################
+
+SSH_COLOR='\[\033[1;35m\]'; VENV_COLOR='\[\033[1;36m\]'; DCOL='\[\033[1;37m\]';
+STATCOL='\[\033[1;34m\]'; CWDCOL='\[\033[1;32m\]'; RST='\[\033[0m\]'
 # Parse git branch
 function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
@@ -14,18 +16,17 @@ function meta {
 
 virtual_env_detector() {
   if [[ -n "$VIRTUAL_ENV" ]]; then
-    echo "($(basename "${VIRTUAL_ENV:-""}")) "
+    echo "${VENV_COLOR}($(basename "${VIRTUAL_ENV:-""}"))${DCOL} >> "
   else
     echo ""
   fi
 }
-
-SSH_COLOR='\[\033[1;35m\]'; VENV_COLOR='\[\033[1;36m\]'; DCOL='\[\033[1;37m\]';
-STATCOL='\[\033[1;34m\]'; CWDCOL='\[\033[1;32m\]'; RST='\[\033[0m\]'
 [[ ${EUID} == 0 ]] && USER_COL='\[\033[01;31m\]' || USER_COL='\[\033[01;34m\]'
 [[ "$SSH_CONNECTION" ]] && HOST_ADDR="$(echo "$SSH_CONNECTION" | awk '{print $3}')"
-[[ "$SSH_CONNECTION" ]] && USER_HOST="${SSH_COLOR}\u@$HOST_ADDR${DCOL}" || USER_HOST="\u@\h"
-PS1="${VENV_COLOR}\$(virtual_env_detector)${DCOL}>> ${USER_COL}${USER_HOST}${DCOL} >> ${STATCOL}\$?${DCOL} >> "
-PS1+="${STATCOL}\@ \d${DCOL}${DCOL} \$(parse_git_branch)\n>> ${CWDCOL}\w${DCOL} >> \$${RST} "
+[[ "$SSH_CONNECTION" ]] && USER_HOST="${SSH_COLOR}\\u@$HOST_ADDR${DCOL}" || USER_HOST="\\u@\\h"
+PS1="${STATCOL}\$?${DCOL} >> "
+PS1+="\$(virtual_env_detector)"
+PS1+="${USER_COL}${USER_HOST}${DCOL} >> "
+PS1+="${STATCOL}\\@ \\d${DCOL}${DCOL} \$(parse_git_branch)\\n>> ${CWDCOL}\\w${DCOL} >> \$${RST} "
 #PS1+="${METACOL}\$(meta)${DCOL} \$${RST} "
 export PS1

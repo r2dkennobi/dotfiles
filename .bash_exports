@@ -25,3 +25,10 @@ export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:* --help:* -h"
 
 # Make fzf more useful
 export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -p $HOME/.agignore -g ''"
+
+# fcitx configs
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

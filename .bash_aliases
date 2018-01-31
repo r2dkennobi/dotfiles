@@ -14,6 +14,8 @@ alias agh='ag --hidden'
 alias ssh-secure-keygen='ssh-keygen -o -a 100 -t ed25519'
 alias sysup='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y'
 alias grep='grep --color=auto'
+alias df='df -h'
+alias du='du -h'
 
 alias ..="cd .."
 alias ...="cd ../.."
