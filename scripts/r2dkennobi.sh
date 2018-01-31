@@ -82,6 +82,16 @@ EOF
   apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
     --recv-keys 7B2C3B0889BF5709A105D03AC2518248EEA14886
 
+  # Add Parole
+  cat <<-EOF > /etc/apt/sources.list.d/ubuntuhandbook1-apps.list
+  deb http://ppa.launchpad.net/ubuntuhandbook1/apps/ubuntu xenial main
+  deb-src http://ppa.launchpad.net/ubuntuhandbook1/apps/ubuntu xenial main
+EOF
+
+  # Add the Parole ppa gpg key
+  apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
+    --recv-keys A0062203196CA4482DDB859E4C1CBE14852541CB
+
   # Add i3
   cat <<-EOF > /etc/apt/sources.list.d/sur5r-i3.list
   deb http://debian.sur5r.net/i3/ xenial main
@@ -192,6 +202,7 @@ base_install() {
     numix-icon-theme-circle \
     numix-icon-theme-square \
     docker-ce \
+    parole \
     --no-install-recommends
 
   apt autoremove
