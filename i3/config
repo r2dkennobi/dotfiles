@@ -29,21 +29,20 @@ floating_modifier $mod
 # auto start app
 exec --no-startup-id caffeine-indicator
 exec --no-startup-id nm-applet
-#exec --no-startup-id volti
-#exec --no-startup-id volumeicon
 exec --no-startup-id pasystray
-#exec --no-startup-id fluxgui
+exec --no-startup-id redshift-gtk
 exec --no-startup-id blueman-applet
 exec --no-startup-id indicator-cpufreq
 exec --no-startup-id fcitx
-exec --no-startup-id slack
 exec --no-startup-id run_keybase
 exec --no-startup-id systemctl --user start resilio-sync
+exec --no-startup-id thunar --daemon
+exec --no-startup-id udiskie -2
 
-exec_always --no-startup-id feh --bg-scale /home/kenny/background.png
+exec_always --no-startup-id feh --bg-scale $HOME/background.png
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec_always --no-startup-id xautolock -detectsleep -time 5 -locker "i3lock -c 000000" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 secs'"
-exec_always --no-startup-id xautolock -detectsleep -time 5 -locker "i3lock -ti /home/kenny/lockscreen.png" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 secs'"
+exec_always --no-startup-id xautolock -detectsleep -time 5 -locker "i3lock -ti $HOME/lockscreen.png" -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 secs'"
 
 # start a terminal
 #bindsym $mod+Return exec "urxvt -e bash -c 'tmux-2'"
@@ -53,8 +52,8 @@ bindcode --release 248 exec tilix
 bindsym $mod+backslash exec tilix
 
 # Screenshot
-bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~'
-bindsym Shift+Print exec "scrot -s '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~'"
+bindsym --release Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~'
+bindsym --release Shift+Print exec "scrot -s '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~'"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -159,9 +158,14 @@ bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
+# media player control
+bindsym XF86AudioPlay exec cmus-remote -u
+bindsym XF86AudioNext exec cmus-remote -n
+bindsym XF86AudioPrev exec cmus-remote -r
+
 # lock screen
 #bindsym Control+mod1+l exec i3lock-fancy
-bindsym $mod+F2 exec "i3lock -ti /home/kenny/lockscreen.png"
+bindsym $mod+F2 exec "i3lock -ti $HOME/lockscreen.png"
 #bindsym $mod+F2 exec "caffeine-screensaver lock"
 
 # resize window (you can also use the mouse for that)
