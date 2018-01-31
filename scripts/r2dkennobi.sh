@@ -155,6 +155,8 @@ base_min_install() {
     unzip \
     zip \
     whois \
+    musl-dev \
+    musl-tools \
     --no-install-recommends
 
   apt autoremove
