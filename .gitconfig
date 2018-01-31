@@ -35,6 +35,7 @@
     sup = submodule update
     supir = submodule update --init --recursive
     trim = remote prune origin
+    apple = !git pull --recurse-submodules && git submodule update --remote --recursive
     # Branch management
     brm = branch -d
     brmf = branch -D
