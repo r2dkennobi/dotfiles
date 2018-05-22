@@ -1,5 +1,5 @@
-#[user]
-#    name = [Enter Name]
+[user]
+    name = r2dkennobi
 #    signingkey = 
 [core]
     editor = nvim
@@ -12,6 +12,10 @@
     branch = auto
     diff = auto
     interactive = auto
+[status]
+    submoduleSummary = true
+[diff]
+    submodule = log
 [commit]
     gpgsign = true
     template = ~/.git-commit-tmpl.txt
@@ -35,7 +39,8 @@
     sup = submodule update
     supir = submodule update --init --recursive
     trim = remote prune origin
-    apple = !git pull --recurse-submodules && git submodule update --remote --recursive
+    apple = !git pull --recurse-submodules && git submodule update --init --remote --recursive
+    vimalyze = !git log | nvim -R -
     # Branch management
     brm = branch -d
     brmf = branch -D
