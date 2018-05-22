@@ -36,7 +36,7 @@ exec --no-startup-id indicator-cpufreq
 exec --no-startup-id fcitx
 exec --no-startup-id run_keybase
 exec --no-startup-id systemctl --user start resilio-sync
-exec --no-startup-id thunar --daemon
+exec --no-startup-id pcmanfm -d
 exec --no-startup-id udiskie -2
 
 exec_always --no-startup-id feh --bg-scale $HOME/background.png
@@ -68,7 +68,7 @@ bindsym $mod+p exec i3-dmenu-desktop --dmenu='rofi -dmenu -i'
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 bindsym $mod+b exec firefox
-bindsym $mod+e exec thunar
+bindsym $mod+e exec pcmanfm
 
 bindsym $mod+Up exec xbacklight -inc 10
 bindsym $mod+Down exec xbacklight -dec 10
