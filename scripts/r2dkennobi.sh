@@ -205,6 +205,7 @@ base_install() {
     numix-icon-theme-square \
     docker-ce \
     parole \
+    pinentry-gtk2 \
     --no-install-recommends
 
   apt autoremove
