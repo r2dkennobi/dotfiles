@@ -273,7 +273,7 @@ install_polybar() {
   temp_dir=$(mktemp -d)
   git clone --recursive https://github.com/jaagr/polybar "$temp_dir/polybar"
   mkdir -p "$temp_dir/polybar/build" && cd "$_"
-  git checkout 3.0.5
+  git checkout 3.2.1
   cmake -GNinja ..
   ninja install
 }
