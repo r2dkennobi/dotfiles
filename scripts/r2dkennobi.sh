@@ -94,7 +94,7 @@ EOF
 
   # Add i3
   cat <<-EOF > /etc/apt/sources.list.d/sur5r-i3.list
-  deb http://debian.sur5r.net/i3/ xenial main
+  deb http://debian.sur5r.net/i3/ xenial universe
 EOF
 
   /usr/lib/apt/apt-helper download-file \
