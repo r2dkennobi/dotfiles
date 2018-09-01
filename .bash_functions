@@ -45,3 +45,46 @@ man() {
 		LESS_TERMCAP_us="$(printf '\e[1;32m')" \
 		man "$@"
 }
+
+# Helper function to grab a list of GPG ID for the desired key(s)
+_gpg_list_keys() {
+  gpg --list-keys --keyid-format LONG "$@" 2>/dev/null | ${GREP_BIN:-"ag"} pub
+  return $?
+}
+
+# Print out the GPG ID for the desired account
+gpgid() {
+  local COUNT OUTPUT
+  COUNT=$(_gpg_list_keys "$@" 2>/dev/null | wc -l)
+  if [[ $COUNT -eq 0 ]]; then
+    echo "Could not find key. Please try another ID."
+    return 1
+  elif [[ $COUNT -gt 1 ]]; then
+    echo "Too many keys found. Please specify further."
+    return 1
+  else
+    OUTPUT=$(_gpg_list_keys "$@" 2>/dev/null | cut -d'/' -f2 | cut -d' ' -f1)
+    echo "$OUTPUT"
+    return 0
+  fi
+}
+
+# Configures the repository with email and signingkey
+git-config-id() {
+  local USER
+  USER="$1"
+  if ! [[ "$USER" == *@* ]]; then
+    echo "Invalid input. Please specify an email address."
+    return 1
+  fi
+  MATCH=$(gpgid "$USER" 2>/dev/null)
+  RESULT=$?
+  if [[ $RESULT -eq 0 ]]; then
+    git config user.email "$USER"
+    git config user.signingkey "$MATCH"
+    return 0
+  else
+    echo "Key ID not found. Failed to configure the respository user configuration."
+    return 1
+  fi
+}
