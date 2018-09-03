@@ -1,0 +1,10 @@
+---
+- name: Full setup
+  hosts: localhost
+  tasks:
+    - include_role:
+        name: bat-ansible
+    - include_role:
+        name: prettyping-ansible
+    - include_role:
+        name: diff-so-fancy-ansible
