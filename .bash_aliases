@@ -18,6 +18,7 @@ alias df='df -h'
 alias du='du -h'
 alias cat='bat'
 alias preview="fzf --preview 'bat --color \"always\" {}'"
+alias ping="prettyping"
 
 alias ..="cd .."
 alias ...="cd ../.."
