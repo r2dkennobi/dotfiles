@@ -16,6 +16,8 @@ alias sysup='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove 
 alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h'
+alias cat='bat'
+alias preview="fzf --preview 'bat --color \"always\" {}'"
 
 alias ..="cd .."
 alias ...="cd ../.."
