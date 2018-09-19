@@ -88,3 +88,7 @@ git-config-id() {
     return 1
   fi
 }
+
+probe_ipv4() {
+  avahi-browse -artkp | ag = | ag ipv4 | awk -F";" '{print $4,$8}'
+}
