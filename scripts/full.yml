@@ -1,6 +1,6 @@
 ---
 - name: Full setup
-  hosts: localhost
+  hosts: all
   tasks:
     - include_role:
         name: base
