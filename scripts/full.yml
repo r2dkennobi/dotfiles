@@ -12,3 +12,5 @@
         name: diff-so-fancy-ansible
     - include_role:
         name: rust-ansible
+    - include_role:
+        name: fd-ansible

@@ -7,3 +7,5 @@
   version: master
 - src: git+https://github.com/r2dkennobi/rust-ansible
   version: master
+- src: git+https://github.com/r2dkennobi/fd-ansible
+  version: master
