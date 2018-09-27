@@ -1,0 +1,3 @@
+#!/bin/bash
+# https://unix.stackexchange.com/questions/281858/difference-between-xinitrc-xsession-and-xsessionrc
+#exec i3 -V > "$HOME/.config/i3/logfile" 2>&1
