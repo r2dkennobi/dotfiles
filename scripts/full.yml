@@ -2,15 +2,39 @@
 - name: Full setup
   hosts: all
   tasks:
-    - include_role:
+    - name: Install base dependencies
+      include_role:
         name: base
+      tags: ['base']
+    - name: Install desktop dependencies
+      include_role:
+        name: desktop
+      tags: ['desktop']
     - include_role:
         name: bat-ansible
+      tags: ['bat']
     - include_role:
         name: prettyping-ansible
+      tags: ['prettyping']
     - include_role:
         name: diff-so-fancy-ansible
+      tags: ['diff-so-fancy']
     - include_role:
         name: rust-ansible
+      tags: ['rust']
     - include_role:
         name: fd-ansible
+      tags: ['fd']
+    - include_role:
+        name: git-ansible
+      tags: ['git']
+    - include_role:
+        name: git-lfs-ansible
+      tags: ['git-lfs']
+    - include_role:
+        name: vim-configs
+      tags: ['vim']
+    - name: Install neovim
+      include_role:
+        name: neovim-configs
+      tags: ['neovim']

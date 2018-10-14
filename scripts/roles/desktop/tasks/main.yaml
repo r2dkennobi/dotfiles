@@ -1,0 +1,35 @@
+---
+- name: Install desktop deps
+  become: yes
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 300
+  vars:
+    packages:
+      - unity-tweak-tool
+      - caffeine
+      - volti
+      - blueman
+      - thunar
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
+      - thunar-gtkhash
+      - indicator-cpufreq
+      - fcitx
+      - fcitx-mozc
+      - fcitx-frontend-gtk2
+      - fcitx-frontend-gtk3
+      - lxappearance
+      - openvpn
+      - arandr
+      - asciidoctor
+      - xautolock
+      - pasystray
+      - pavucontrol
+      - binwalk
+      - pngcheck
+      - firefox
+      - tilix
+      - vlc

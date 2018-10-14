@@ -24,26 +24,6 @@ is_sudo() {
 }
 
 setup_min_sources() {
-  # Add latest git. cause reasaons.
-  cat <<-EOF > /etc/apt/sources.list.d/git-core.list
-  deb http://ppa.launchpad.net/git-core/ppa/ubuntu xenial main
-  deb-src http://ppa.launchpad.net/git-core/ppa/ubuntu xenial main
-EOF
-
-  # Add the git-core ppa gpg key
-  apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
-    --recv-keys E1DD270288B4E6030699E45FA1715D88E1DF1F24
-
-  # NEOVIM YEAAAA
-  cat <<-EOF > /etc/apt/sources.list.d/neovim.list
-  deb http://ppa.launchpad.net/neovim-ppa/stable/ubuntu xenial main
-  deb-src http://ppa.launchpad.net/neovim-ppa/stable/ubuntu xenial main
-EOF
-
-  # Add the neovim ppa gpg key
-  apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
-    --recv-keys 9DBB0BE9366964F134855E2255F96FCF8231B6DD
-
   # Disable downloading translations
   mkdir -p /etc/apt/apt.conf.d
   echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/99translations
@@ -129,41 +109,6 @@ EOF
   wget -qO - https://linux-packages.resilio.com/resilio-sync/key.asc | apt-key add -
 }
 
-base_min_install() {
-  apt update
-  apt -y full-upgrade
-
-  apt -y install \
-    wget \
-    tmux \
-    tree \
-    xsel \
-    ncdu \
-    ninja-build \
-    cmake \
-    neovim \
-    grep \
-    silversearcher-ag \
-    gdb \
-    build-essential \
-    autoconf \
-    automake \
-    curl \
-    jq \
-    rxvt-unicode-256color \
-    tar \
-    unzip \
-    zip \
-    whois \
-    musl-dev \
-    musl-tools \
-    --no-install-recommends
-
-  apt autoremove
-  apt autoclean
-  apt clean
-}
-
 base_install() {
   base_min_install
 
@@ -171,41 +116,12 @@ base_install() {
   apt -y full-upgrade
 
   apt -y install \
-    ninja-build \
-    unity-tweak-tool \
-    caffeine \
-    volti \
-    blueman \
-    thunar \
-    thunar-archive-plugin \
-    thunar-media-tags-plugin \
-    thunar-gtkhash \
-    indicator-cpufreq \
-    fcitx \
-    fcitx-mozc \
-    fcitx-frontend-gtk2 \
-    fcitx-frontend-gtk3 \
-    lxappearance \
-    openvpn \
-    arandr \
-    asciidoctor \
-    cmus \
-    xautolock \
-    pasystray \
-    pavucontrol \
-    tpm-tools \
-    binwalk \
-    pngcheck \
-    firefox \
-    tilix \
-    vlc \
     numix-gtk-theme \
     numix-icon-theme \
     numix-icon-theme-circle \
     numix-icon-theme-square \
     docker-ce \
     parole \
-    pinentry-gtk2 \
     --no-install-recommends
 
   apt autoremove
@@ -224,34 +140,6 @@ install_resilio_sync() {
   apt autoremove
   apt autoclean
   apt clean
-}
-
-install_vim() {
-  (
-  cd "$HOME"
-
-  # Install my custom vim configs
-  if ! [[ -e "$HOME/.vim" ]]; then
-    git clone git@github.com:r2dkennobi/.vim.git "$HOME/.vim"
-  fi
-  ln -snf "$HOME/.vim/.vimrc" "$HOME/.vimrc"
-  sudo ln -snf "$HOME/.vim" /root/.vim
-  sudo ln -snf "$HOME/.vimrc" /root/.vimrc
-
-  # Install my custom nvim configs
-  mkdir -p "${XDG_CONFIG_HOME:=$HOME/.config}"
-  if ! [[ -e "$XDG_CONFIG_HOME/nvim" ]]; then
-    git clone git@github.com:r2dkennobi/nvim.git "$XDG_CONFIG_HOME/nvim"
-  fi
-  sudo mkdir -p /root/.config
-  sudo ln -snf "$XDG_CONFIG_HOME/nvim" "/root/.config/nvim"
-
-  sudo apt update
-
-  sudo apt -y install python3-pip python3-setuptools foodcritic shellcheck
-
-  pip3 install -U setuptools wheel neovim ansible-lint cmakelint flake8 vim-vint
-  )
 }
 
 install_wm() {
@@ -292,16 +180,6 @@ install_universal_ctags() {
 
 install_rust() {
   curl https://sh.rustup.rs -sSf | sh -s -- -y --nomodify-path
-}
-
-install_vivaldi() {
-  local deb_url
-  deb_url=$(curl -sSL "https://vivaldi.com/download" | grep "_amd64.deb" | grep -Po 'href="\K[^"]*')
-  wget -O /tmp/vivaldi.deb "$deb_url"
-  set +e
-  dpkg -i /tmp/vivaldi.deb
-  apt-get install -f
-  set -e
 }
 
 install_gdb() {
@@ -366,8 +244,6 @@ main() {
     get_user
     setup_sources
     base_install
-  elif [[ $cmd == "vim" ]]; then
-    install_vim
   elif [[ $cmd == "wm" ]]; then
     is_sudo
     install_wm

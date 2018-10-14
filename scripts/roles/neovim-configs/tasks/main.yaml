@@ -1,0 +1,27 @@
+---
+- name: Install neovim
+  import_role:
+    name: neovim-ansible
+  tags: ['neovim']
+
+- name: Make sure the config folder exists
+  file:
+    path: "{{ ansible_env.HOME }}/.config"
+    state: directory
+    mode: 0700
+  tags: ['neovim']
+
+- name: Pull in my neovim configs
+  git:
+    repo: "https://github.com/r2dkennobi/nvim.git"
+    dest: "{{ ansible_env.HOME }}/.config/nvim"
+    clone: yes
+    update: yes
+  tags: ['neovim']
+
+- name: Set default editor to neovim
+  become: yes
+  alternatives:
+    name: editor
+    path: "/usr/bin/nvim"
+  tags: ['neovim']

@@ -1,0 +1,20 @@
+---
+- name: Install vim
+  import_role:
+    name: vim-ansible
+  tags: ['vim']
+
+- name: Pull in my vim configs
+  git:
+    repo: "https://github.com/r2dkennobi/.vim.git"
+    dest: "{{ ansible_env.HOME }}/.vim"
+    clone: yes
+    update: yes
+  tags: ['vim']
+
+- name: Link up the vimrc file
+  file:
+    src: "{{ ansible_env.HOME }}/.vim/.vimrc"
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    state: link
+  tags: ['vim']
