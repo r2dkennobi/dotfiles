@@ -2,28 +2,32 @@
 - name: Install basic deps
   become: yes
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     update_cache: yes
     cache_valid_time: 300
-  with_items:
-    - ncdu
-    - wget
-    - tmux
-    - tree
-    - xsel
-    - build-essential
-    - curl
-    - jq
-    - rxvt-unicode-256color
-    - tar
-    - unzip
-    - zip
-    - whois
-    - tilix
-    - pinentry-gtk2
-    - vim
-    - htop
-    - silversearcher-ag
-    - shellcheck
-    - aria2
+  vars:
+    items:
+      - ncdu
+      - wget
+      - tmux
+      - tree
+      - xsel
+      - build-essential
+      - curl
+      - jq
+      - rxvt-unicode-256color
+      - tar
+      - unzip
+      - zip
+      - whois
+      - tilix
+      - pinentry-gtk2
+      - vim
+      - htop
+      - silversearcher-ag
+      - shellcheck
+      - aria2
+      - gnupg2
+      - python-pip
+      - python3-pip
