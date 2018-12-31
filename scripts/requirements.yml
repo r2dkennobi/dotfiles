@@ -9,3 +9,7 @@
   version: master
 - src: git+https://github.com/r2dkennobi/fd-ansible
   version: master
+- src: git+https://github.com/r2dkennobi/vim-ansible
+  version: master
+- src: git+https://github.com/r2dkennobi/neovim-ansible
+  version: master
