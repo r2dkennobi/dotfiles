@@ -69,7 +69,7 @@ bindsym $mod+p exec i3-dmenu-desktop --dmenu='rofi -dmenu -i'
 
 #bindsym $mod+b exec firefox
 bindsym $mod+b exec google-chrome-stable
-bindsym $mod+e exec pcmanfm
+bindsym $mod+e exec thunar
 
 bindsym $mod+Up exec xbacklight -inc 10
 bindsym $mod+Down exec xbacklight -dec 10
