@@ -35,6 +35,7 @@
     cp = cherry-pick
     mg = merge
     df = diff -w -p
+    dff = diff -w -p --submodule=diff
     rv = remote -v
     cdf = commit -v
     sub = submodule
@@ -42,7 +43,9 @@
     sup = submodule update
     supir = submodule update --init --recursive
     trim = remote prune origin
+    gimme = !git pull && git lfs pull && git apple
     apple = !git pull --recurse-submodules && git submodule update --init --remote --recursive
+    reset-submodule = submodule foreach --recursive git reset --hard
     vimalyze = !git log | nvim -R -
     # Branch management
     brm = branch -d
@@ -64,3 +67,8 @@
     sync = !git rebase $1 && git push -u origin HEAD --force
     # Command chain
     rename = !git branch -m $1 $2 && git push origin :$1 && git push --set-upstream origin $2 && :
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
