@@ -29,7 +29,7 @@ export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -p $HOME/.agignore -g ''"
 # fcitx configs
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
+export XMODIFIERS='@im=fcitx'
 
 export HISTTIMEFORMAT="%m/%d/%y %T "
 
