@@ -7,7 +7,7 @@ dotfiles:
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
 	done; \
-	ln -sfn $(CURDIR)/i3 $(HOME)/.config/i3
+	ln -sfn $(CURDIR)/i3/config $(HOME)/.config/i3/config
 	ln -sfn $(CURDIR)/polybar $(HOME)/.config/polybar
 	mkdir -p ~/.gnupg
 	ln -sfn $(CURDIR)/.gnupg/gpg.conf $(HOME)/.gnupg/gpg.conf
