@@ -35,6 +35,7 @@
     cp = cherry-pick
     mg = merge
     df = diff -w -p
+    dfc = diff -w -p --cached
     dff = diff -w -p --submodule=diff
     rv = remote -v
     cdf = commit -v
