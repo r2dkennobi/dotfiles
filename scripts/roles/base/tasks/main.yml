@@ -1,3 +1,6 @@
 ---
 - include_tasks: base-ubuntu.yml
   when: ansible_os_family == 'Debian'
+
+- include_tasks: base-arch.yml
+  when: ansible_os_family == 'Archlinux'

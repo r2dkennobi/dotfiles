@@ -1,0 +1,50 @@
+---
+- name: Full setup
+  hosts: all
+  tasks:
+    - include_role:
+        name: base
+
+- name: All the vim
+  hosts: all
+  tasks:
+    - include_role:
+        name: vim-ansible
+    - include_role:
+        name: neovim-ansible
+    - name: Clone vim configurations
+      git:
+        repo: "https://github.com/r2dkennobi/.vim.git"
+        dest: "$HOME/.vim"
+    - name: Link .vimrc
+      file:
+        src: "$HOME/.vim/.vimrc"
+        dest: "$HOME/.vimrc"
+        state: link
+    - name: Clone neovim configurations
+      git:
+        repo: "https://github.com/r2dkennobi/nvim.git"
+        dest: "$HOME/.config/nvim"
+    - name: Additional apt packages for syntax checking in neovim
+      become: yes
+      apt:
+        name: "{{ items }}"
+        state: present
+        update_cache: yes
+        cache_valid_time: 300
+      vars:
+        items:
+          - foodcritic
+          - shellcheck
+      when: ansible_os_family == 'Debian'
+    - name: Additional python packages for syntax checking in neovim
+      become: yes
+      pip:
+        name: "{{ packages }}"
+        executable: "pip3"
+      vars:
+        packages:
+          - ansible-lint
+          - cmakelint
+          - flake8
+          - vim-vint

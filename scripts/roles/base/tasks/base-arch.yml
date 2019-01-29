@@ -1,0 +1,67 @@
+---
+- name: Install basic deps
+  become: yes
+  pacman:
+    name: "{{ items }}"
+    state: present
+  vars:
+    items:
+      - ncdu
+      - wget
+      - tmux
+      - tree
+      - xsel
+      - curl
+      - jq
+      - tar
+      - unzip
+      - zip
+      - whois
+      - tilix
+      - vim
+      - htop
+      - the_silver_searcher
+      - shellcheck
+      - aria2
+      - gnupg2
+      - git
+      - git-lfs
+      - diff-so-fancy
+      - fd
+      - prettyping
+      - bat
+      - ripgrep
+      - cmus
+#      - rxvt-unicode-256color
+#      - pinentry-gtk2
+#      - python-pip
+#      - python3-pip
+
+- name: Install desktop programs
+  become: yes
+  pacman:
+    name: "{{ items }}"
+    state: present
+  vars:
+    items:
+      - arandr
+      - rofi
+      - feh
+      - pasystray
+      - paprefs
+      - redshift
+      - fcitx
+      - fcitx-mozc
+      - fcitx-gtk2
+      - fcitx-gtk3
+      - fcitx-qt4
+      - fcitx-qt5
+      - fcitx-configtool
+      - libu2f-host       # U2F support in browsers
+      - bolt              # thunderbolt authorization
+      - imagemagick
+      - ruby
+      - ruby-docs
+      - docker
+      - xautolock
+      - noto-fonts-emoji
