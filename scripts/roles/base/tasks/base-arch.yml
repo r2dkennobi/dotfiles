@@ -65,3 +65,4 @@
       - docker
       - xautolock
       - noto-fonts-emoji
+      - cpupower

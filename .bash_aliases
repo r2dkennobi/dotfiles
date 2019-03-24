@@ -20,6 +20,7 @@ alias du='du -h'
 alias cat='bat'
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias ping="prettyping"
+alias punchitchewie="sudo cpupower frequency-set -g performance"
 
 alias ..="cd .."
 alias ...="cd ../.."
