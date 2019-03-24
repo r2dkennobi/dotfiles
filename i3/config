@@ -52,8 +52,10 @@ bindcode --release 248 exec tilix
 bindsym $mod+backslash exec tilix
 
 # Screenshot
-bindsym --release Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~'
-bindsym --release Shift+Print exec "scrot -s '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~'"
+#bindsym --release Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~'
+#bindsym --release Shift+Print exec "scrot -s '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~'"
+bindsym --release Print exec scrot "flameshot full"
+bindsym --release Shift+Print exec "flameshot gui"
 
 # kill focused window
 bindsym $mod+Shift+q kill
