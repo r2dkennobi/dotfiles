@@ -32,6 +32,7 @@
       - bat
       - ripgrep
       - cmus
+      - mtr
 #      - rxvt-unicode-256color
 #      - pinentry-gtk2
 #      - python-pip
