@@ -13,21 +13,84 @@
       - tmux
       - tree
       - xsel
-      - build-essential
       - curl
       - jq
-      - rxvt-unicode-256color
       - tar
       - unzip
       - zip
       - whois
       - tilix
-      - pinentry-gtk2
       - vim
       - htop
       - silversearcher-ag
       - shellcheck
       - aria2
       - gnupg2
+      - git
+      - git-lfs
+#      - fd
+#      - prettyping
+#      - ripgrep
+      - cmus
       - python-pip
       - python3-pip
+      # ubuntu specific
+      - build-essential
+      - ninja-build
+      - unrar
+
+- name: Install desktop programs
+  become: yes
+  apt:
+    name: "{{ items }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 300
+  vars:
+    items:
+      - arandr
+      - rofi
+      - feh
+      - pasystray
+      - paprefs
+      - redshift
+      - fcitx
+      - fcitx-mozc
+      - fcitx-frontend-all
+      - fcitx-config-gtk2
+      - fcitx-config-gtk
+      - libu2f-udev       # U2F support in browsers
+      - libu2f-host-dev   # U2F support in browsers
+      - bolt              # thunderbolt authorization
+      - imagemagick
+      - ruby
+#      - ruby-docs
+      - docker
+      - xautolock
+#      - noto-fonts-emoji
+#      - cpupower
+      - flameshot
+      - pinentry-gtk2
+      - i3
+      - lxappearance
+      - numix-gtk-theme
+      - numix-icon-theme
+      - cifs-utils
+      - pcmanfm
+      - thunar
+      - thunar-archive-plugin
+      - thunar-gtkhash
+      - thunar-media-tags-plugin
+      - thunar-volman
+
+- include_role:
+    name: polybar
+
+- include_role:
+    name: bat-ansible
+
+- include_role:
+    name: diff-so-fancy-ansible
+
+- include_role:
+    name: google-chrome

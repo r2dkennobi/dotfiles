@@ -1,0 +1,62 @@
+---
+- name: Check if Polybar is installed
+  stat:
+    path: "/usr/local/bin/polybar"
+  register: polybar_bin
+
+- name: Install build deps
+  become: yes
+  apt:
+    name: "{{ items }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 300
+  vars:
+    items:
+      - cmake
+      - cmake-data
+      - pkg-config
+      - libcairo2-dev
+      - libxcb1-dev
+      - libxcb-util0-dev
+      - libxcb-randr0-dev
+      - libxcb-composite0-dev
+      - python-xcbgen
+      - xcb-proto
+      - libxcb-image0-dev
+      - libxcb-ewmh-dev
+      - libxcb-icccm4-dev
+      - libxcb-xkb-dev
+      - libxcb-xrm-dev
+      - libxcb-cursor-dev
+      - libasound2-dev
+      - libpulse-dev
+      - i3-wm
+      - libjsoncpp-dev
+      - libmpdclient-dev
+      - libcurl4-openssl-dev
+      - libnl-genl-3-dev
+  when: not polybar_bin.stat.exists
+
+- name: Clone Polybar
+  git:
+    repo: https://github.com/jaagr/polybar
+    dest: /tmp/polybar
+    version: 3.3.1
+  when: not polybar_bin.stat.exists
+
+- name: Create build folder
+  file:
+    path: "/tmp/polybar/build"
+    state: directory
+  when: not polybar_bin.stat.exists
+
+- name: Build and install Polybar
+  become: yes
+  command: "{{ item }}"
+  args:
+    chdir: "/tmp/polybar/build"
+  with_items:
+    - "cmake -GNinja .."
+    - "ninja install"
+  when: not polybar_bin.stat.exists

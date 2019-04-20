@@ -3,6 +3,7 @@ set -Eeuo pipefail
 #set -x
 
 OS=$(awk -F= '$1 == "ID" { print $NF ;}' /etc/os-release)
+echo "Detected OS: $OS"
 
 if [[ "$OS" == *"antergos"* ]]; then
   echo "## Archlinux based OS detected ##"
@@ -40,4 +41,19 @@ if [[ "$OS" == *"antergos"* ]]; then
   fi
 
   # don't forget gem install foodcritic
+elif [[ "$OS" == "ubuntu" ]]; then
+  echo "## Archlinux based OS detected ##"
+  echo "- Update system"
+  sudo apt-get update && sudo apt-get full-upgrade && sudo apt-get autoremove
+
+  echo "- Install python and pip"
+  sudo apt-get install -y python-pip
+
+  echo "- Check if Ansible needs to be installed"
+  if ! which ansible > /dev/null; then
+    sudo pip install -U ansible
+  fi
 fi
+
+echo "- Install all Ansible deps"
+ansible-galaxy install -r requirements.yml
