@@ -28,6 +28,7 @@
       - gnupg2
       - git
       - git-lfs
+      - mtr-tiny
 #      - fd
 #      - prettyping
 #      - ripgrep
