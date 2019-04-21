@@ -29,6 +29,7 @@
       - git
       - git-lfs
       - mtr-tiny
+      - ssh
 #      - fd
 #      - prettyping
 #      - ripgrep
