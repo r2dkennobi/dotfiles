@@ -30,7 +30,6 @@
       - git-lfs
       - mtr-tiny
       - ssh
-#      - prettyping
       - cmus
       - python-pip
       - python3-pip
@@ -100,3 +99,6 @@
 
 - include_role:
     name: ripgrep
+
+- include_role:
+    name: prettyping

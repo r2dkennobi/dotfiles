@@ -1,8 +1,6 @@
 ---
 - src: git+https://github.com/r2dkennobi/bat-ansible
   version: master
-- src: git+https://github.com/r2dkennobi/prettyping-ansible
-  version: master
 - src: git+https://github.com/r2dkennobi/diff-so-fancy-ansible
   version: master
 - src: git+https://github.com/r2dkennobi/rust-ansible

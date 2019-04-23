@@ -1,0 +1,7 @@
+---
+- name: Install prettyping
+  become: yes
+  get_url:
+    url: https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping
+    dest: /usr/local/bin/prettyping
+    mode: 0755

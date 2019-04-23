@@ -7,7 +7,7 @@
     - include_role:
         name: bat-ansible
     - include_role:
-        name: prettyping-ansible
+        name: prettyping
     - include_role:
         name: diff-so-fancy-ansible
     - include_role:
