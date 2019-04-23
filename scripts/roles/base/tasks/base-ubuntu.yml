@@ -31,7 +31,6 @@
       - mtr-tiny
       - ssh
 #      - prettyping
-#      - ripgrep
       - cmus
       - python-pip
       - python3-pip
@@ -98,3 +97,6 @@
 
 - include_role:
     name: fd
+
+- include_role:
+    name: ripgrep

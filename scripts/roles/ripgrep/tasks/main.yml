@@ -1,0 +1,5 @@
+---
+- name: Install ripgrep
+  become: yes
+  apt:
+    deb: "https://github.com/BurntSushi/ripgrep/releases/download/{{ rg_vers }}/ripgrep_{{ rg_vers }}_amd64.deb"
