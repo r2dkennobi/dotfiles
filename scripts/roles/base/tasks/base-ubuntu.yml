@@ -30,7 +30,6 @@
       - git-lfs
       - mtr-tiny
       - ssh
-#      - fd
 #      - prettyping
 #      - ripgrep
       - cmus
@@ -96,3 +95,6 @@
 
 - include_role:
     name: google-chrome
+
+- include_role:
+    name: fd

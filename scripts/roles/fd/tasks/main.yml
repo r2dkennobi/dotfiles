@@ -1,0 +1,5 @@
+---
+- name: Install fd
+  become: yes
+  apt:
+    deb: "https://github.com/sharkdp/fd/releases/download/v{{ fd_vers }}/fd_{{ fd_vers }}_amd64.deb"
