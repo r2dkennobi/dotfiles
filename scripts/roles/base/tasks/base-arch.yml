@@ -33,6 +33,7 @@
       - ripgrep
       - cmus
       - mtr
+      - dmidecode
 #      - rxvt-unicode-256color
 #      - pinentry-gtk2
 #      - python-pip
