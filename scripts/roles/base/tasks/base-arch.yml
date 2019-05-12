@@ -23,7 +23,7 @@
       - the_silver_searcher
       - shellcheck
       - aria2
-      - gnupg2
+      - gnupg
       - git
       - git-lfs
       - diff-so-fancy
