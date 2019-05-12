@@ -5,6 +5,7 @@ if [[ -d "$HOME/.cargo/bin" ]]; then
 fi
 
 if [[ -d "$HOME/.go" ]]; then
+  export GOROOT="/usr/local/go"
   export GOPATH="$HOME/.go"
   export PATH="$PATH:$GOPATH/bin"
 fi
