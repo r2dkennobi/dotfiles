@@ -22,7 +22,7 @@ if [[ "$OS" == *"antergos"* ]]; then
   fi
 
   echo "- Install packages from AUR"
-  AUR_PKGS=(otf-ipaexfont google-chrome paman pavumeter keybase-bin caffeine-ng)
+  AUR_PKGS=(google-chrome paman pavumeter keybase-bin caffeine-ng)
   MISSING_PKGS=()
   for pkg in "${AUR_PKGS[@]}"; do
     if ! pacman -Qs "$pkg" > /dev/null; then
