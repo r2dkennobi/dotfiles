@@ -16,6 +16,8 @@ set $mod Mod4
 #font pango:DejaVu Sans Mono 8
 font pango:Source Code Pro for Airline 8.5
 
+hide_edge_borders both
+
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -27,6 +29,8 @@ font pango:Source Code Pro for Airline 8.5
 floating_modifier $mod
 
 # auto start app
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id "sleep 2s && kalu"
 exec --no-startup-id caffeine-indicator
 exec --no-startup-id nm-applet
 exec --no-startup-id pasystray
@@ -79,6 +83,7 @@ bindsym $mod+Down exec xbacklight -dec 10
 
 # browser pop-ups
 for_window [window_role="pop-up"] floating enable,move absolute center
+#for_window [class="google-chrome"] floating enable
 
 # change focus
 bindsym $mod+h focus left
