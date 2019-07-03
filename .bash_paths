@@ -5,7 +5,9 @@ if [[ -d "$HOME/.cargo/bin" ]]; then
 fi
 
 if [[ -d "$HOME/.go" ]]; then
-  export GOROOT="/usr/local/go"
+  if [[ -d "/usr/local/go" ]]; then
+    export GOROOT="/usr/local/go"
+  fi
   export GOPATH="$HOME/.go"
   export PATH="$PATH:$GOPATH/bin"
 fi
@@ -16,4 +18,8 @@ fi
 
 if [[ -d "$HOME/.android/Sdk/platform-tools" ]]; then
   export PATH="$HOME/.android/Sdk/platform-tools:$PATH"
+fi
+
+if [[ -d "$HOME/.local/bin" ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
 fi

@@ -35,6 +35,8 @@
       - mtr
       - dmidecode
       - rsync
+      - ufw
+      - p7zip
 #      - rxvt-unicode-256color
 #      - pinentry-gtk2
 #      - python-pip

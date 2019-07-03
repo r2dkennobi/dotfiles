@@ -33,6 +33,8 @@
       - cmus
       - python-pip
       - python3-pip
+      - ufw
+      - p7zip-full
       # ubuntu specific
       - build-essential
       - ninja-build
