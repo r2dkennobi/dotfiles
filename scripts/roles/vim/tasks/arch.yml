@@ -1,0 +1,7 @@
+---
+- name: Install vim
+  become: yes
+  pacman:
+    name: vim
+    state: present
+    update_cache: yes

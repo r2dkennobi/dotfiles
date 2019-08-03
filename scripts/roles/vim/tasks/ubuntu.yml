@@ -1,0 +1,14 @@
+---
+- name: Install vim ppa
+  become: yes
+  apt_repository:
+    repo: "ppa:jonathonf/vim"
+    update_cache: yes
+
+- name: Install vim
+  become: yes
+  apt:
+    name: vim
+    state: present
+    update_cache: yes
+    cache_valid_time: 400

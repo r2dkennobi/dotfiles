@@ -1,0 +1,7 @@
+---
+- name: Install diff-so-fancy
+  become: yes
+  get_url:
+    url: https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy
+    dest: /usr/local/bin/diff-so-fancy
+    mode: 0755

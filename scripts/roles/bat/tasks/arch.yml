@@ -1,0 +1,7 @@
+---
+- name: Install bat
+  become: yes
+  pacman:
+    name: bat
+    state: present
+    update_cache: yes
