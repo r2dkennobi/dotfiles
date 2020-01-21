@@ -115,6 +115,10 @@
   when: desktop is defined
 
 - include_role:
+    name: touchpad-configs
+  when: desktop is defined
+
+- include_role:
     name: polybar
   when: desktop is defined
 

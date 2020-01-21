@@ -84,3 +84,6 @@
 
 - include_role:
     name: git-libsecret
+
+- include_role:
+    name: touchpad-configs
