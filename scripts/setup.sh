@@ -41,8 +41,8 @@ if [[ "$OS" == *"antergos"* ]]; then
   fi
 
   # don't forget gem install foodcritic
-elif [[ "$OS" == "ubuntu" ]]; then
-  echo "## Archlinux based OS detected ##"
+elif [[ "$OS" == "ubuntu" ]] || [[ "$OS" == "parrot" ]]; then
+  echo "## Debian based OS detected ##"
   echo "- Update system"
   sudo apt-get update && sudo apt-get full-upgrade && sudo apt-get autoremove
 

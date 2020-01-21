@@ -1,0 +1,9 @@
+---
+- include_tasks: arch.yml
+  when: ansible_os_family == 'Archlinux'
+
+- include_tasks: ubuntu.yml
+  when: ansible_os_family == 'Debian'
+
+- include_tasks: parrot.yml
+  when: ansible_os_family == 'Parrot GNU/Linux'

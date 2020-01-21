@@ -1,0 +1,16 @@
+---
+- name: Install neovim dependencies
+  become: yes
+  pacman:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - python-pip
+      - python-setuptools
+
+- name: Install neovim
+  become: yes
+  pacman:
+    name: neovim
+    state: present

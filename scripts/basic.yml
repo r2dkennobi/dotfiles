@@ -9,9 +9,9 @@
   hosts: all
   tasks:
     - include_role:
-        name: vim-ansible
+        name: vim
     - include_role:
-        name: neovim-ansible
+        name: neovim
     - name: Clone vim configurations
       git:
         repo: "https://github.com/r2dkennobi/.vim.git"
@@ -21,6 +21,7 @@
         src: "$HOME/.vim/.vimrc"
         dest: "$HOME/.vimrc"
         state: link
+        force: true
     - name: Clone neovim configurations
       git:
         repo: "https://github.com/r2dkennobi/nvim.git"
@@ -36,7 +37,7 @@
         items:
           - foodcritic
           - shellcheck
-      when: ansible_os_family == 'Debian'
+      when: ansible_os_family == 'Debian' or ansible_os_family == 'Parrot GNU/Linux'
     - name: Additional python packages for syntax checking in neovim
       become: yes
       pip:
