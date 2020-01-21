@@ -37,6 +37,8 @@
       - rsync
       - ufw
       - p7zip
+      - tpm2-tools
+      - fwupd
 #      - rxvt-unicode-256color
 #      - pinentry-gtk2
 #      - python-pip
