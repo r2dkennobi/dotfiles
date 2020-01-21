@@ -13,14 +13,25 @@ alias rsync='rsync -avh --progress --stats'
 alias rrsync='rsync -ravh --progress --stats'
 alias agh='ag --hidden'
 alias ssh-secure-keygen='ssh-keygen -o -a 100 -t ed25519'
-alias sysup='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y'
+if [[ -e "/usr/bin/apt" ]]; then
+  alias sysup='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y'
+elif [[ -e "/usr/bin/pacman" ]]; then
+  if [[ -e "/usr/bin/yay" ]]; then
+    alias sysup='sudo pacman -Syyu && yay -Syyu --aur'
+  else
+    alias sysup='sudo pacman -Syyu'
+  fi
+fi
 alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h'
-alias cat='bat'
+if [[ -e "/usr/bin/bat" ]]; then
+  alias cat='bat'
+fi
 alias preview="fzf --preview 'bat --color \"always\" {}'"
 alias ping="prettyping"
 alias punchitchewie="sudo cpupower frequency-set -g performance"
+alias rgh="rg --hidden"
 
 alias ..="cd .."
 alias ...="cd ../.."
