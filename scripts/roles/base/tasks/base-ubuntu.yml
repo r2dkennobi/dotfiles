@@ -58,6 +58,9 @@
 - include_role:
     name: prettyping
 
+- include_role:
+    name: git-libsecret
+
 - name: Install minimal desktop programs
   become: yes
   apt:

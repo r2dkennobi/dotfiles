@@ -81,3 +81,6 @@
       - adobe-source-han-sans-jp-fonts
       - deluge
       - pygtk   # deluge dependency
+
+- include_role:
+    name: git-libsecret
