@@ -1,0 +1,39 @@
+---
+- name: Install dependencies (Debian)
+  become: yes
+  apt:
+    name: "{{ deps }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: 400
+  vars:
+    deps:
+      - libsecret-1-0
+      - libsecret-1-dev
+  when: ansible_os_family == 'Debian' or ansible_os_family == 'Parrot GNU/Linux'
+
+- name: Install dependencies (Arch)
+  become: yes
+  pacman:
+    name: libsecret
+    state: present
+    update_cache: yes
+  vars:
+    deps:
+      - libsecret
+      - gnome-keyring
+  when: ansible_os_family == 'Archlinux'
+
+- name: Build the default target
+  become: yes
+  make:
+    chdir: "/usr/share/doc/git/contrib/credential/libsecret"
+  when: ansible_os_family == 'Debian' or ansible_os_family == 'Parrot GNU/Linux'
+
+- name: Symlink the executable
+  become: yes
+  file:
+    src: "/usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret"
+    dest: "/usr/lib/git-core/git-credential-libsecret"
+    state: link
+  when: ansible_os_family == 'Debian' or ansible_os_family == 'Parrot GNU/Linux'
