@@ -6,7 +6,9 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 # Enable 256 colors for terminal
-export TERM=screen-256color
+if [[ -z "$WSL_INTEROP" ]]; then
+  export TERM=screen-256color
+fi
 
 # Disable virtualenv from changing PS1
 export VIRTUAL_ENV_DISABLE_PROMPT=1
@@ -32,5 +34,11 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS='@im=fcitx'
 
 export HISTTIMEFORMAT="%m/%d/%y %T "
+
+# WSL2 specific settings
+if grep -q "microsoft" /proc/version &>/dev/null; then
+  DISPLAY="$(/sbin/ip route | awk '/default/ { print $3 }'):0"
+  export DISPLAY
+fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
