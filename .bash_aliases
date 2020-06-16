@@ -29,9 +29,14 @@ if [[ -e "/usr/bin/bat" ]]; then
   alias cat='bat'
 fi
 alias preview="fzf --preview 'bat --color \"always\" {}'"
-alias ping="prettyping"
+if [[ -e "/usr/local/bin/prettyping" ]]; then
+  alias ping="prettyping"
+fi
 alias punchitchewie="sudo cpupower frequency-set -g performance"
 alias rgh="rg --hidden"
+alias sudo="sudo "
+alias time_east_coast="sudo timedatectl set-timezone America/New_York"
+alias time_west_coast="sudo timedatectl set-timezone America/Los_Angeles"
 
 alias ..="cd .."
 alias ...="cd ../.."
