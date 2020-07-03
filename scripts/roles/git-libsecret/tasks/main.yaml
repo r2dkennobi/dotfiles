@@ -10,7 +10,10 @@
     deps:
       - libsecret-1-0
       - libsecret-1-dev
-  when: ansible_os_family == 'Debian' or ansible_os_family == 'Parrot GNU/Linux'
+  when: >
+    ansible_os_family == 'Debian' or
+    ansible_os_family == 'Parrot GNU/Linux' or
+    ansible_os_family == 'Pop!_OS'
 
 - name: Install dependencies (Arch)
   become: yes
@@ -28,7 +31,10 @@
   become: yes
   make:
     chdir: "/usr/share/doc/git/contrib/credential/libsecret"
-  when: ansible_os_family == 'Debian' or ansible_os_family == 'Parrot GNU/Linux'
+  when: >
+    ansible_os_family == 'Debian' or
+    ansible_os_family == 'Parrot GNU/Linux' or
+    ansible_os_family == 'Pop!_OS'
 
 - name: Symlink the executable
   become: yes
@@ -36,4 +42,7 @@
     src: "/usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret"
     dest: "/usr/lib/git-core/git-credential-libsecret"
     state: link
-  when: ansible_os_family == 'Debian' or ansible_os_family == 'Parrot GNU/Linux'
+  when: >
+    ansible_os_family == 'Debian' or
+    ansible_os_family == 'Parrot GNU/Linux' or
+    ansible_os_family == 'Pop!_OS'

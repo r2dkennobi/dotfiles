@@ -42,7 +42,7 @@
   git:
     repo: https://github.com/jaagr/polybar
     dest: /tmp/polybar
-    version: 3.3.1
+    version: 3.4.3
   when: not polybar_bin.stat.exists
 
 - name: Create build folder
