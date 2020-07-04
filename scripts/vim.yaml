@@ -1,10 +1,4 @@
 ---
-- name: Full setup
-  hosts: all
-  tasks:
-    - include_role:
-        name: base
-
 - name: All the vim
   hosts: all
   tasks:
