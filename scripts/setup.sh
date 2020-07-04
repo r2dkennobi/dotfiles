@@ -41,17 +41,17 @@ if [[ "$OS" == *"antergos"* ]]; then
   fi
 
   # don't forget gem install foodcritic
-elif [[ "$OS" == "ubuntu" ]] || [[ "$OS" == "parrot" ]]; then
+elif [[ "$OS" == "pop" ]] || [[ "$OS" == "ubuntu" ]] || [[ "$OS" == "parrot" ]]; then
   echo "## Debian based OS detected ##"
   echo "- Update system"
   sudo apt-get update && sudo apt-get full-upgrade && sudo apt-get autoremove
 
   echo "- Install python and pip"
-  sudo apt-get install -y python-pip
+  sudo apt-get install -y python3-pip
 
   echo "- Check if Ansible needs to be installed"
-  if ! which ansible > /dev/null; then
-    sudo pip install -U ansible
+  if ! hash ansible > /dev/null; then
+    sudo pip3 install -U ansible
   fi
 fi
 
