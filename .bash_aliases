@@ -37,6 +37,8 @@ alias rgh="rg --hidden"
 alias sudo="sudo "
 alias time_east_coast="sudo timedatectl set-timezone America/New_York"
 alias time_west_coast="sudo timedatectl set-timezone America/Los_Angeles"
+alias pbcopy="xclip -selection clipboard"
+alias pbpaste="xclip -selection clipboard -o"
 
 alias ..="cd .."
 alias ...="cd ../.."
