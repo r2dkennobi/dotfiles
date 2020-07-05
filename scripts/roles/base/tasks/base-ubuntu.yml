@@ -30,18 +30,14 @@
       - git-lfs
       - mtr-tiny
       - ssh
-      - cmus
-      - python-pip
       - python3-pip
       - ufw
       - p7zip-full
       - libu2f-udev       # U2F support in browsers
       - libu2f-host-dev   # U2F support in browsers
       - bolt              # thunderbolt authorization
-      # ubuntu specific
-      - build-essential
-      - ninja-build
       - unrar
+      - iotop
 
 - include_role:
     name: bat
@@ -73,14 +69,22 @@
       - rofi
       - imagemagick
       - flameshot
-      - pinentry-gtk2
-      - thunar
-      - thunar-archive-plugin
-      - thunar-media-tags-plugin
-      - thunar-volman
-  when: mindesktop is defined
+      - fcitx
+      - fcitx-mozc
+      - fcitx-frontend-all
+      - fcitx-config-gtk
+      - numix-gtk-theme
+      - numix-icon-theme
+      - cifs-utils
+      - snapd
+      - mpv
+  when: desktop is defined
 
-- name: Install desktop programs
+- include_role:
+    name: google-chrome
+  when: desktop is defined
+
+- name: Install i3
   become: yes
   apt:
     name: "{{ items }}"
@@ -94,11 +98,6 @@
       - pasystray
       - paprefs
       - redshift
-      - fcitx
-      - fcitx-mozc
-      - fcitx-frontend-all
-      - fcitx-config-gtk2
-      - fcitx-config-gtk
       - ruby
 #      - ruby-docs
       - docker
@@ -107,17 +106,14 @@
 #      - cpupower
       - i3
       - lxappearance
-      - numix-gtk-theme
-      - numix-icon-theme
-      - cifs-utils
       - pcmanfm
+      - thunar
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
+      - thunar-volman
       - thunar-gtkhash
-  when: desktop is defined
+  when: i3 is defined
 
 - include_role:
     name: polybar
-  when: desktop is defined
-
-- include_role:
-    name: google-chrome
-  when: desktop is defined
+  when: i3 is defined
