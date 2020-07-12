@@ -1,5 +1,15 @@
 ---
-- name: Install bat
+- name: Find the latest release
+  uri:
+    url: "https://api.github.com/repos/sharkdp/bat/releases/latest"
+    return_content: true
+  register: json_output
+
+- name: Extract latest bat version
+  set_fact:
+    bat_version: "{{ json_output.json.tag_name | regex_replace('^v(.*)', '\\1') }}"
+
+- name: "Install bat {{ bat_version }}"
   become: yes
   apt:
-    deb: "https://github.com/sharkdp/bat/releases/download/v{{ bat_version }}/bat_{{ bat_version }}_{{ target_arch }}.deb"
+    deb: "https://github.com/sharkdp/bat/releases/download/v{{ bat_version }}/bat_{{ bat_version }}_amd64.deb"

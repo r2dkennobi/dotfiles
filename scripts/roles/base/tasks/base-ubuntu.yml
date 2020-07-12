@@ -78,6 +78,8 @@
       - cifs-utils
       - snapd
       - mpv
+      - suckless-tools
+      - lxappearance
   when: desktop is defined
 
 - include_role:
@@ -98,14 +100,11 @@
       - pasystray
       - paprefs
       - redshift
-      - ruby
-#      - ruby-docs
       - docker
       - xautolock
 #      - noto-fonts-emoji
 #      - cpupower
       - i3
-      - lxappearance
       - pcmanfm
       - thunar
       - thunar-archive-plugin

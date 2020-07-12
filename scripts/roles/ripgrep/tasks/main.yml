@@ -1,5 +1,15 @@
 ---
-- name: Install ripgrep
+- name: Find the latest release
+  uri:
+    url: "https://api.github.com/repos/BurntSushi/ripgrep/releases/latest"
+    return_content: true
+  register: json_output
+
+- name: Extract latest ripgrep version
+  set_fact:
+    rg_version: "{{ json_output.json.tag_name | regex_replace('^v(.*)', '\\1') }}"
+
+- name: "Install ripgrep {{ rg_version }}"
   become: yes
   apt:
-    deb: "https://github.com/BurntSushi/ripgrep/releases/download/{{ rg_vers }}/ripgrep_{{ rg_vers }}_amd64.deb"
+    deb: "https://github.com/BurntSushi/ripgrep/releases/download/{{ rg_version }}/ripgrep_{{ rg_version }}_amd64.deb"
