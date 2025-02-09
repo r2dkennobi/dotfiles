@@ -56,4 +56,4 @@ elif [[ "$OS" == "pop" ]] || [[ "$OS" == "ubuntu" ]] || [[ "$OS" == "parrot" ]];
 fi
 
 echo "- Install all Ansible deps"
-ansible-galaxy install -r requirements.yml
+ansible-galaxy install -r requirements.yaml

@@ -5,18 +5,15 @@ alias mv='mv -i'
 alias gpgla='gpg2 --list-keys --keyid-format LONG --fingerprint'
 alias gpgsla='gpg2 --list-secret-keys --keyid-format LONG --fingerprint'
 alias ports='lsof -i -n -P'
-alias services_enabled='systemctl list-unit-files | ag enable'
-alias services_disabled='systemctl list-unit-files | ag disable'
 alias ssh='ssh -XYC'
 alias ssha='ssh -XYCA'
 alias rsync='rsync -avh --progress --stats'
 alias rrsync='rsync -ravh --progress --stats'
-alias agh='ag --hidden'
 alias ssh-secure-keygen='ssh-keygen -o -a 100 -t ed25519'
-if [[ -e "/usr/bin/apt" ]]; then
+if command -v apt >/dev/null 2>&1; then
   alias sysup='sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y'
-elif [[ -e "/usr/bin/pacman" ]]; then
-  if [[ -e "/usr/bin/yay" ]]; then
+elif command -v pacman >/dev/null 2>&1; then
+  if command -v yay >/dev/null 2>&1; then
     alias sysup='sudo pacman -Syyu && yay -Syyu --aur'
   else
     alias sysup='sudo pacman -Syyu'
@@ -25,20 +22,23 @@ fi
 alias grep='grep --color=auto'
 alias df='df -h'
 alias du='du -h'
-if [[ -e "/usr/bin/bat" ]]; then
+if command -v bat >/dev/null 2>&1; then
   alias cat='bat'
+  alias catp='bat --plain'
 fi
 alias preview="fzf --preview 'bat --color \"always\" {}'"
-if [[ -e "/usr/local/bin/prettyping" ]]; then
+if command -v prettyping >/dev/null 2>&1; then
   alias ping="prettyping"
 fi
-alias punchitchewie="sudo cpupower frequency-set -g performance"
 alias rgh="rg --hidden"
 alias sudo="sudo "
 alias time_east_coast="sudo timedatectl set-timezone America/New_York"
 alias time_west_coast="sudo timedatectl set-timezone America/Los_Angeles"
-alias pbcopy="xclip -selection clipboard"
-alias pbpaste="xclip -selection clipboard -o"
+if command -v xclip >/dev/null 2>&1; then
+  alias pbcopy="xclip -selection clipboard"
+  alias pbpaste="xclip -selection clipboard -o"
+fi
+alias terrafmt="terraform fmt --recursive **/*.tf && terragrunt hclfmt **/*.hcl"
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -91,4 +91,6 @@ alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 alias map="xargs -n1"
 
 # afk. just cause
-alias afk="i3lock -ti /home/kenny/lockscreen.png"
+if command -v i3lock >/dev/null 2>&1; then
+  alias afk="i3lock -ti /home/kenny/lockscreen.png"
+fi

@@ -1,0 +1,44 @@
+# Custom ZSH prompt
+
+SSH_COLOR='%F{magenta}'; VENV_COLOR='%F{cyan}'; DCOL='%F{white}';
+STATCOL='%F{blue}'; CWDCOL='%F{green}'; RST='%f'
+
+# Parse git branch
+function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+function meta {
+    echo "$(ls -1 | sed 1d | wc -l | sed 's: ::g') files, $(ls -sh | head -n1 | sed 's/total //')b"
+}
+
+virtual_env_detector() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    echo "($(basename "${VIRTUAL_ENV:-""}"))"
+  else
+    echo ""
+  fi
+}
+
+[[ ${EUID} == 0 ]] && USER_COL='%F{red}' || USER_COL='%F{blue}'
+[[ -n "$SSH_CONNECTION" ]] && HOST_ADDR="$(echo "$SSH_CONNECTION" | awk '{print $3}')"
+[[ -n "$SSH_CONNECTION" ]] && USER_HOST="${SSH_COLOR}%n@$HOST_ADDR${DCOL}" || USER_HOST="%n@%m"
+
+setopt PROMPT_SUBST
+
+PS1="${STATCOL}%(?.✔︎.?%?)${DCOL} >> "
+PS1+="${VENV_COLOR}\$(virtual_env_detector)${DCOL} >> "
+PS1+="${USER_COL}${USER_HOST}${DCOL} >> "
+PS1+="${STATCOL}%D{%Y/%m/%f} %*${DCOL}${DCOL} \$(parse_git_branch)
+>> ${CWDCOL}%~${DCOL} %# \$${RST} "
+#PS1+="${METACOL}\$(meta)${DCOL} \$${RST} "
+
+export PS1
+
+# Other bash stuff
+source $HOME/.kenny/dotfiles/.bash_aliases
+
+# GPG related config
+GPG_TTY=$(tty)
+export GPG_TTY
+
