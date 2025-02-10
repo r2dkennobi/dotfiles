@@ -36,9 +36,12 @@ export XMODIFIERS='@im=fcitx'
 export HISTTIMEFORMAT="%m/%d/%y %T "
 
 # WSL2 specific settings
+# TODO also macOS
 if grep -q "microsoft" /proc/version &>/dev/null; then
-  DISPLAY="$(/sbin/ip route | awk '/default/ { print $3 }'):0"
-  export DISPLAY
+  #DISPLAY="$(/sbin/ip route | awk '/default/ { print $3 }'):0"
+  #export DISPLAY
+  GPG_TTY=$(tty)
+  export GPG_TTY
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

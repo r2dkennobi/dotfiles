@@ -6,3 +6,4 @@ build
 *.plist
 *.pyc
 *.o
+.terragrunt-cache
