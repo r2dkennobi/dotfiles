@@ -37,6 +37,8 @@ export PS1
 
 # Other bash stuff
 source $HOME/.kenny/dotfiles/.bash_aliases
+source $HOME/.kenny/dotfiles/.bash_functions
+source $HOME/.kenny/dotfiles/.bash_paths
 
 # GPG related config
 GPG_TTY=$(tty)
