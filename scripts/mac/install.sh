@@ -2,6 +2,16 @@
 set -Eeuo pipefail
 #set -x
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="${SCRIPT_DIR}/../.."
+
+if ! xcode-select -p &>/dev/null; then
+  echo "> Xcode Command Line Tools not found. Installing..."
+  xcode-select --install
+  echo "> Re-run this script after installation completes."
+  exit 1
+fi
+
 if [[ ! -d '/opt/homebrew/bin' ]]; then
   echo "> Install Homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -17,7 +27,12 @@ if [[ ! -e '/etc/pam.d/sudo_local' ]]; then
 fi
 
 echo "> Install usual applications"
-brew install neovim tmux bat fzf jq ripgrep shellcheck font-cascadia-code-pl font-cascadia-mono-pl tree diff-so-fancy
+PKGS=(neovim tmux bat fzf jq ripgrep shellcheck font-cascadia-code-pl font-cascadia-mono-pl tree diff-so-fancy)
+MISSING=()
+for pkg in "${PKGS[@]}"; do
+  brew list --formula "$pkg" &>/dev/null || brew list --cask "$pkg" &>/dev/null || MISSING+=("$pkg")
+done
+[[ ${#MISSING[@]} -gt 0 ]] && brew install "${MISSING[@]}"
 
 if [[ ! -d "/Users/${USER}/.oh-my-zsh" ]]; then
   echo "> Install Oh My ZSH"
@@ -37,15 +52,16 @@ if command -v gpg >/dev/null 2>&1; then
   fi
 fi
 
-ln -sfn "$(pwd)/../.tmux.conf" "${HOME}/.tmux.conf"
-ln -sfn "$(pwd)/../.gitconfig" "${HOME}/.gitconfig"
-ln -sfn "$(pwd)/../.git-commit-tmpl.txt" "${HOME}/.git-commit-tmpl.txt"
+echo "> Symlinking dotfiles"
+ln -sfn "${DOTFILES_DIR}/.tmux.conf"           "${HOME}/.tmux.conf"
+ln -sfn "${DOTFILES_DIR}/.gitconfig"           "${HOME}/.gitconfig"
+ln -sfn "${DOTFILES_DIR}/.git-commit-tmpl.txt" "${HOME}/.git-commit-tmpl.txt"
 mkdir -p "${HOME}/.gnupg"
-ln -sfn "$(pwd)/../.gnupg/gpg.conf" "${HOME}/.gnupg/gpg.conf"
-ln -sfn "$(pwd)/../.gnupg/gpg-agent.conf" "${HOME}/.gnupg/gpg-agent.conf"
+ln -sfn "${DOTFILES_DIR}/.gnupg/gpg.conf"             "${HOME}/.gnupg/gpg.conf"
+ln -sfn "${DOTFILES_DIR}/.gnupg/gpg-agent.conf.mac"   "${HOME}/.gnupg/gpg-agent.conf"
+ln -sfn "${DOTFILES_DIR}/.gitconfig.local.mac"         "${HOME}/.gitconfig.local"
 
-
-LINE="source $(pwd)/../.zsh_custom"
+LINE="source ${DOTFILES_DIR}/.zsh_custom"
 FILE="${HOME}/.zshrc"
 if ! grep -qF "$LINE" "$FILE"; then
   echo "> Add custom zsh configs to $FILE"
