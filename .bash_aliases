@@ -38,7 +38,7 @@ if command -v xclip >/dev/null 2>&1; then
   alias pbcopy="xclip -selection clipboard"
   alias pbpaste="xclip -selection clipboard -o"
 fi
-alias terrafmt="terraform fmt --recursive **/*.tf && terragrunt hclfmt **/*.hcl"
+alias terrafmt="terraform fmt --recursive **/*.tf || terragrunt hclfmt **/*.hcl"
 
 alias ..="cd .."
 alias ...="cd ../.."

@@ -44,3 +44,9 @@ source $HOME/.kenny/dotfiles/.bash_paths
 GPG_TTY=$(tty)
 export GPG_TTY
 
+# direnv per-directory env management
+command -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
+
+# Machine-local config (not tracked in repo)
+[[ -f "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
+

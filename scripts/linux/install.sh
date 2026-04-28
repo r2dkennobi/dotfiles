@@ -2,6 +2,9 @@
 set -Eeuo pipefail
 #set -x
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="${SCRIPT_DIR}/../.."
+
 OS=$(awk -F= '$1 == "ID" { print $NF ;}' /etc/os-release)
 echo "Detected OS: $OS"
 
@@ -56,4 +59,14 @@ elif [[ "$OS" == "pop" ]] || [[ "$OS" == "ubuntu" ]] || [[ "$OS" == "parrot" ]];
 fi
 
 echo "- Install all Ansible deps"
-ansible-galaxy install -r requirements.yaml
+ansible-galaxy install -r "${SCRIPT_DIR}/requirements.yaml"
+
+echo "> Symlinking dotfiles"
+while IFS= read -r -d '' file; do
+  ln -sfn "$file" "${HOME}/$(basename "$file")"
+done < <(find "$DOTFILES_DIR" -maxdepth 1 -name ".*" \
+  -not -name ".gitignore" -not -name ".git" -not -name ".gnupg" -print0)
+mkdir -p ~/.gnupg
+ln -sfn "${DOTFILES_DIR}/.gnupg/gpg.conf"             "${HOME}/.gnupg/gpg.conf"
+ln -sfn "${DOTFILES_DIR}/.gnupg/gpg-agent.conf.linux" "${HOME}/.gnupg/gpg-agent.conf"
+ln -sfn "${DOTFILES_DIR}/.gitconfig.local.linux"       "${HOME}/.gitconfig.local"
