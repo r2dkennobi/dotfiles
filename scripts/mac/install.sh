@@ -27,7 +27,7 @@ if [[ ! -e '/etc/pam.d/sudo_local' ]]; then
 fi
 
 echo "> Install usual applications"
-PKGS=(neovim tmux bat fzf jq ripgrep shellcheck font-cascadia-code-pl font-cascadia-mono-pl tree diff-so-fancy)
+PKGS=(neovim tmux bat fzf jq ripgrep shellcheck pinentry-mac font-cascadia-code-pl font-cascadia-mono-pl tree diff-so-fancy)
 MISSING=()
 for pkg in "${PKGS[@]}"; do
   brew list --formula "$pkg" &>/dev/null || brew list --cask "$pkg" &>/dev/null || MISSING+=("$pkg")

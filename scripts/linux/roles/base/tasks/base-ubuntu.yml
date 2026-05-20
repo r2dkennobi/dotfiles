@@ -22,7 +22,6 @@
       - tilix
       - vim
       - htop
-      - silversearcher-ag
       - shellcheck
       - aria2
       - gnupg2
