@@ -64,7 +64,7 @@
     filelog = log -u
     fl = log -u
     # Ammend previous commit
-    amend = commit --amend --reset-author -v
+    amend = "!f() { if [ -n \"$1\" ]; then GIT_SEQUENCE_EDITOR=\"sed -i '' '1s/^pick/edit/'\" git rebase -i \"$1^\"; else git commit --amend --reset-author -v; fi; }; f"
     # Rebase and update everything
     up = !git pull --rebase --prune $@ && git submodule update --init --recursive
     sync = !git rebase $1 && git push -u origin HEAD --force
