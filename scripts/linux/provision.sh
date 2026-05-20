@@ -143,7 +143,7 @@ base_min_install() {
     cmake \
     neovim \
     grep \
-    silversearcher-ag \
+    ripgrep \
     gdb \
     build-essential \
     autoconf \

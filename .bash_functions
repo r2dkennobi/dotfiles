@@ -48,7 +48,7 @@ man() {
 
 # Helper function to grab a list of GPG ID for the desired key(s)
 _gpg_list_keys() {
-  gpg --list-keys --keyid-format LONG "$@" 2>/dev/null | ${GREP_BIN:-"ag"} pub
+  gpg --list-keys --keyid-format LONG "$@" 2>/dev/null | ${GREP_BIN:-"rg"} pub
   return $?
 }
 
@@ -90,5 +90,5 @@ git-config-id() {
 }
 
 probe_ipv4() {
-  avahi-browse -artkp | ag = | ag ipv4 | awk -F";" '{print $4,$8}'
+  avahi-browse -artkp | rg = | rg ipv4 | awk -F";" '{print $4,$8}'
 }
