@@ -1,0 +1,5 @@
+# Claude Code — local/ephemeral files
+.claude/settings.local.json
+.claude/worktrees/
+.claude/todos.json
+.claude/conversation_*.json

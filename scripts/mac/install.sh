@@ -3,7 +3,7 @@ set -Eeuo pipefail
 #set -x
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DOTFILES_DIR="${SCRIPT_DIR}/../.."
+DOTFILES_DIR="${DOTFILES_DIR:-"$(git -C "${SCRIPT_DIR}" rev-parse --show-toplevel)"}"
 
 if ! xcode-select -p &>/dev/null; then
   echo "> Xcode Command Line Tools not found. Installing..."
