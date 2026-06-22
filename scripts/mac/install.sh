@@ -37,11 +37,21 @@ ln -sfn "${DOTFILES_DIR}/.gnupg/gpg-agent.conf.mac" "${HOME}/.gnupg/gpg-agent.co
 if [[ ! -d '/opt/homebrew/bin' ]]; then
   echo "> Install Homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-  echo >> "/Users/${USER}/.zprofile"
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "/Users/${USER}/.zprofile"
-  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# Ensure Homebrew is on PATH ahead of macOS system paths, so `bash`, `gpg`, etc.
+# resolve to the Homebrew versions and not the stock ones (macOS ships bash 3.2 at
+# /bin/bash). brew shellenv PREPENDS to PATH, overriding the order that path_helper
+# applies from /etc/paths + /etc/paths.d/homebrew.
+#
+# Run this unconditionally and idempotently: when Homebrew is pre-installed (e.g. by
+# MDM) the block above is skipped, but ~/.zprofile still needs this line.
+BREW_SHELLENV='eval "$(/opt/homebrew/bin/brew shellenv)"'
+if ! grep -qF "$BREW_SHELLENV" "/Users/${USER}/.zprofile" 2>/dev/null; then
+  echo "> Add Homebrew shellenv to ~/.zprofile"
+  printf '\n%s\n' "$BREW_SHELLENV" >> "/Users/${USER}/.zprofile"
+fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "> Install usual applications"
 PKGS=(neovim tmux bat fzf jq ripgrep shellcheck gnupg pinentry-mac font-cascadia-code-pl font-cascadia-mono-pl tree diff-so-fancy)
