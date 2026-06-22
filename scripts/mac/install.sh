@@ -44,14 +44,20 @@ fi
 # /bin/bash). brew shellenv PREPENDS to PATH, overriding the order that path_helper
 # applies from /etc/paths + /etc/paths.d/homebrew.
 #
-# Run this unconditionally and idempotently: when Homebrew is pre-installed (e.g. by
-# MDM) the block above is skipped, but ~/.zprofile still needs this line.
-BREW_SHELLENV='eval "$(/opt/homebrew/bin/brew shellenv)"'
-if ! grep -qF "$BREW_SHELLENV" "/Users/${USER}/.zprofile" 2>/dev/null; then
-  echo "> Add Homebrew shellenv to ~/.zprofile"
-  printf '\n%s\n' "$BREW_SHELLENV" >> "/Users/${USER}/.zprofile"
+# Run this idempotently: when Homebrew is pre-installed (e.g. by MDM) the block
+# above is skipped, but ~/.zprofile still needs this line. Gate on brew actually
+# existing at the expected path so we don't write a line that errors in every
+# future shell (e.g. on Intel, where Homebrew lives in /usr/local, not here).
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  BREW_SHELLENV='eval "$(/opt/homebrew/bin/brew shellenv)"'
+  if ! grep -qF "$BREW_SHELLENV" "/Users/${USER}/.zprofile" 2>/dev/null; then
+    echo "> Add Homebrew shellenv to ~/.zprofile"
+    printf '\n%s\n' "$BREW_SHELLENV" >> "/Users/${USER}/.zprofile"
+  fi
+  eval "$BREW_SHELLENV"
+else
+  echo "> WARNING: /opt/homebrew/bin/brew not found — skipping shellenv setup" >&2
 fi
-eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "> Install usual applications"
 PKGS=(neovim tmux bat fzf jq ripgrep shellcheck gnupg pinentry-mac font-cascadia-code-pl font-cascadia-mono-pl tree diff-so-fancy)
