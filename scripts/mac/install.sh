@@ -33,6 +33,9 @@ mkdir -p "${HOME}/.gnupg"
 chmod 700 "${HOME}/.gnupg"
 ln -sfn "${DOTFILES_DIR}/.gnupg/gpg.conf"           "${HOME}/.gnupg/gpg.conf"
 ln -sfn "${DOTFILES_DIR}/.gnupg/gpg-agent.conf.mac" "${HOME}/.gnupg/gpg-agent.conf"
+mkdir -p "${HOME}/.ssh"
+chmod 700 "${HOME}/.ssh"
+ln -sfn "${DOTFILES_DIR}/.ssh/config" "${HOME}/.ssh/config"
 
 if [[ ! -d '/opt/homebrew/bin' ]]; then
   echo "> Install Homebrew"
@@ -44,7 +47,7 @@ if [[ ! -d '/opt/homebrew/bin' ]]; then
 fi
 
 echo "> Install usual applications"
-PKGS=(neovim tmux bat fzf jq ripgrep shellcheck gnupg pinentry-mac font-cascadia-code-pl font-cascadia-mono-pl tree diff-so-fancy)
+PKGS=(neovim tmux bat fzf jq ripgrep shellcheck gnupg pinentry-mac font-cascadia-code-pl font-cascadia-mono-pl tree diff-so-fancy python)
 MISSING=()
 for pkg in "${PKGS[@]}"; do
   brew list --formula "$pkg" &>/dev/null || brew list --cask "$pkg" &>/dev/null || MISSING+=("$pkg")
